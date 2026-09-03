@@ -1,0 +1,43 @@
+# service: haddock3-server
+# repo: opensource/haddock3
+# source_files: pyproject.toml, setup.py
+# packages: 34
+# extracted: 2026-08-11T06:05:08Z
+# source: declared dependencies from opensource git checkout
+#         (PEP 621/poetry pyproject.toml, setup.py/cfg, requirements*, conda env)
+# note: constraints AND-joined per package; alternative variant files
+#       (e.g. cuda121/cuda124) are not distinguished
+biopython==1.*
+CommonMark>=0.9.1
+coverage==7.14.3
+deeprank-gnn-esm>=1.1.0
+fastapi==0.138.2
+freesasa>=2.2.1
+gdock>=0.5.0
+httpx==0.28.1
+hypothesis==6.155.7
+jsonpickle>=2.1.0
+jupyter
+kaleido==1.3.0
+marimo>=0.17.6
+mpi4py>=4.0.2
+myst-parser>=3.0.1
+numpy==2.*
+pandas==2.*
+pdb-tools>=2.5.0
+plotly==6.8.0
+prodigy-lig==1.1.4
+prodigy-prot==2.3.0
+psutil>=7.2.2
+py3Dmol>=2.5.2
+pytest==9.1.1
+pytest-cov==7.1.0
+pytest-mock==3.15.1
+pytest-random-order==1.2.0
+pyyaml>=6.0
+ruff>=0.14
+scipy>=1.10.0
+sphinx>=7
+sphinx-argparse>=0.4.0
+sphinx_rtd_theme>=3.0.1
+toml>=0.10.2

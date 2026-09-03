@@ -1,0 +1,260 @@
+# 💿 Installation
+
+## Installing micromamba
+
+We highly recommend the latest version of [micromamba](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html) for the conda environment creation and a fresh environment (as it will be demonstrated here). This is going to ease the resolution of dependencies. See the [Official Micromamba Installation Instructions](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html). [Mamba](https://mamba.readthedocs.io/en/latest/index.html) may also be used.
+
+## Building the environment
+
+We would like to work in a more relaxed environment, but we have encountered challenging situations. For now, we **highly** recommend the pinned environment (although the relaxed one is provided for reference).
+
+```{raw} html
+<div id="installer-config">
+  <div>
+    <strong>Select environment style:</strong><br>
+    <button data-style="pinned">✅Pinned (recommended)</button>
+    <button data-style="relaxed">‼️Relaxed (untasted)</button>
+  </div>
+
+  <div>
+    <strong>Features:</strong><br>
+    <label><input type="checkbox" data-feature="mmpbsa"> MM(PB/GB)SA capabilities</label>
+    <label><input type="checkbox" data-feature="espaloma"> Espaloma force field</label>
+  </div>
+
+  <div>
+    <strong>Generated environment.yml:</strong>
+    <pre id="env-preview" class="highlight">Select options above...</pre>
+    <a id="download-env" style="display:none;">⬇️ Download environment.yml</a>
+  </div>
+</div>
+```
+
+````{note}
+We observed that conda must be configured with `channel_priority: flexible` instead of `strict`.
+
+You may get the following error after the environment is created:
+
+```text
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behavior is the source of the following dependency conflicts.
+tensorflow 2.17.0 requires ml-dtypes<0.5.0,>=0.3.1, but you have ml-dtypes 0.5.4 which is incompatible.
+```
+You can **safely** ignore it. This is may happen in MacOS when Espaloma is selected. The issue arieses because the chain dependency: `Espaloma > DLG > TensorFlow > ml-dtypes`. We are currently working to get rid of this "error".
+
+````
+
+```python
+micromamba env create -f environment.yml --channel-priority flexible -y
+micromamba activate BindFlow
+```
+
+## Final optional pip dependency and BindFlow installation
+
+`````{tab} With MM(P/G)BSA capabilities
+
+  ````{tab} 🟢 Stable Release
+    ```bash
+    micromamba activate BindFlow
+    python -m pip install bindflow --no-deps
+    python -m pip install -U git+https://github.com/Valdes-Tresanco-MS/gmx_MMPBSA.git@27929e02067bc2321286809818d778a77a872010 --no-deps
+    ```
+  ````
+  ````{tab} 🟡 Install from GitHub (latest commit)
+    ```bash
+    micromamba activate BindFlow
+    python -m pip install git+https://github.com/ale94mleon/BindFlow.git --no-deps
+    python -m pip install -U git+https://github.com/Valdes-Tresanco-MS/gmx_MMPBSA.git@27929e02067bc2321286809818d778a77a872010 --no-deps
+    ```
+  ````
+  ````{tab} 🔵 Developer Mode (editable)
+    ```bash
+    micromamba activate BindFlow
+    git clone --depth 1 git@github.com:ale94mleon/BindFlow.git
+    cd BindFlow 
+    python -m pip install -e . --no-deps
+    python -m pip install -U git+https://github.com/Valdes-Tresanco-MS/gmx_MMPBSA.git@27929e02067bc2321286809818d778a77a872010 --no-deps
+    ```
+  ````
+  
+  ```{note}
+  Currently, we are using the `gmx_MMPBSA` commit [27929e0](https://github.com/Valdes-Tresanco-MS/gmx_MMPBSA/commit/27929e02067bc2321286809818d778a77a872010). This commit has been tested and provides flexibility in selecting the Python version.
+  ```
+  
+`````
+
+`````{tab} Without MM(P/G)BSA capabilities
+
+  ````{tab} 🟢 Stable Release
+    ```bash
+    micromamba activate BindFlow
+    python -m pip install bindflow --no-deps
+    ```
+  ````
+  ````{tab} 🟡 Install from GitHub (latest commit)
+    ```bash
+    micromamba activate BindFlow
+    python -m pip install git+https://github.com/ale94mleon/BindFlow.git --no-deps
+    ```
+  ````
+  ````{tab} 🔵 Developer Mode (editable)
+    ```bash
+    micromamba activate BindFlow
+    git clone --depth 1 git@github.com:ale94mleon/BindFlow.git
+    cd BindFlow 
+    python -m pip install -e . --no-deps
+    ```
+  ````
+`````
+
+## GROMACS
+
+[GROMACS](https://www.gromacs.org/) can be installed in various ways depending on your computer architecture. It is essential to ensure a proper installation that fits your resources. BindFlow relies on GROMACS as its molecular dynamics engine, so it is crucial to have GROMACS installed and ready to use.
+
+Here, we will demonstrate how to build GROMACS from Source (courtesy of [Maciej Wójcik](https://biophys.uni-saarland.de/author/maciej-wojcik/)). If this method does not work, consult the [GROMACS Installation Guide](https://manual.gromacs.org/current/install-guide/index.html) for more information.
+
+```{important}
+At the moment we support GROMACS versions in the range [2022, 2026); BindFlow throws a clean error at the very beginning of the execution of {py:func}`bindflow.runners.calculate` if otherwise.
+```
+
+<!--
+2025 -> TPX 137 (until MDAnalysis 2.10)
+2026 -> TPX 138
+ 
+Check the TPX version of the new GROMACS:
+
+1. Create a TPR with the new GROMACS
+2. Then execute:
+
+```python
+import MDAnalysis as mda
+from MDAnalysis.topology import tpr
+from MDAnalysis import lib
+
+with lib.util.openany("prod.tpr", mode="rb") as infile:
+    tprf = infile.read()
+data = tpr.utils.TPXUnpacker(tprf)
+tpr.utils.read_tpxheader(data)
+```
+IF the following pass, is ok. You can aslo, instead the last command:
+
+```python
+data.do_string()
+data.unpack_int()
+print(data.unpack_int(), "this is the TPR")
+```
+And check if the version is supported by https://docs.mdanalysis.org/stable/documentation_pages/topology/tpr_util.html#module-MDAnalysis.topology.tpr. Maybe a new version of MDAnalysis.-->
+
+<!-- ```{important}
+BindFlow depends on [MDAnalysis](https://www.mdanalysis.org). Current `MDAnalysis-2.9.0` (2026.03.31), does not read TPR files generated by `GROMACS >= 2026`; so a lower version is needed. `GROMACS==2025.4` is a good option.
+
+If `GROMACS >= 2023`, BindFlow throws a clean error at the very beginning of the execution of {py:func}`bindflow.runners.calculate`.
+``` -->
+
+````{tab} Linux 🐧
+  ```bash
+  VERSION="2025.4"
+  TARGET_LOCATION="gromacs/${VERSION}"
+  SOURCE="https://gitlab.com/gromacs/gromacs.git"
+  SOURCE_REF="v${VERSION}"
+
+  mkdir -p ${TARGET_LOCATION}
+
+  git clone --depth 1 --branch ${SOURCE_REF} "${SOURCE}" "${TARGET_LOCATION}-src"
+
+  cmake -DGMX_GPU="CUDA" -DCMAKE_C_COMPILER=gcc-13 -DCMAKE_CXX_COMPILER=g++-13 \
+      -DGMX_BUILD_OWN_FFTW=ON -DCMAKE_INSTALL_PREFIX="$(pwd)/${TARGET_LOCATION}" -S "${TARGET_LOCATION}-src" -B "${TARGET_LOCATION}-build"
+
+  nice -19 cmake --build "${TARGET_LOCATION}-build" --target install -j 8
+
+  rm -rf "${TARGET_LOCATION}-build"
+  rm -rf "${TARGET_LOCATION}-src"
+
+  source "${TARGET_LOCATION}/bin/GMXRC.bash"
+  ```
+````
+
+````{tab} MacOS 🍏
+  Assuming [brew](https://brew.sh) is installed (a must for Mac developers).
+  
+  ```bash
+  brew install hwloc cmake gcc@13
+  ```
+  
+  ```bash
+  VERSION=2025.4
+
+  git clone --depth 1 --branch v${VERSION} https://gitlab.com/gromacs/gromacs.git gromacs-src
+  cmake -DGMX_BUILD_OWN_FFTW=ON -DCMAKE_INSTALL_PREFIX="$(pwd)/gromacs-${VERSION}" -DGMX_GPU=OpenCL -DGMX_HWLOC=ON -DCMAKE_C_COMPILER=gcc-13 -DCMAKE_CXX_COMPILER=g++-13 -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -B gromacs-build -S gromacs-src
+  cmake --build "gromacs-build" --target install -j $(sysctl -n hw.logicalcpu)
+
+  rm -rf gromacs-build
+  rm -rf gromacs-src
+
+  source gromacs-${VERSION}/bin/GMXRC.bash
+  ```
+  
+  ```{important}
+    To use the GPU, it is needed to set the following environmental variable:
+    ```bash
+    export GMX_GPU_DISABLE_COMPATIBILITY_CHECK=1
+    ```
+    Highly discouraged for production!
+  ```
+````
+
+## Documentation dependencies
+
+This online [Sphinx](https://www.sphinx-doc.org/en/master/) documentation can also be built and accessed locally.
+
+````{admonition} requirements_doc.txt
+:class: tip
+
+  ```
+  myst-nb
+  myst-parser
+  sphinx_book_theme
+  sphinx==7.2.6
+  sphinx_design
+  sphinxcontrib-katex
+  sphinxcontrib-mermaid
+  sphinx-inline-tabs
+  sphinx_copybutton
+  sphinx-autobuild
+  roman
+  ```
+````
+
+```bash
+pip install -r requirements_docs.txt
+```
+
+```bash
+sphinx-autobuild docs public -a
+```
+
+Open [http://localhost:8000](http://localhost:8000). The HTML documentation is in the `public` directory.
+
+## Testing installation
+
+Finally, it is advised to check if everything is alright. Be patient and go for a coffee ☕, this could take a couple of minutes (~11 min on my Laptop) ⏳.
+
+```bash
+pip install pytest
+pytest --pyargs bindflow.tests
+```
+
+`````{admonition} Expected results
+:class: info
+````{tab} Linux 🐧
+  ```yaml
+  passed: 5
+  xfailed: 0
+  ```
+````
+````{tab} MacOS 🍏
+  ```bash
+  passed: 3
+  xfailed: 2  # from test/test_small.py
+  ```
+````
+`````

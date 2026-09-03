@@ -1,0 +1,22 @@
+# service: alphafold-server
+# repo: opensource/alphafold
+# source_files: pyproject.toml, requirements.txt, docker/requirements.txt
+# packages: 13
+# extracted: 2026-08-11T06:05:07Z
+# source: declared dependencies from opensource git checkout
+#         (PEP 621/poetry pyproject.toml, setup.py/cfg, requirements*, conda env)
+# note: constraints AND-joined per package; alternative variant files
+#       (e.g. cuda121/cuda124) are not distinguished
+absl-py==1.0.0
+biopython==1.79
+dm-haiku==0.0.12
+docker==5.0.0
+jax==0.4.26
+matplotlib==3.8.0
+ml-collections==0.1.0
+numpy==1.24.3
+openmm==8.2.0
+pdbfixer==1.12.0
+pytest<8.5.0
+setuptools<72.0.0
+tensorflow-cpu==2.16.1

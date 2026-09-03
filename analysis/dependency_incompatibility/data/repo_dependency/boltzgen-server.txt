@@ -1,0 +1,41 @@
+# service: boltzgen-server
+# repo: opensource/boltzgen
+# source_files: pyproject.toml
+# packages: 32
+# extracted: 2026-08-11T06:05:07Z
+# source: declared dependencies from opensource git checkout
+#         (PEP 621/poetry pyproject.toml, setup.py/cfg, requirements*, conda env)
+# note: constraints AND-joined per package; alternative variant files
+#       (e.g. cuda121/cuda124) are not distinguished
+biopython
+biotite
+boltzgen
+cuequivariance_ops_cu12>=0.5.0
+cuequivariance_ops_torch_cu12>=0.5.0
+cuequivariance_torch>=0.5.0
+edit_distance
+einops
+einx
+gemmi>=0.6.5
+huggingface_hub
+hydra-core
+hydride
+logomaker
+mashumaro
+matplotlib
+numba==0.61.0
+numpy==2.0.2
+nvidia-ml-py>=12.535.133
+pandas
+pdbeccdutils
+pydssp
+pytest
+pytorch-lightning
+rdkit
+redis
+requests
+ruff
+scikit-learn
+torch>=2.4.1
+types-requests==2.32.4.*
+wandb

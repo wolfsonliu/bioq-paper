@@ -1,0 +1,32 @@
+# service: esmfold2-server
+# repo: opensource/esm
+# source_files: pyproject.toml
+# packages: 23
+# extracted: 2026-08-11T06:05:07Z
+# source: declared dependencies from opensource git checkout
+#         (PEP 621/poetry pyproject.toml, setup.py/cfg, requirements*, conda env)
+# note: constraints AND-joined per package; alternative variant files
+#       (e.g. cuda121/cuda124) are not distinguished
+accelerate
+attrs
+biopython
+biotite>=1.0.0
+boto3
+brotli
+cloudpathlib
+dna_features_viewer
+einops
+httpx
+ipython
+ipywidgets
+msgpack-numpy
+pandas
+py3dmol
+pydssp
+pygtrie
+rdkit
+scikit-learn
+tenacity
+torch>=2.2.0
+transformers
+zstd

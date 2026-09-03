@@ -1,0 +1,42 @@
+{
+  "proteinmpnn": {
+    "median_single_s": 28.23,
+    "n_single": 3
+  },
+  "mmseqs2": {
+    "median_single_s": 8.43,
+    "n_single": 3
+  },
+  "rfdiffusion2": {
+    "median_single_s": 13.49,
+    "n_single": 3
+  },
+  "rfdiffusion": {
+    "median_single_s": 120,
+    "n_single": 0
+  },
+  "boltz": {
+    "median_single_s": 300,
+    "n_single": 0
+  },
+  "boltzgen": {
+    "median_single_s": 300,
+    "n_single": 0
+  },
+  "alphafold": {
+    "median_single_s": 600,
+    "n_single": 0
+  },
+  "reinvent": {
+    "median_single_s": 30.08,
+    "n_single": 3
+  },
+  "plip": {
+    "median_single_s": 16.87,
+    "n_single": 3
+  },
+  "dockq": {
+    "median_single_s": 12.68,
+    "n_single": 3
+  }
+}

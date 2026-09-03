@@ -1,0 +1,15 @@
+{
+  "svc": "dockq",
+  "endpoint": "score",
+  "N": 10,
+  "rep": 3,
+  "makespan_s": 19.84,
+  "peak_concurrency": 8,
+  "n_completed": 10,
+  "n_failed": 0,
+  "n_cancelled": 0,
+  "n_pending": 0,
+  "bioq_version": "",
+  "gateway_url": "",
+  "timestamp": "2026-08-11T17:38:24"
+}

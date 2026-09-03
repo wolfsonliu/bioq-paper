@@ -1,0 +1,28 @@
+# service: rfantibody-server
+# repo: opensource/RFantibody
+# source_files: pyproject.toml, include/SE3Transformer/requirements.txt
+# packages: 19
+# extracted: 2026-08-11T06:05:08Z
+# source: declared dependencies from opensource git checkout
+#         (PEP 621/poetry pyproject.toml, setup.py/cfg, requirements*, conda env)
+# note: constraints AND-joined per package; alternative variant files
+#       (e.g. cuda121/cuda124) are not distinguished
+biotite>=0.38.0
+click>=8.0.0
+cuda-python==11.8
+dgl
+e3nn==0.3.3
+hydra-core
+icecream
+isort>=5.13.2
+numpy>=1.0,<2.0
+opt-einsum
+pandas
+pynvml==11.0.0
+pyrsistent
+pytest>=8.0.0
+torch==2.3.*
+torch-utils
+torchaudio
+torchvision
+wandb==0.12.0

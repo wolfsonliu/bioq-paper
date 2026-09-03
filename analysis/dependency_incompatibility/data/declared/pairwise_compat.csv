@@ -1,0 +1,497 @@
+service_a,service_b,n_shared,n_conflict,n_hard,n_soft,coinstallable,reconcilable,hard_conflict_packages
+alphafold-server,bindflow-server,2,2,0,2,False,True,
+alphafold-server,boltz-server,3,3,1,2,False,False,"numpy(1.24.3|>=1.26,<2.0:range)"
+alphafold-server,boltzgen-server,4,4,1,3,False,False,numpy(1.24.3|2.0.2:major)
+alphafold-server,chembounce-server,3,3,1,2,False,False,"matplotlib(3.8.0|==3.7.5,>=3.7,<4.0:range)"
+alphafold-server,deeprank-ab-server,5,5,0,5,False,True,
+alphafold-server,diffdock-server,1,1,0,1,False,True,
+alphafold-server,diffusion-hopping-server,2,2,0,2,False,True,
+alphafold-server,dockq-server,3,3,0,3,False,True,
+alphafold-server,drughive-server,1,1,0,1,False,True,
+alphafold-server,esmfold2-server,1,1,0,1,False,True,
+alphafold-server,flowmol-server,2,2,0,2,False,True,
+alphafold-server,genie3-server,3,3,1,2,False,False,"numpy(1.24.3|>=2.0.2,<3:range)"
+alphafold-server,haddock3-server,3,3,2,1,False,False,numpy(1.24.3|==2.*:range); pytest(<8.5.0|9.1.1:range)
+alphafold-server,iggm-server,7,6,1,5,False,False,absl-py(1.0.0|2.1.0:major)
+alphafold-server,immunebuilder-server,1,1,0,1,False,True,
+alphafold-server,lasermpnn-server,3,3,0,3,False,True,
+alphafold-server,lightdock-server,0,0,0,0,True,True,
+alphafold-server,megalodon-server,0,0,0,0,True,True,
+alphafold-server,odesign-server,6,6,3,3,False,False,absl-py(1.0.0|2.1.0:major); ml-collections(0.1.0|1.0.0:major); setuptools(<72.0.0|75.8.2:range)
+alphafold-server,openadmet-server,1,1,0,1,False,True,
+alphafold-server,plip-server,1,1,0,1,False,True,
+alphafold-server,pocketxmol-server,5,5,1,4,False,False,openmm(8.2.0|0.2:major)
+alphafold-server,ppiflow-server,7,7,4,3,False,False,"absl-py(1.0.0|2.1.0:major); ml-collections(0.1.0|1.0.0:major); numpy(1.24.3|==1.22.4,==1.26.3:range); setuptools(<72.0.0|75.8.0:range)"
+alphafold-server,promera-server,3,3,3,0,False,False,matplotlib(3.8.0|>=3.10.9:range); ml-collections(0.1.0|>=1.1.0:range); numpy(1.24.3|>=2.4.2:range)
+alphafold-server,qligfep-server,2,2,0,2,False,True,
+alphafold-server,reinvent-server,3,3,2,1,False,False,"numpy(1.24.3|>=2,<3:range); pytest(<8.5.0|>=9.0.3:range)"
+alphafold-server,rfantibody-server,2,2,0,2,False,True,
+alphafold-server,rfdiffusion-server,0,0,0,0,True,True,
+alphafold-server,rfdiffusion2-server,5,5,0,5,False,True,
+alphafold-server,semlaflow-server,1,1,0,1,False,True,
+alphafold-server,turbohopp-server,7,7,1,6,False,False,absl-py(1.0.0|2.1.0:major)
+bindflow-server,boltz-server,5,4,0,4,False,True,
+bindflow-server,boltzgen-server,3,1,1,0,False,False,numpy(<2|2.0.2:range)
+bindflow-server,chembounce-server,8,8,0,8,False,True,
+bindflow-server,deeprank-ab-server,6,6,1,5,False,False,python(==3.10.*|3.9.16:range)
+bindflow-server,diffdock-server,4,3,1,2,False,False,python(==3.10.*|3.9.18:range)
+bindflow-server,diffusion-hopping-server,3,3,0,3,False,True,
+bindflow-server,dockq-server,1,1,0,1,False,True,
+bindflow-server,drughive-server,4,4,1,3,False,False,python(==3.10.*|3.9.16:range)
+bindflow-server,esmfold2-server,3,0,0,0,True,True,
+bindflow-server,flowmol-server,8,8,0,8,False,True,
+bindflow-server,genie3-server,3,1,1,0,False,False,"numpy(<2|>=2.0.2,<3:range)"
+bindflow-server,haddock3-server,7,7,1,6,False,False,numpy(<2|==2.*:range)
+bindflow-server,iggm-server,9,9,0,9,False,True,
+bindflow-server,immunebuilder-server,2,2,0,2,False,True,
+bindflow-server,lasermpnn-server,6,2,1,1,False,False,python(==3.10.*|>=3.8:range)
+bindflow-server,lightdock-server,1,1,0,1,False,True,
+bindflow-server,megalodon-server,1,1,0,1,False,True,
+bindflow-server,odesign-server,8,8,0,8,False,True,
+bindflow-server,openadmet-server,1,1,0,1,False,True,
+bindflow-server,plip-server,1,1,0,1,False,True,
+bindflow-server,pocketxmol-server,6,6,1,5,False,False,"python(==3.10.*|==3.8,==3.10:range)"
+bindflow-server,ppiflow-server,9,9,1,8,False,False,"numpy(<2|==1.22.4,==1.26.3:range)"
+bindflow-server,promera-server,2,2,1,1,False,False,numpy(<2|>=2.4.2:range)
+bindflow-server,qligfep-server,3,3,0,3,False,True,
+bindflow-server,reinvent-server,7,7,2,5,False,False,"numpy(<2|>=2,<3:range); sphinx(7.2.6|>=7.4:range)"
+bindflow-server,rfantibody-server,3,2,0,2,False,True,
+bindflow-server,rfdiffusion-server,0,0,0,0,True,True,
+bindflow-server,rfdiffusion2-server,9,6,1,5,False,False,python(==3.10.*|3.11:range)
+bindflow-server,semlaflow-server,5,4,1,3,False,False,python(==3.10.*|3.11:range)
+bindflow-server,turbohopp-server,9,9,0,9,False,True,
+boltz-server,boltzgen-server,23,15,1,14,False,False,"numpy(>=1.26,<2.0|2.0.2:range)"
+boltz-server,chembounce-server,6,6,3,3,False,False,"requests(2.32.3|==2.31.0,>=2.31:range); scikit-learn(1.6.1|==1.3.2,>=1.3,<2.0:range); scipy(1.13.1|==1.10.1,>=1.10,<2.0:range)"
+boltz-server,deeprank-ab-server,7,7,2,5,False,False,"numpy(>=1.26,<2.0|1.25.0:range); pandas(>=2.2.2|2.0.2:range)"
+boltz-server,diffdock-server,7,7,4,3,False,False,pandas(>=2.2.2|1.5.1:range); pytorch-lightning(2.5.0|1.9.5:major); rdkit(>=2024.3.2|2022.03.3:range); torch(>=2.2|1.13.1+cu117:range)
+boltz-server,diffusion-hopping-server,6,6,5,1,False,False,"numpy(>=1.26,<2.0|1.24.1:range); pandas(>=2.2.2|1.5.2:range); pytorch-lightning(2.5.0|1.8.1:major); rdkit(>=2024.3.2|2022.09.3:range); wandb(0.18.7|0.14.0:major)"
+boltz-server,dockq-server,2,2,0,2,False,True,
+boltz-server,drughive-server,6,6,3,3,False,False,"numpy(>=1.26,<2.0|1.22.3:range); pandas(>=2.2.2|1.4.1:range); rdkit(>=2024.3.2|2021.09.5:range)"
+boltz-server,esmfold2-server,6,6,0,6,False,True,
+boltz-server,flowmol-server,10,9,2,7,False,False,einops(0.8.0|0.7.0=pyhd8ed1ab_1:major); wandb(0.18.7|0.16.2:major)
+boltz-server,genie3-server,6,6,1,5,False,False,"numpy(>=1.26,<2.0|>=2.0.2,<3:range)"
+boltz-server,haddock3-server,7,7,1,6,False,False,"numpy(>=1.26,<2.0|==2.*:range)"
+boltz-server,iggm-server,13,9,1,8,False,False,"numpy(>=1.26,<2.0|1.23.5:range)"
+boltz-server,immunebuilder-server,5,5,0,5,False,True,
+boltz-server,lasermpnn-server,7,6,0,6,False,True,
+boltz-server,lightdock-server,1,1,0,1,False,True,
+boltz-server,megalodon-server,6,5,1,4,False,False,wandb(0.18.7|0.19.11:major)
+boltz-server,odesign-server,18,14,4,10,False,False,modelcif(1.2|0.7:major); pytorch-lightning(2.5.0|1.9.0:major); rdkit(>=2024.3.2|2023.3.1:range); wandb(0.18.7|0.19.8:major)
+boltz-server,openadmet-server,1,1,0,1,False,True,
+boltz-server,plip-server,1,1,0,1,False,True,
+boltz-server,pocketxmol-server,7,7,5,2,False,False,"numpy(>=1.26,<2.0|1.24:range); pandas(>=2.2.2|1.5.2:range); pyyaml(6.0.2|==5.4.1,==6.0.2:range); rdkit(>=2024.3.2|2023.9.3:range); scipy(1.13.1|==1.8.0,==1.10.1:range)"
+boltz-server,ppiflow-server,19,15,4,11,False,False,"modelcif(1.2|0.7:major); numpy(>=1.26,<2.0|==1.22.4,==1.26.3:range); rdkit(>=2024.3.2|2023.3.1:range); wandb(0.18.7|0.19.8:major)"
+boltz-server,promera-server,11,11,5,6,False,False,"dm-tree(0.1.8|>=0.1.10:range); einops(0.8.0|>=0.8.2:range); numpy(>=1.26,<2.0|>=2.4.2:range); scikit-learn(1.6.1|>=1.8.0:range); wandb(0.18.7|>=0.24.2:range)"
+boltz-server,qligfep-server,1,1,0,1,False,True,
+boltz-server,reinvent-server,7,7,1,6,False,False,"numpy(>=1.26,<2.0|>=2,<3:range)"
+boltz-server,rfantibody-server,7,7,1,6,False,False,wandb(0.18.7|0.12.0:major)
+boltz-server,rfdiffusion-server,2,2,1,1,False,False,wandb(0.18.7|0.12.0:major)
+boltz-server,rfdiffusion2-server,12,10,3,7,False,False,"einops(0.8.0|0.7.0:major); pandas(>=2.2.2|1.5.0:range); wandb(0.18.7|==0.13.10,==0.12.0:range)"
+boltz-server,semlaflow-server,5,5,0,5,False,True,
+boltz-server,turbohopp-server,14,11,3,8,False,False,pandas(>=2.2.2|2.2.1:range); rdkit(>=2024.3.2|2023.9.5:range); wandb(0.18.7|0.16.5:major)
+boltzgen-server,chembounce-server,6,6,0,6,False,True,
+boltzgen-server,deeprank-ab-server,7,7,1,6,False,False,numpy(2.0.2|1.25.0:major)
+boltzgen-server,diffdock-server,6,5,1,4,False,False,torch(>=2.4.1|1.13.1+cu117:range)
+boltzgen-server,diffusion-hopping-server,6,6,1,5,False,False,numpy(2.0.2|1.24.1:major)
+boltzgen-server,dockq-server,2,2,1,1,False,False,numpy(2.0.2|<2.0:range)
+boltzgen-server,drughive-server,5,5,1,4,False,False,numpy(2.0.2|1.22.3:major)
+boltzgen-server,esmfold2-server,8,2,0,2,False,True,
+boltzgen-server,flowmol-server,7,7,1,6,False,False,numpy(2.0.2|1.26.3=py310hb13e2d6_0:major)
+boltzgen-server,genie3-server,6,3,0,3,False,True,
+boltzgen-server,haddock3-server,5,5,0,5,False,True,
+boltzgen-server,iggm-server,9,9,1,8,False,False,numpy(2.0.2|1.23.5:major)
+boltzgen-server,immunebuilder-server,4,3,0,3,False,True,
+boltzgen-server,lasermpnn-server,9,1,0,1,False,True,
+boltzgen-server,lightdock-server,0,0,0,0,True,True,
+boltzgen-server,megalodon-server,6,6,0,6,False,True,
+boltzgen-server,odesign-server,17,17,2,15,False,False,numpy(2.0.2|1.26.3:major); torch(>=2.4.1|2.3.1:range)
+boltzgen-server,openadmet-server,1,1,0,1,False,True,
+boltzgen-server,plip-server,1,1,0,1,False,True,
+boltzgen-server,pocketxmol-server,5,5,1,4,False,False,numpy(2.0.2|1.24:major)
+boltzgen-server,ppiflow-server,17,17,2,15,False,False,"numpy(2.0.2|==1.22.4,==1.26.3:range); torch(>=2.4.1|2.3.1+cu121:range)"
+boltzgen-server,promera-server,10,10,1,9,False,False,numpy(2.0.2|>=2.4.2:range)
+boltzgen-server,qligfep-server,1,1,1,0,False,False,numpy(2.0.2|1.22.3=py310h4ef5377_2:major)
+boltzgen-server,reinvent-server,7,7,0,7,False,True,
+boltzgen-server,rfantibody-server,7,5,2,3,False,False,"numpy(2.0.2|>=1.0,<2.0:range); torch(>=2.4.1|==2.3.*:range)"
+boltzgen-server,rfdiffusion-server,2,2,0,2,False,True,
+boltzgen-server,rfdiffusion2-server,12,10,1,9,False,False,numpy(2.0.2|<2:range)
+boltzgen-server,semlaflow-server,4,2,1,1,False,False,numpy(2.0.2|1.26.2:major)
+boltzgen-server,turbohopp-server,12,12,2,10,False,False,numpy(2.0.2|1.26.4=py310hb13e2d6_0:major); torch(>=2.4.1|2.2.2:range)
+chembounce-server,deeprank-ab-server,67,67,26,41,False,False,"ca-certificates(2024.2.2=hbcca054_0|2023.05.30:major); certifi(2024.2.2=pyhd8ed1ab_0|2023.5.7:major); cycler(0.12.1=pyhd8ed1ab_0|0.11.0:major); icu(69.1=h9c3ff4c_0|58.2:major); importlib-resources(6.4.0=pyhd8ed1ab_0|5.2.0:major); joblib(==1.3.2,>=1.3|1.2.0:range); lerc(4.0.0=h27087fc_0|3.0:major); libgcc-ng(13.2.0=h77fa898_7|11.2.0:major); libgfortran-ng(13.2.0=h69a702a_7|11.2.0:major); libgfortran5(13.2.0=hca663fb_7|11.2.0:major); libgomp(13.2.0=h77fa898_7|11.2.0:major); libstdcxx-ng(13.2.0=hc0a3c3a_7|11.2.0:major); libuuid(2.38.1=h0b41bf4_0|1.41.5:major); matplotlib(==3.7.5,>=3.7,<4.0|3.7.1:range); networkx(==3.1,>=3.0|2.8.4:range); packaging(24.0=pyhd8ed1ab_0|23.0:major); pillow(==10.2.0,>=10.0|9.4.0:range); pip(24.0=pyhd8ed1ab_0|23.1.2:major); python-dateutil(==2.9.0.post0,>=2.8|2.8.2:range); pytz(2024.1=pyhd8ed1ab_0|2023.3:major); requests(==2.31.0,>=2.31|2.29.0:range); scikit-learn(==1.3.2,>=1.3,<2.0|1.2.2:range); setuptools(69.5.1=pyhd8ed1ab_0|67.8.0:major); threadpoolctl(3.4.0|2.2.0:major); urllib3(2.2.1|1.26.16:major); wheel(0.43.0=pyhd8ed1ab_1|0.38.4:major)"
+chembounce-server,diffdock-server,9,9,3,6,False,False,"networkx(==3.1,>=3.0|2.8.4:range); scikit-learn(==1.3.2,>=1.3,<2.0|1.1.0:range); scipy(==1.10.1,>=1.10,<2.0|1.12.0:range)"
+chembounce-server,diffusion-hopping-server,4,4,0,4,False,True,
+chembounce-server,dockq-server,3,3,0,3,False,True,
+chembounce-server,drughive-server,6,6,2,4,False,False,"scikit-learn(==1.3.2,>=1.3,<2.0|1.1.2:range); scipy(==1.10.1,>=1.10,<2.0|1.8.0:range)"
+chembounce-server,esmfold2-server,6,6,0,6,False,True,
+chembounce-server,flowmol-server,131,74,12,62,False,False,ca-certificates(2024.2.2=hbcca054_0|2025.6.15=hbd8a1cb_0:major); certifi(2024.2.2=pyhd8ed1ab_0|2025.6.15=pyhd8ed1ab_0:major); icu(69.1=h9c3ff4c_0|73.2=h59595ed_0:major); lerc(4.0.0=h27087fc_0|3.0=h9c3ff4c_0:major); libgcc-ng(13.2.0=h77fa898_7|14.1.0=h69a702a_1:major); libgfortran-ng(13.2.0=h69a702a_7|14.1.0=h69a702a_1:major); libgfortran5(13.2.0=hca663fb_7|14.1.0=hc5f4f2c_1:major); libjpeg-turbo(3.0.0=hd590300_1|2.0.0=h9bf148f_0:major); packaging(24.0=pyhd8ed1ab_0|23.2=pyhd8ed1ab_0:major); python-tzdata(2024.1=pyhd8ed1ab_0|2023.4=pyhd8ed1ab_0:major); reportlab(4.1.0=py38h01eb140_0|3.5.68=py310h94fcab3_1:major); wheel(0.43.0=pyhd8ed1ab_1|0.42.0=pyhd8ed1ab_0:major)
+chembounce-server,genie3-server,3,3,0,3,False,True,
+chembounce-server,haddock3-server,5,5,0,5,False,True,
+chembounce-server,iggm-server,126,73,11,62,False,False,"icu(69.1=h9c3ff4c_0|73.2=h59595ed_0:major); lerc(4.0.0=h27087fc_0|3.0=h9c3ff4c_0:major); libgcc-ng(13.2.0=h77fa898_7|14.1.0=h77fa898_0:major); libgfortran-ng(13.2.0=h69a702a_7|14.1.0=h69a702a_0:major); libgfortran5(13.2.0=hca663fb_7|14.1.0=hc5f4f2c_0:major); libgomp(13.2.0=h77fa898_7|14.1.0=h77fa898_0:major); libjpeg-turbo(3.0.0=hd590300_1|2.0.0=h9bf148f_0:major); libstdcxx-ng(13.2.0=hc0a3c3a_7|14.1.0=hc0a3c3a_0:major); pillow(==10.2.0,>=10.0|10.4.0:range); psutil(5.9.8=py38h01eb140_0|6.0.0=py310hc51659f_0:major); setuptools(69.5.1=pyhd8ed1ab_0|71.0.4=pyhd8ed1ab_0:major)"
+chembounce-server,immunebuilder-server,3,3,0,3,False,True,
+chembounce-server,lasermpnn-server,8,8,0,8,False,True,
+chembounce-server,lightdock-server,1,1,0,1,False,True,
+chembounce-server,megalodon-server,2,2,0,2,False,True,
+chembounce-server,odesign-server,56,56,16,40,False,False,"asttokens(2.4.1=pyhd8ed1ab_0|3.0.0:major); certifi(2024.2.2=pyhd8ed1ab_0|2025.1.31:major); ipykernel(6.29.3=pyhd33586a_0|7.0.1:major); joblib(==1.3.2,>=1.3|1.4.2:range); matplotlib(==3.7.5,>=3.7,<4.0|3.9.2:range); networkx(==3.1,>=3.0|3.3:range); pillow(==10.2.0,>=10.0|11.0.0:range); pip(24.0=pyhd8ed1ab_0|25.0.1:major); psutil(5.9.8=py38h01eb140_0|7.0.0:major); pytz(2024.1=pyhd8ed1ab_0|2025.1:major); pyzmq(26.0.3=py38ha44f8e3_0|27.1.0:major); requests(==2.31.0,>=2.31|2.32.3:range); scikit-learn(==1.3.2,>=1.3,<2.0|1.7.2:range); scipy(==1.10.1,>=1.10,<2.0|1.15.2:range); setuptools(69.5.1=pyhd8ed1ab_0|75.8.2:major); wheel(0.43.0=pyhd8ed1ab_1|0.45.1:major)"
+chembounce-server,openadmet-server,0,0,0,0,True,True,
+chembounce-server,plip-server,1,1,0,1,False,True,
+chembounce-server,pocketxmol-server,9,9,3,6,False,False,"networkx(==3.1,>=3.0|2.8:range); scikit-learn(==1.3.2,>=1.3,<2.0|1.1.0:range); scipy(==1.10.1,>=1.10,<2.0|==1.8.0,==1.10.1:range)"
+chembounce-server,ppiflow-server,95,95,23,72,False,False,"asttokens(2.4.1=pyhd8ed1ab_0|3.0.0:major); ca-certificates(2024.2.2=hbcca054_0|2025.2.25:major); certifi(2024.2.2=pyhd8ed1ab_0|2025.4.26:major); font-ttf-inconsolata(3.000=h77eed37_0|2.001:major); icu(69.1=h9c3ff4c_0|75.1:major); joblib(==1.3.2,>=1.3|1.4.2:range); libgcc-ng(13.2.0=h77fa898_7|15.1.0:major); libgfortran5(13.2.0=hca663fb_7|15.1.0:major); libgomp(13.2.0=h77fa898_7|15.1.0:major); libstdcxx-ng(13.2.0=hc0a3c3a_7|15.1.0:major); matplotlib(==3.7.5,>=3.7,<4.0|3.9.2:range); networkx(==3.1,>=3.0|3.3:range); pillow(==10.2.0,>=10.0|11.0.0:range); pip(24.0=pyhd8ed1ab_0|25.0:major); pixman(0.43.2=h59595ed_0|0.46.2:major); psutil(5.9.8=py38h01eb140_0|7.0.0:major); pthread-stubs(0.4=h36c2ea0_1001|0.3:major); pytz(2024.1=pyhd8ed1ab_0|2025.1:major); requests(==2.31.0,>=2.31|2.32.3:range); scikit-learn(==1.3.2,>=1.3,<2.0|1.2.2:range); scipy(==1.10.1,>=1.10,<2.0|1.15.2:range); setuptools(69.5.1=pyhd8ed1ab_0|75.8.0:major); wheel(0.43.0=pyhd8ed1ab_1|0.45.1:major)"
+chembounce-server,promera-server,5,5,2,3,False,False,"matplotlib(==3.7.5,>=3.7,<4.0|>=3.10.9:range); scikit-learn(==1.3.2,>=1.3,<2.0|>=1.8.0:range)"
+chembounce-server,qligfep-server,28,27,9,18,False,False,ca-certificates(2024.2.2=hbcca054_0|2021.10.8=ha878542_0:major); libgcc-ng(13.2.0=h77fa898_7|12.1.0=h8d9b700_16:major); libgfortran-ng(13.2.0=h69a702a_7|12.1.0=h69a702a_16:major); libgfortran5(13.2.0=hca663fb_7|12.1.0=hdcd56e2_16:major); libgomp(13.2.0=h77fa898_7|12.1.0=h8d9b700_16:major); libstdcxx-ng(13.2.0=hc0a3c3a_7|12.1.0=ha89aaad_16:major); pip(24.0=pyhd8ed1ab_0|22.1=pyhd8ed1ab_0:major); setuptools(69.5.1=pyhd8ed1ab_0|62.2.0=py310hff52083_0:major); wheel(0.43.0=pyhd8ed1ab_1|0.37.1=pyhd8ed1ab_0:major)
+chembounce-server,reinvent-server,8,8,2,6,False,False,"pillow(==10.2.0,>=10.0|>=12.2.0:range); sphinx(7.1.2|>=7.4:range)"
+chembounce-server,rfantibody-server,2,2,0,2,False,True,
+chembounce-server,rfdiffusion-server,1,1,0,1,False,True,
+chembounce-server,rfdiffusion2-server,11,11,1,10,False,False,"scipy(==1.10.1,>=1.10,<2.0|1.13.1:range)"
+chembounce-server,semlaflow-server,10,10,1,9,False,False,"scipy(==1.10.1,>=1.10,<2.0|1.11.4:range)"
+chembounce-server,turbohopp-server,79,55,5,50,False,False,"matplotlib(==3.7.5,>=3.7,<4.0|3.8.3:range); networkx(==3.1,>=3.0|3.2.1:range); pyzmq(26.0.3=py38ha44f8e3_0|25.1.2:major); scikit-learn(==1.3.2,>=1.3,<2.0|1.4.1.post1:range); scipy(==1.10.1,>=1.10,<2.0|1.12.0:range)"
+deeprank-ab-server,diffdock-server,9,7,2,5,False,False,pandas(2.0.2|1.5.1:major); setuptools(67.8.0|69.5.1:major)
+deeprank-ab-server,diffusion-hopping-server,9,9,2,7,False,False,pandas(2.0.2|1.5.2:major); pytorch(2.0.1|1.13.1:major)
+deeprank-ab-server,dockq-server,4,4,0,4,False,True,
+deeprank-ab-server,drughive-server,10,9,2,7,False,False,pandas(2.0.2|1.4.1:major); pytorch(2.0.1|1.12.1:major)
+deeprank-ab-server,esmfold2-server,7,7,0,7,False,True,
+deeprank-ab-server,flowmol-server,101,100,32,68,False,False,blas(1.0|2.116=mkl:major); ca-certificates(2023.05.30|2025.6.15=hbd8a1cb_0:major); certifi(2023.5.7|2025.6.15=pyhd8ed1ab_0:major); charset-normalizer(2.0.4|3.3.2=pyhd8ed1ab_0:major); cuda-cudart(11.8.89|12.1.105=0:major); cuda-cupti(11.8.87|12.1.105=0:major); cuda-libraries(11.8.0|12.1.0=0:major); cuda-nvrtc(11.8.89|12.1.105=0:major); cuda-nvtx(11.8.86|12.1.105=0:major); cuda-runtime(11.8.0|12.1.0=0:major); cycler(0.11.0|0.12.1=pyhd8ed1ab_0:major); icu(58.2|73.2=h59595ed_0:major); libcublas(11.11.3.6|12.1.0.26=0:major); libcufft(10.9.0.58|11.0.2.4=0:major); libcusparse(11.7.5.86|12.0.2.55=0:major); libgcc-ng(11.2.0|14.1.0=h69a702a_1:major); libgfortran-ng(11.2.0|14.1.0=h69a702a_1:major); libgfortran5(11.2.0|14.1.0=hc5f4f2c_1:major); libnpp(11.8.0.86|12.0.2.50=0:major); libnvjpeg(11.9.0.86|12.1.1.14=0:major); libstdcxx-ng(11.2.0|13.2.0=h7e041cc_5:major); libuuid(1.41.5|2.38.1=h0b41bf4_0:major); mkl(2023.1.0|2022.1.0=h84fe81f_915:major); networkx(2.8.4|3.2.1=pyhd8ed1ab_0:major); pillow(9.4.0|8.4.0=py310h07f4688_0:major); pip(23.1.2|24.0=pyhd8ed1ab_0:major); pytorch-cuda(11.8|12.1=ha16c6d3_5:major); pytz(2023.3|2024.1=pyhd8ed1ab_0:major); setuptools(67.8.0|69.0.3=pyhd8ed1ab_0:major); tzdata(2023.3|2024a=h0c530f3_0:major); urllib3(1.26.16|2.2.0=pyhd8ed1ab_0:major); wheel(0.38.4|0.42.0=pyhd8ed1ab_0:major)
+deeprank-ab-server,genie3-server,5,5,1,4,False,False,"numpy(1.25.0|>=2.0.2,<3:range)"
+deeprank-ab-server,haddock3-server,10,10,6,4,False,False,freesasa(2.2.0.post3|>=2.2.1:range); mpi4py(3.1.4|>=4.0.2:range); numpy(1.25.0|==2.*:range); plotly(5.15.0|6.8.0:major); psutil(5.9.0|>=7.2.2:range); pytest(7.4.0|9.1.1:major)
+deeprank-ab-server,iggm-server,109,107,24,83,False,False,blas(1.0|2.116=mkl:major); ca-certificates(2023.05.30|2024.7.4=hbcca054_0:major); certifi(2023.5.7|2024.7.4=pyhd8ed1ab_0:major); charset-normalizer(2.0.4|3.3.2=pyhd8ed1ab_0:major); cycler(0.11.0|0.12.1=pyhd8ed1ab_0:major); icu(58.2|73.2=h59595ed_0:major); libgcc-ng(11.2.0|14.1.0=h77fa898_0:major); libgfortran-ng(11.2.0|14.1.0=h69a702a_0:major); libgfortran5(11.2.0|14.1.0=hc5f4f2c_0:major); libgomp(11.2.0|14.1.0=h77fa898_0:major); libstdcxx-ng(11.2.0|14.1.0=hc0a3c3a_0:major); libuuid(1.41.5|2.38.1=h0b41bf4_0:major); mkl(2023.1.0|2022.1.0=h84fe81f_915:major); networkx(2.8.4|3.3=pyhd8ed1ab_1:major); packaging(23.0|24.1=pyhd8ed1ab_0:major); pillow(9.4.0|10.4.0:major); pip(23.1.2|24.0=pyhd8ed1ab_0:major); psutil(5.9.0|6.0.0=py310hc51659f_0:major); pytz(2023.3|2024.1=pyhd8ed1ab_0:major); setuptools(67.8.0|71.0.4=pyhd8ed1ab_0:major); threadpoolctl(2.2.0|3.5.0=pyhc1e730c_0:major); tzdata(2023.3|2024a=h0c530f3_0:major); urllib3(1.26.16|2.2.2=pyhd8ed1ab_1:major); wheel(0.38.4|0.43.0=pyhd8ed1ab_1:major)
+deeprank-ab-server,immunebuilder-server,3,3,0,3,False,True,
+deeprank-ab-server,lasermpnn-server,14,14,0,14,False,True,
+deeprank-ab-server,lightdock-server,2,2,0,2,False,True,
+deeprank-ab-server,megalodon-server,1,1,0,1,False,True,
+deeprank-ab-server,odesign-server,46,44,15,29,False,False,certifi(2023.5.7|2025.1.31:major); cffi(1.15.1|2.0.0:major); charset-normalizer(2.0.4|3.4.1:major); cycler(0.11.0|0.12.1:major); networkx(2.8.4|3.3:major); packaging(23.0|24.2:major); pillow(9.4.0|11.0.0:major); pip(23.1.2|25.0.1:major); psutil(5.9.0|7.0.0:major); pytz(2023.3|2025.1:major); setuptools(67.8.0|75.8.2:major); threadpoolctl(2.2.0|3.5.0:major); tzdata(2023.3|2025.1:major); urllib3(1.26.16|2.3.0:major); wheel(0.38.4|0.45.1:major)
+deeprank-ab-server,openadmet-server,1,1,0,1,False,True,
+deeprank-ab-server,plip-server,1,1,0,1,False,True,
+deeprank-ab-server,pocketxmol-server,13,13,4,9,False,False,"pandas(2.0.2|1.5.2:major); pip(23.1.2|==23.3.1,==24.3.1:range); python(3.9.16|==3.8,==3.10:range); scipy(1.10.1|==1.8.0,==1.10.1:range)"
+deeprank-ab-server,ppiflow-server,85,76,24,52,False,False,"ca-certificates(2023.05.30|2025.2.25:major); certifi(2023.5.7|2025.4.26:major); charset-normalizer(2.0.4|3.4.1:major); cycler(0.11.0|0.12.1:major); icu(58.2|75.1:major); libgcc-ng(11.2.0|15.1.0:major); libgfortran5(11.2.0|15.1.0:major); libgomp(11.2.0|15.1.0:major); libpq(12.15|17.5:major); libstdcxx-ng(11.2.0|15.1.0:major); libuuid(1.41.5|2.38.1:major); networkx(2.8.4|3.3:major); numpy(1.25.0|==1.22.4,==1.26.3:range); packaging(23.0|24.2:major); pillow(9.4.0|11.0.0:major); pip(23.1.2|25.0:major); psutil(5.9.0|7.0.0:major); pytest(7.4.0|8.3.5:major); pytz(2023.3|2025.1:major); setuptools(67.8.0|75.8.0:major); threadpoolctl(2.2.0|3.5.0:major); tzdata(2023.3|2025.1:major); urllib3(1.26.16|2.3.0:major); wheel(0.38.4|0.45.1:major)"
+deeprank-ab-server,promera-server,4,4,4,0,False,False,matplotlib(3.7.1|>=3.10.9:range); numpy(1.25.0|>=2.4.2:range); pandas(2.0.2|>=3.0.0:range); scikit-learn(1.2.2|>=1.8.0:range)
+deeprank-ab-server,qligfep-server,22,22,11,11,False,False,ca-certificates(2023.05.30|2021.10.8=ha878542_0:major); libgcc-ng(11.2.0|12.1.0=h8d9b700_16:major); libgfortran-ng(11.2.0|12.1.0=h69a702a_16:major); libgfortran5(11.2.0|12.1.0=hdcd56e2_16:major); libgomp(11.2.0|12.1.0=h8d9b700_16:major); libstdcxx-ng(11.2.0|12.1.0=ha89aaad_16:major); libuuid(1.41.5|2.32.1=h7f98852_1000:major); pip(23.1.2|22.1=pyhd8ed1ab_0:major); setuptools(67.8.0|62.2.0=py310hff52083_0:major); tzdata(2023.3|2022a=h191b570_0:major); wheel(0.38.4|0.37.1=pyhd8ed1ab_0:major)
+deeprank-ab-server,reinvent-server,7,7,4,3,False,False,"numpy(1.25.0|>=2,<3:range); pandas(2.0.2|>=3,<4:range); pillow(9.4.0|>=12.2.0:range); pytest(7.4.0|>=9.0.3:range)"
+deeprank-ab-server,rfantibody-server,3,3,1,2,False,False,pytest(7.4.0|>=8.0.0:range)
+deeprank-ab-server,rfdiffusion-server,0,0,0,0,True,True,
+deeprank-ab-server,rfdiffusion2-server,13,12,4,8,False,False,"pandas(2.0.2|1.5.0:major); pytest(7.4.0|8.2.0:major); pytorch(2.0.1|==2.4,==2.4.0:range); pytorch-cuda(11.8|==12.1,==12.4:range)"
+deeprank-ab-server,semlaflow-server,11,11,1,10,False,False,pytorch-cuda(11.8|12.1:major)
+deeprank-ab-server,turbohopp-server,59,57,21,36,False,False,ca-certificates(2023.05.30|2024.2.2=hbcca054_0:major); certifi(2023.5.7|2024.2.2:major); charset-normalizer(2.0.4|3.3.2:major); cycler(0.11.0|0.12.1:major); importlib-resources(5.2.0|6.4.0:major); libgcc-ng(11.2.0|13.2.0=h807b86a_5:major); libgfortran-ng(11.2.0|13.2.0=h69a702a_7:major); libgfortran5(11.2.0|13.2.0=hca663fb_7:major); libgomp(11.2.0|13.2.0=h807b86a_5:major); libstdcxx-ng(11.2.0|13.2.0=hc0a3c3a_7:major); libuuid(1.41.5|2.38.1=h0b41bf4_0:major); networkx(2.8.4|3.2.1:major); packaging(23.0|24.0:major); pillow(9.4.0|10.2.0:major); pip(23.1.2|24.0=pyhd8ed1ab_0:major); pytz(2023.3|2024.1:major); setuptools(67.8.0|69.2.0=pyhd8ed1ab_0:major); threadpoolctl(2.2.0|3.4.0:major); tzdata(2023.3|2024.1:major); urllib3(1.26.16|2.2.1:major); wheel(0.38.4|0.43.0=pyhd8ed1ab_1:major)
+diffdock-server,diffusion-hopping-server,4,4,0,4,False,True,
+diffdock-server,dockq-server,2,2,0,2,False,True,
+diffdock-server,drughive-server,6,6,2,4,False,False,pytorch-lightning(1.9.5|2.0.0:major); rdkit(2022.03.3|2021.09.5:major)
+diffdock-server,esmfold2-server,4,4,1,3,False,False,torch(1.13.1+cu117|>=2.2.0:range)
+diffdock-server,flowmol-server,10,10,5,5,False,False,networkx(2.8.4|3.2.1=pyhd8ed1ab_0:major); pandas(1.5.1|2.2.0=py310hcc13569_0:major); pytorch-lightning(1.9.5|2.1.3=pyhd8ed1ab_0:major); rdkit(2022.03.3|2025.3.2:major); torchmetrics(0.11.0|1.2.1=pyhd8ed1ab_0:major)
+diffdock-server,genie3-server,3,3,1,2,False,False,torch(1.13.1+cu117|2.7.1:build)
+diffdock-server,haddock3-server,2,2,1,1,False,False,pandas(1.5.1|==2.*:range)
+diffdock-server,iggm-server,10,10,4,6,False,False,networkx(2.8.4|3.3=pyhd8ed1ab_1:major); pandas(1.5.1|2.2.2=py310hf9f9076_1:major); setuptools(69.5.1|71.0.4=pyhd8ed1ab_0:major); torchmetrics(0.11.0|1.4.0.post0=pyhd8ed1ab_0:major)
+diffdock-server,immunebuilder-server,3,2,0,2,False,True,
+diffdock-server,lasermpnn-server,7,6,0,6,False,True,
+diffdock-server,lightdock-server,2,2,0,2,False,True,
+diffdock-server,megalodon-server,8,8,7,1,False,False,"pandas(1.5.1|2.2.3:major); rdkit(2022.03.3|2025.3.2:major); torch(1.13.1+cu117|2.7.0:build); torch-cluster(1.6.0+pt113cu117|==1.6.3,==1.6.3+pt27cu126:range); torch-scatter(2.1.0+pt113cu117|==2.1.2,==2.1.2+pt27cu126:range); torch-sparse(0.6.16+pt113cu117|==0.6.18,==0.6.18+pt27cu126:range); torch-spline-conv(1.2.1+pt113cu117|==1.2.2,==1.2.2+pt27cu126:range)"
+diffdock-server,odesign-server,17,16,6,10,False,False,networkx(2.8.4|3.3:major); pandas(1.5.1|2.2.3:major); rdkit(2022.03.3|2023.3.1:major); setuptools(69.5.1|75.8.2:major); torch(1.13.1+cu117|2.3.1:build); torchmetrics(0.11.0|1.8.2:major)
+diffdock-server,openadmet-server,0,0,0,0,True,True,
+diffdock-server,plip-server,0,0,0,0,True,True,
+diffdock-server,pocketxmol-server,10,9,3,6,False,False,"python(3.9.18|==3.8,==3.10:range); rdkit(2022.03.3|2023.9.3:major); scipy(1.12.0|==1.8.0,==1.10.1:range)"
+diffdock-server,ppiflow-server,19,18,12,6,False,False,"e3nn(==0.5.0,==0.5.1|0.5.6:range); networkx(2.8.4|3.3:major); pandas(1.5.1|2.2.3:major); pytorch-lightning(1.9.5|2.5.0.post0:major); rdkit(2022.03.3|2023.3.1:major); setuptools(69.5.1|75.8.0:major); torch(1.13.1+cu117|2.3.1+cu121:build); torch-cluster(1.6.0+pt113cu117|1.6.3+pt23cu121:build); torch-scatter(2.1.0+pt113cu117|2.1.2+pt23cu121:build); torch-sparse(0.6.16+pt113cu117|0.6.18+pt23cu121:build); torch-spline-conv(1.2.1+pt113cu117|1.2.2+pt23cu121:build); torchmetrics(0.11.0|1.6.2:major)"
+diffdock-server,promera-server,5,5,5,0,False,False,pandas(1.5.1|>=3.0.0:range); prody(2.2.0|>=2.6.1:range); rdkit(2022.03.3|2024.9.6:major); scikit-learn(1.1.0|>=1.8.0:range); torch(1.13.1+cu117|2.9.0:build)
+diffdock-server,qligfep-server,3,3,1,2,False,False,setuptools(69.5.1|62.2.0=py310hff52083_0:major)
+diffdock-server,reinvent-server,4,4,3,1,False,False,"pandas(1.5.1|>=3,<4:range); rdkit(2022.03.3|>=2025.09.1:range); torch(1.13.1+cu117|2.12.0:build)"
+diffdock-server,rfantibody-server,3,3,2,1,False,False,"e3nn(==0.5.0,==0.5.1|0.3.3:range); torch(1.13.1+cu117|==2.3.*:range)"
+diffdock-server,rfdiffusion-server,2,2,1,1,False,False,"e3nn(==0.5.0,==0.5.1|0.3.3:range)"
+diffdock-server,rfdiffusion2-server,10,9,2,7,False,False,"e3nn(==0.5.0,==0.5.1|==0.5.1,==0.3.3:range); rdkit(2022.03.3|2024.3.5:major)"
+diffdock-server,semlaflow-server,5,5,1,4,False,False,pandas(1.5.1|2.2.2:major)
+diffdock-server,turbohopp-server,17,16,10,6,False,False,networkx(2.8.4|3.2.1:major); pandas(1.5.1|2.2.1:major); pytorch-lightning(1.9.5|2.2.1:major); rdkit(2022.03.3|2023.9.5:major); torch(1.13.1+cu117|2.2.2:build); torch-cluster(1.6.0+pt113cu117|1.6.3+pt22cu121:build); torch-scatter(2.1.0+pt113cu117|2.1.2+pt22cu121:build); torch-sparse(0.6.16+pt113cu117|0.6.18+pt22cu121:build); torch-spline-conv(1.2.1+pt113cu117|1.2.2+pt22cu121:build); torchmetrics(0.11.0|1.3.2:major)
+diffusion-hopping-server,dockq-server,2,2,0,2,False,True,
+diffusion-hopping-server,drughive-server,9,6,2,4,False,False,pytorch-lightning(1.8.1|2.0.0:major); rdkit(2022.09.3|2021.09.5:major)
+diffusion-hopping-server,esmfold2-server,3,3,0,3,False,True,
+diffusion-hopping-server,flowmol-server,11,11,7,4,False,False,pandas(1.5.2|2.2.0=py310hcc13569_0:major); pytorch(1.13.1|2.2.0=py3.10_cuda12.1_cudnn8.9.2_0:major); pytorch-cuda(11.7|12.1=ha16c6d3_5:major); pytorch-lightning(1.8.1|2.1.3=pyhd8ed1ab_0:major); rdkit(2022.09.3|2025.3.2:major); torchvision(0.14.1|0.17.0=py310_cu121:major); wandb(0.14.0|0.16.2:major)
+diffusion-hopping-server,genie3-server,5,5,1,4,False,False,"numpy(1.24.1|>=2.0.2,<3:range)"
+diffusion-hopping-server,haddock3-server,3,3,2,1,False,False,numpy(1.24.1|==2.*:range); pandas(1.5.2|==2.*:range)
+diffusion-hopping-server,iggm-server,11,11,3,8,False,False,biopandas(0.4.1|0.5.1=pyhd8ed1ab_0:major); pandas(1.5.2|2.2.2=py310hf9f9076_1:major); pytorch(1.13.1|2.0.1=py3.10_cuda11.7_cudnn8.5.0_0:major)
+diffusion-hopping-server,immunebuilder-server,1,1,0,1,False,True,
+diffusion-hopping-server,lasermpnn-server,9,9,0,9,False,True,
+diffusion-hopping-server,lightdock-server,0,0,0,0,True,True,
+diffusion-hopping-server,megalodon-server,3,3,3,0,False,False,pandas(1.5.2|2.2.3:major); rdkit(2022.09.3|2025.3.2:major); wandb(0.14.0|0.19.11:major)
+diffusion-hopping-server,odesign-server,8,8,4,4,False,False,pandas(1.5.2|2.2.3:major); rdkit(2022.09.3|2023.3.1:major); torchvision(0.14.1|0.18.1:major); wandb(0.14.0|0.19.8:major)
+diffusion-hopping-server,openadmet-server,0,0,0,0,True,True,
+diffusion-hopping-server,plip-server,2,2,1,1,False,False,openbabel(3.1.1|>=3.2.0:range)
+diffusion-hopping-server,pocketxmol-server,11,8,3,5,False,False,"python(3.10.8|==3.8,==3.10:range); pytorch(1.13.1|2.0.0:major); rdkit(2022.09.3|2023.9.3:major)"
+diffusion-hopping-server,ppiflow-server,9,9,6,3,False,False,"numpy(1.24.1|==1.22.4,==1.26.3:range); pandas(1.5.2|2.2.3:major); pytorch-lightning(1.8.1|2.5.0.post0:major); rdkit(2022.09.3|2023.3.1:major); torchvision(0.14.1|0.18.1+cu121:build); wandb(0.14.0|0.19.8:major)"
+diffusion-hopping-server,promera-server,4,4,4,0,False,False,numpy(1.24.1|>=2.4.2:range); pandas(1.5.2|>=3.0.0:range); rdkit(2022.09.3|2024.9.6:major); wandb(0.14.0|>=0.24.2:range)
+diffusion-hopping-server,qligfep-server,2,2,0,2,False,True,
+diffusion-hopping-server,reinvent-server,5,5,3,2,False,False,"numpy(1.24.1|>=2,<3:range); pandas(1.5.2|>=3,<4:range); rdkit(2022.09.3|>=2025.09.1:range)"
+diffusion-hopping-server,rfantibody-server,4,4,1,3,False,False,wandb(0.14.0|0.12.0:major)
+diffusion-hopping-server,rfdiffusion-server,1,1,1,0,False,False,wandb(0.14.0|0.12.0:major)
+diffusion-hopping-server,rfdiffusion2-server,10,9,4,5,False,False,"pytorch(1.13.1|==2.4,==2.4.0:range); pytorch-cuda(11.7|==12.1,==12.4:range); rdkit(2022.09.3|2024.3.5:major); wandb(0.14.0|==0.13.10,==0.12.0:range)"
+diffusion-hopping-server,semlaflow-server,8,8,2,6,False,False,pandas(1.5.2|2.2.2:major); pytorch-cuda(11.7|12.1:major)
+diffusion-hopping-server,turbohopp-server,12,11,5,6,False,False,pandas(1.5.2|2.2.1:major); pytorch-lightning(1.8.1|2.2.1:major); rdkit(2022.09.3|2023.9.5:major); torchvision(0.14.1|0.17.2:major); wandb(0.14.0|0.16.5:major)
+dockq-server,drughive-server,1,1,0,1,False,True,
+dockq-server,esmfold2-server,1,1,0,1,False,True,
+dockq-server,flowmol-server,3,3,0,3,False,True,
+dockq-server,genie3-server,2,2,1,1,False,False,"numpy(<2.0|>=2.0.2,<3:range)"
+dockq-server,haddock3-server,2,2,1,1,False,False,numpy(<2.0|==2.*:range)
+dockq-server,iggm-server,4,4,0,4,False,True,
+dockq-server,immunebuilder-server,1,1,0,1,False,True,
+dockq-server,lasermpnn-server,1,1,0,1,False,True,
+dockq-server,lightdock-server,0,0,0,0,True,True,
+dockq-server,megalodon-server,0,0,0,0,True,True,
+dockq-server,odesign-server,4,4,0,4,False,True,
+dockq-server,openadmet-server,0,0,0,0,True,True,
+dockq-server,plip-server,1,1,0,1,False,True,
+dockq-server,pocketxmol-server,4,4,0,4,False,True,
+dockq-server,ppiflow-server,4,4,1,3,False,False,"numpy(<2.0|==1.22.4,==1.26.3:range)"
+dockq-server,promera-server,1,1,1,0,False,False,numpy(<2.0|>=2.4.2:range)
+dockq-server,qligfep-server,2,2,0,2,False,True,
+dockq-server,reinvent-server,1,1,1,0,False,False,"numpy(<2.0|>=2,<3:range)"
+dockq-server,rfantibody-server,1,1,0,1,False,True,
+dockq-server,rfdiffusion-server,0,0,0,0,True,True,
+dockq-server,rfdiffusion2-server,3,3,0,3,False,True,
+dockq-server,semlaflow-server,1,1,0,1,False,True,
+dockq-server,turbohopp-server,5,5,0,5,False,True,
+drughive-server,esmfold2-server,3,3,0,3,False,True,
+drughive-server,flowmol-server,10,10,4,6,False,False,pandas(1.4.1|2.2.0=py310hcc13569_0:major); pytorch(1.12.1|2.2.0=py3.10_cuda12.1_cudnn8.9.2_0:major); pytorch-cuda(11.7|12.1=ha16c6d3_5:major); rdkit(2021.09.5|2025.3.2:major)
+drughive-server,genie3-server,4,4,1,3,False,False,"numpy(1.22.3|>=2.0.2,<3:range)"
+drughive-server,haddock3-server,4,4,4,0,False,False,numpy(1.22.3|==2.*:range); pandas(1.4.1|==2.*:range); plotly(5.9.0|6.8.0:major); scipy(1.8.0|>=1.10.0:range)
+drughive-server,iggm-server,11,11,3,8,False,False,pandas(1.4.1|2.2.2=py310hf9f9076_1:major); pytorch(1.12.1|2.0.1=py3.10_cuda11.7_cudnn8.5.0_0:major); scikit-image(0.19.3|0.24.0:major)
+drughive-server,immunebuilder-server,2,2,0,2,False,True,
+drughive-server,lasermpnn-server,10,10,0,10,False,True,
+drughive-server,lightdock-server,1,1,0,1,False,True,
+drughive-server,megalodon-server,2,2,2,0,False,False,pandas(1.4.1|2.2.3:major); rdkit(2021.09.5|2025.3.2:major)
+drughive-server,odesign-server,7,7,3,4,False,False,pandas(1.4.1|2.2.3:major); pytorch-lightning(2.0.0|1.9.0:major); rdkit(2021.09.5|2023.3.1:major)
+drughive-server,openadmet-server,0,0,0,0,True,True,
+drughive-server,plip-server,2,2,1,1,False,False,openbabel(3.1.1|>=3.2.0:range)
+drughive-server,pocketxmol-server,10,8,4,4,False,False,"python(3.9.16|==3.8,==3.10:range); pytorch(1.12.1|2.0.0:major); rdkit(2021.09.5|2023.9.3:major); scipy(1.8.0|==1.8.0,==1.10.1:range)"
+drughive-server,ppiflow-server,8,8,3,5,False,False,"numpy(1.22.3|==1.22.4,==1.26.3:range); pandas(1.4.1|2.2.3:major); rdkit(2021.09.5|2023.3.1:major)"
+drughive-server,promera-server,4,4,4,0,False,False,numpy(1.22.3|>=2.4.2:range); pandas(1.4.1|>=3.0.0:range); rdkit(2021.09.5|2024.9.6:major); scikit-learn(1.1.2|>=1.8.0:range)
+drughive-server,qligfep-server,2,2,0,2,False,True,
+drughive-server,reinvent-server,4,4,3,1,False,False,"numpy(1.22.3|>=2,<3:range); pandas(1.4.1|>=3,<4:range); rdkit(2021.09.5|>=2025.09.1:range)"
+drughive-server,rfantibody-server,2,2,0,2,False,True,
+drughive-server,rfdiffusion-server,0,0,0,0,True,True,
+drughive-server,rfdiffusion2-server,10,9,3,6,False,False,"pytorch(1.12.1|==2.4,==2.4.0:range); pytorch-cuda(11.7|==12.1,==12.4:range); rdkit(2021.09.5|2024.3.5:major)"
+drughive-server,semlaflow-server,8,8,2,6,False,False,pandas(1.4.1|2.2.2:major); pytorch-cuda(11.7|12.1:major)
+drughive-server,turbohopp-server,10,10,2,8,False,False,pandas(1.4.1|2.2.1:major); rdkit(2021.09.5|2023.9.5:major)
+esmfold2-server,flowmol-server,6,6,0,6,False,True,
+esmfold2-server,genie3-server,3,2,0,2,False,True,
+esmfold2-server,haddock3-server,4,4,0,4,False,True,
+esmfold2-server,iggm-server,12,12,0,12,False,True,
+esmfold2-server,immunebuilder-server,2,2,0,2,False,True,
+esmfold2-server,lasermpnn-server,4,0,0,0,True,True,
+esmfold2-server,lightdock-server,0,0,0,0,True,True,
+esmfold2-server,megalodon-server,4,4,0,4,False,True,
+esmfold2-server,odesign-server,14,14,0,14,False,True,
+esmfold2-server,openadmet-server,0,0,0,0,True,True,
+esmfold2-server,plip-server,0,0,0,0,True,True,
+esmfold2-server,pocketxmol-server,4,4,0,4,False,True,
+esmfold2-server,ppiflow-server,12,12,0,12,False,True,
+esmfold2-server,promera-server,5,5,0,5,False,True,
+esmfold2-server,qligfep-server,0,0,0,0,True,True,
+esmfold2-server,reinvent-server,3,3,0,3,False,True,
+esmfold2-server,rfantibody-server,3,2,0,2,False,True,
+esmfold2-server,rfdiffusion-server,1,1,0,1,False,True,
+esmfold2-server,rfdiffusion2-server,8,7,0,7,False,True,
+esmfold2-server,semlaflow-server,3,1,0,1,False,True,
+esmfold2-server,turbohopp-server,9,9,0,9,False,True,
+flowmol-server,genie3-server,5,5,0,5,False,True,
+flowmol-server,haddock3-server,5,5,0,5,False,True,
+flowmol-server,iggm-server,189,102,25,77,False,False,ca-certificates(2025.6.15=hbd8a1cb_0|2024.7.4=hbcca054_0:major); certifi(2025.6.15=pyhd8ed1ab_0|2024.7.4=pyhd8ed1ab_0:major); cuda-cudart(12.1.105=0|11.7.99=0:major); cuda-cupti(12.1.105=0|11.7.101=0:major); cuda-libraries(12.1.0=0|11.7.1=0:major); cuda-nvrtc(12.1.105=0|11.7.99=0:major); cuda-nvtx(12.1.105=0|11.7.91=0:major); cuda-runtime(12.1.0=0|11.7.1=0:major); einops(0.7.0=pyhd8ed1ab_1|0.8.0:major); gettext(0.21.1=h27087fc_0|0.22.5=h59595ed_2:major); libcublas(12.1.0.26=0|11.10.3.66=0:major); libcufft(11.0.2.4=0|10.7.2.124=h4fbf590_0:major); libcusparse(12.0.2.55=0|11.7.4.91=0:major); libnpp(12.0.2.50=0|11.7.4.75=0:major); libnvjpeg(12.1.1.14=0|11.8.0.2=0:major); libstdcxx-ng(13.2.0=h7e041cc_5|14.1.0=hc0a3c3a_0:major); lightning-utilities(0.10.1=pyhd8ed1ab_0|0.11.5=pyhd8ed1ab_0:major); packaging(23.2=pyhd8ed1ab_0|24.1=pyhd8ed1ab_0:major); pillow(8.4.0=py310h07f4688_0|10.4.0:major); protobuf(4.25.2|5.27.2:major); psutil(5.9.8=py310h2372a71_0|6.0.0=py310hc51659f_0:major); python-tzdata(2023.4=pyhd8ed1ab_0|2024.1=pyhd8ed1ab_0:major); pytorch-cuda(12.1=ha16c6d3_5|11.7=h778d358_5:major); setuptools(69.0.3=pyhd8ed1ab_0|71.0.4=pyhd8ed1ab_0:major); wheel(0.42.0=pyhd8ed1ab_0|0.43.0=pyhd8ed1ab_1:major)
+flowmol-server,immunebuilder-server,4,4,0,4,False,True,
+flowmol-server,lasermpnn-server,12,12,0,12,False,True,
+flowmol-server,lightdock-server,1,1,0,1,False,True,
+flowmol-server,megalodon-server,4,3,2,1,False,False,einops(0.7.0=pyhd8ed1ab_1|0.8.1:major); wandb(0.16.2|0.19.11:major)
+flowmol-server,odesign-server,80,79,19,60,False,False,asttokens(2.4.1=pyhd8ed1ab_0|3.0.0:major); einops(0.7.0=pyhd8ed1ab_1|0.8.1:major); ipykernel(6.29.5=pyh3099207_0|7.0.1:major); lightning-utilities(0.10.1=pyhd8ed1ab_0|0.15.2:major); packaging(23.2=pyhd8ed1ab_0|24.2:major); pillow(8.4.0=py310h07f4688_0|11.0.0:major); pip(24.0=pyhd8ed1ab_0|25.0.1:major); protobuf(4.25.2|3.20.2:major); psutil(5.9.8=py310h2372a71_0|7.0.0:major); pytorch-lightning(2.1.3=pyhd8ed1ab_0|1.9.0:major); pytz(2024.1=pyhd8ed1ab_0|2025.1:major); pyzmq(26.2.0=py310h71f11fc_2|27.1.0:major); rdkit(2025.3.2|2023.3.1:major); sentry-sdk(1.40.0|2.22.0:major); setuptools(69.0.3=pyhd8ed1ab_0|75.8.2:major); torchvision(0.17.0=py310_cu121|0.18.1:major); tzdata(2024a=h0c530f3_0|2025.1:major); wandb(0.16.2|0.19.8:major); wheel(0.42.0=pyhd8ed1ab_0|0.45.1:major)
+flowmol-server,openadmet-server,0,0,0,0,True,True,
+flowmol-server,plip-server,1,1,0,1,False,True,
+flowmol-server,pocketxmol-server,13,13,5,8,False,False,networkx(3.2.1=pyhd8ed1ab_0|2.8:major); pandas(2.2.0=py310hcc13569_0|1.5.2:major); pytorch-cuda(12.1=ha16c6d3_5|11.7:major); rdkit(2025.3.2|2023.9.3:major); seaborn(0.13.2=hd8ed1ab_2|0.12.1:major)
+flowmol-server,ppiflow-server,124,123,29,94,False,False,asttokens(2.4.1=pyhd8ed1ab_0|3.0.0:major); einops(0.7.0=pyhd8ed1ab_1|0.8.1:major); font-ttf-inconsolata(3.000=h77eed37_0|2.001:major); gettext(0.21.1=h27087fc_0|0.24.1:major); icu(73.2=h59595ed_0|75.1:major); libgcc(14.1.0=h77fa898_1|15.1.0:major); libgcc-ng(14.1.0=h69a702a_1|15.1.0:major); libgfortran(14.1.0=h69a702a_1|15.1.0:major); libgfortran5(14.1.0=hc5f4f2c_1|15.1.0:major); libjpeg-turbo(2.0.0=h9bf148f_0|3.0.3:major); libstdcxx(14.1.0=hc0a3c3a_1|15.1.0:major); libstdcxx-ng(13.2.0=h7e041cc_5|15.1.0:major); lightning-utilities(0.10.1=pyhd8ed1ab_0|0.14.0:major); packaging(23.2=pyhd8ed1ab_0|24.2:major); pillow(8.4.0=py310h07f4688_0|11.0.0:major); pip(24.0=pyhd8ed1ab_0|25.0:major); pixman(0.43.2=h59595ed_0|0.46.2:major); protobuf(4.25.2|3.20.2:major); psutil(5.9.8=py310h2372a71_0|7.0.0:major); pthread-stubs(0.4=h36c2ea0_1001|0.3:major); pytz(2024.1=pyhd8ed1ab_0|2025.1:major); rdkit(2025.3.2|2023.3.1:major); sentry-sdk(1.40.0|2.22.0:major); setuptools(69.0.3=pyhd8ed1ab_0|75.8.0:major); torchaudio(2.2.0=py310_cu121|2.3.1+cu121:build); torchvision(0.17.0=py310_cu121|0.18.1+cu121:build); tzdata(2024a=h0c530f3_0|2025.1:major); wandb(0.16.2|0.19.8:major); wheel(0.42.0=pyhd8ed1ab_0|0.45.1:major)
+flowmol-server,promera-server,5,5,2,3,False,False,rdkit(2025.3.2|2024.9.6:major); wandb(0.16.2|>=0.24.2:range)
+flowmol-server,qligfep-server,27,26,9,17,False,False,ca-certificates(2025.6.15=hbd8a1cb_0|2021.10.8=ha878542_0:major); libgcc-ng(14.1.0=h69a702a_1|12.1.0=h8d9b700_16:major); libgfortran-ng(14.1.0=h69a702a_1|12.1.0=h69a702a_16:major); libgfortran5(14.1.0=hc5f4f2c_1|12.1.0=hdcd56e2_16:major); libstdcxx-ng(13.2.0=h7e041cc_5|12.1.0=ha89aaad_16:major); pip(24.0=pyhd8ed1ab_0|22.1=pyhd8ed1ab_0:major); setuptools(69.0.3=pyhd8ed1ab_0|62.2.0=py310hff52083_0:major); tzdata(2024a=h0c530f3_0|2022a=h191b570_0:major); wheel(0.42.0=pyhd8ed1ab_0|0.37.1=pyhd8ed1ab_0:major)
+flowmol-server,reinvent-server,8,8,1,7,False,False,rdkit(2025.3.2|>=2025.09.1:range)
+flowmol-server,rfantibody-server,7,7,1,6,False,False,wandb(0.16.2|0.12.0:major)
+flowmol-server,rfdiffusion-server,2,2,1,1,False,False,wandb(0.16.2|0.12.0:major)
+flowmol-server,rfdiffusion2-server,19,18,3,15,False,False,"pandas(2.2.0=py310hcc13569_0|1.5.0:major); rdkit(2025.3.2|2024.3.5:major); wandb(0.16.2|==0.13.10,==0.12.0:range)"
+flowmol-server,semlaflow-server,15,15,0,15,False,True,
+flowmol-server,turbohopp-server,98,81,12,69,False,False,ca-certificates(2025.6.15=hbd8a1cb_0|2024.2.2=hbcca054_0:major); certifi(2025.6.15=pyhd8ed1ab_0|2024.2.2:major); importlib-metadata(8.5.0=pyha770c72_0|7.1.0:major); libgcc-ng(14.1.0=h69a702a_1|13.2.0=h807b86a_5:major); libgfortran-ng(14.1.0=h69a702a_1|13.2.0=h69a702a_7:major); libgfortran5(14.1.0=hc5f4f2c_1|13.2.0=hca663fb_7:major); lightning-utilities(0.10.1=pyhd8ed1ab_0|0.11.2:major); packaging(23.2=pyhd8ed1ab_0|24.0:major); pillow(8.4.0=py310h07f4688_0|10.2.0:major); pyzmq(26.2.0=py310h71f11fc_2|25.1.2:major); rdkit(2025.3.2|2023.9.5:major); wheel(0.42.0=pyhd8ed1ab_0|0.43.0=pyhd8ed1ab_1:major)
+genie3-server,haddock3-server,4,4,0,4,False,True,
+genie3-server,iggm-server,8,8,1,7,False,False,"numpy(>=2.0.2,<3|1.23.5:range)"
+genie3-server,immunebuilder-server,3,3,0,3,False,True,
+genie3-server,lasermpnn-server,5,1,0,1,False,True,
+genie3-server,lightdock-server,1,1,0,1,False,True,
+genie3-server,megalodon-server,4,4,0,4,False,True,
+genie3-server,odesign-server,10,10,1,9,False,False,"numpy(>=2.0.2,<3|1.26.3:range)"
+genie3-server,openadmet-server,0,0,0,0,True,True,
+genie3-server,plip-server,1,1,0,1,False,True,
+genie3-server,pocketxmol-server,7,6,1,5,False,False,"numpy(>=2.0.2,<3|1.24:range)"
+genie3-server,ppiflow-server,10,10,2,8,False,False,"numpy(>=2.0.2,<3|==1.22.4,==1.26.3:range); torch(2.7.1|2.3.1+cu121:build)"
+genie3-server,promera-server,6,6,0,6,False,True,
+genie3-server,qligfep-server,1,1,0,1,False,True,
+genie3-server,reinvent-server,5,5,0,5,False,True,
+genie3-server,rfantibody-server,4,3,2,1,False,False,"numpy(>=2.0.2,<3|>=1.0,<2.0:range); torch(2.7.1|==2.3.*:range)"
+genie3-server,rfdiffusion-server,2,2,0,2,False,True,
+genie3-server,rfdiffusion2-server,7,7,1,6,False,False,"numpy(>=2.0.2,<3|<2:range)"
+genie3-server,semlaflow-server,6,3,1,2,False,False,"numpy(>=2.0.2,<3|1.26.2:range)"
+genie3-server,turbohopp-server,9,9,0,9,False,True,
+haddock3-server,iggm-server,10,10,3,7,False,False,httpx(0.28.1|0.27.0:major); numpy(==2.*|1.23.5:range); plotly(6.8.0|5.23.0:major)
+haddock3-server,immunebuilder-server,2,2,0,2,False,True,
+haddock3-server,lasermpnn-server,6,5,0,5,False,True,
+haddock3-server,lightdock-server,2,2,0,2,False,True,
+haddock3-server,megalodon-server,1,1,0,1,False,True,
+haddock3-server,odesign-server,9,8,3,5,False,False,numpy(==2.*|1.26.3:range); psutil(>=7.2.2|7.0.0:range); py3dmol(>=2.5.2|2.4.2:range)
+haddock3-server,openadmet-server,2,2,0,2,False,True,
+haddock3-server,plip-server,1,1,0,1,False,True,
+haddock3-server,pocketxmol-server,5,5,4,1,False,False,"numpy(==2.*|1.24:range); pandas(==2.*|1.5.2:range); pyyaml(>=6.0|==5.4.1,==6.0.2:range); scipy(>=1.10.0|==1.8.0,==1.10.1:range)"
+haddock3-server,ppiflow-server,9,9,4,5,False,False,"numpy(==2.*|==1.22.4,==1.26.3:range); psutil(>=7.2.2|7.0.0:range); py3dmol(>=2.5.2|2.4.2:range); pytest(9.1.1|8.3.5:major)"
+haddock3-server,promera-server,2,2,1,1,False,False,pandas(==2.*|>=3.0.0:range)
+haddock3-server,qligfep-server,1,1,0,1,False,True,
+haddock3-server,reinvent-server,7,6,1,5,False,False,"pandas(==2.*|>=3,<4:range)"
+haddock3-server,rfantibody-server,3,3,1,2,False,False,"numpy(==2.*|>=1.0,<2.0:range)"
+haddock3-server,rfdiffusion-server,0,0,0,0,True,True,
+haddock3-server,rfdiffusion2-server,9,9,7,2,False,False,numpy(==2.*|<2:range); pandas(==2.*|1.5.0:range); plotly(6.8.0|5.16.1:major); py3dmol(>=2.5.2|2.2.1:range); pytest(9.1.1|8.2.0:major); pytest-cov(7.1.0|4.1.0:major); ruff(>=0.14|0.6.2:range)
+haddock3-server,semlaflow-server,3,3,1,2,False,False,numpy(==2.*|1.26.2:range)
+haddock3-server,turbohopp-server,6,6,1,5,False,False,psutil(>=7.2.2|5.9.8:range)
+iggm-server,immunebuilder-server,4,4,0,4,False,True,
+iggm-server,lasermpnn-server,13,13,0,13,False,True,
+iggm-server,lightdock-server,2,2,0,2,False,True,
+iggm-server,megalodon-server,3,2,0,2,False,True,
+iggm-server,odesign-server,166,128,38,90,False,False,argon2-cffi(23.1.0|25.1.0:major); argon2-cffi-bindings(21.2.0|25.1.0:major); asttokens(2.4.1|3.0.0:major); async-timeout(4.0.3=pyhd8ed1ab_0|5.0.1:major); attrs(23.2.0=pyh71513ae_0|25.4.0:major); certifi(2024.7.4=pyhd8ed1ab_0|2025.1.31:major); cffi(1.16.0=py310h2fee648_0|2.0.0:major); deepspeed(0.14.4|0.17.4:major); h11(0.14.0|0.16.0:major); httpx(0.27.0|0.28.1:major); huggingface_hub(0.24.0|0.36.0:major); ihm(1.3|2.2:major); ipykernel(6.29.5|7.0.1:major); json5(0.9.25|0.12.1:major); jsonschema-specifications(2023.12.1|2025.9.1:major); jupyter-events(0.10.0|0.12.0:major); lightning-utilities(0.11.5=pyhd8ed1ab_0|0.15.2:major); markdown-it-py(3.0.0|4.0.0:major); ml-collections(0.1.1|1.0.0:major); modelcif(1.0|0.7:major); pillow(10.4.0|11.0.0:major); pip(24.0=pyhd8ed1ab_0|25.0.1:major); prometheus-client(0.20.0|0.23.1:major); protobuf(5.27.2|3.20.2:major); psutil(6.0.0=py310hc51659f_0|7.0.0:major); python-json-logger(2.0.7|4.0.0:major); pytz(2024.1=pyhd8ed1ab_0|2025.1:major); pyzmq(26.0.3|27.1.0:major); referencing(0.35.1|0.37.0:major); regex(2024.5.15|2025.11.3:major); rich(13.7.1|14.2.0:major); rpds-py(0.19.1|0.27.1:major); safetensors(0.4.3|0.7.0:major); setuptools(71.0.4=pyhd8ed1ab_0|75.8.2:major); tokenizers(0.19.1|0.21.4:major); tzdata(2024a=h0c530f3_0|2025.1:major); wheel(0.43.0=pyhd8ed1ab_1|0.45.1:major); zstandard(0.23.0=py310h64cae3c_0|0.25.0:major)
+iggm-server,openadmet-server,0,0,0,0,True,True,
+iggm-server,plip-server,1,1,0,1,False,True,
+iggm-server,pocketxmol-server,18,18,4,14,False,False,networkx(3.3=pyhd8ed1ab_1|2.8:major); openmm(8.1.1=py310h358ce72_1|0.2:major); pandas(2.2.2=py310hf9f9076_1|1.5.2:major); seaborn(0.13.2=hd8ed1ab_2|0.12.1:major)
+iggm-server,ppiflow-server,164,146,36,110,False,False,"asttokens(2.4.1|3.0.0:major); async-timeout(4.0.3=pyhd8ed1ab_0|5.0.1:major); attrs(23.2.0=pyh71513ae_0|25.1.0:major); ca-certificates(2024.7.4=hbcca054_0|2025.2.25:major); certifi(2024.7.4=pyhd8ed1ab_0|2025.4.26:major); deepspeed(0.14.4|0.16.4:major); font-ttf-inconsolata(3.000=h77eed37_0|2.001:major); gettext(0.22.5=h59595ed_2|0.24.1:major); gettext-tools(0.22.5=h59595ed_2|0.24.1:major); harfbuzz(8.5.0=hfac3d4d_0|11.0.0:major); icu(73.2=h59595ed_0|75.1:major); ihm(1.3|2.2:major); libasprintf(0.22.5=h661eb56_2|0.24.1:major); libasprintf-devel(0.22.5=h661eb56_2|0.24.1:major); libgcc-ng(14.1.0=h77fa898_0|15.1.0:major); libgettextpo(0.22.5=h59595ed_2|0.24.1:major); libgettextpo-devel(0.22.5=h59595ed_2|0.24.1:major); libgfortran5(14.1.0=hc5f4f2c_0|15.1.0:major); libgomp(14.1.0=h77fa898_0|15.1.0:major); libjpeg-turbo(2.0.0=h9bf148f_0|3.0.3:major); libstdcxx-ng(14.1.0=hc0a3c3a_0|15.1.0:major); lightning-utilities(0.11.5=pyhd8ed1ab_0|0.14.0:major); ml-collections(0.1.1|1.0.0:major); modelcif(1.0|0.7:major); numpy(1.23.5|==1.22.4,==1.26.3:range); pillow(10.4.0|11.0.0:major); pip(24.0=pyhd8ed1ab_0|25.0:major); pixman(0.43.2=h59595ed_0|0.46.2:major); protobuf(5.27.2|3.20.2:major); psutil(6.0.0=py310hc51659f_0|7.0.0:major); pthread-stubs(0.4=h36c2ea0_1001|0.3:major); pytz(2024.1=pyhd8ed1ab_0|2025.1:major); setuptools(71.0.4=pyhd8ed1ab_0|75.8.0:major); tzdata(2024a=h0c530f3_0|2025.1:major); wheel(0.43.0=pyhd8ed1ab_1|0.45.1:major); xorg-libxfixes(5.0.3=h7f98852_1004|6.0.1:major)"
+iggm-server,promera-server,9,9,6,3,False,False,dm-tree(0.1.8|>=0.1.10:range); einops(0.8.0|>=0.8.2:range); fairscale(0.4.4|>=0.4.13:range); ml-collections(0.1.1|>=1.1.0:range); numpy(1.23.5|>=2.4.2:range); prody(2.4.1|>=2.6.1:range)
+iggm-server,qligfep-server,28,27,10,17,False,False,ca-certificates(2024.7.4=hbcca054_0|2021.10.8=ha878542_0:major); libgcc-ng(14.1.0=h77fa898_0|12.1.0=h8d9b700_16:major); libgfortran-ng(14.1.0=h69a702a_0|12.1.0=h69a702a_16:major); libgfortran5(14.1.0=hc5f4f2c_0|12.1.0=hdcd56e2_16:major); libgomp(14.1.0=h77fa898_0|12.1.0=h8d9b700_16:major); libstdcxx-ng(14.1.0=hc0a3c3a_0|12.1.0=ha89aaad_16:major); pip(24.0=pyhd8ed1ab_0|22.1=pyhd8ed1ab_0:major); setuptools(71.0.4=pyhd8ed1ab_0|62.2.0=py310hff52083_0:major); tzdata(2024a=h0c530f3_0|2022a=h191b570_0:major); wheel(0.43.0=pyhd8ed1ab_1|0.37.1=pyhd8ed1ab_0:major)
+iggm-server,reinvent-server,8,8,2,6,False,False,"numpy(1.23.5|>=2,<3:range); pillow(10.4.0|>=12.2.0:range)"
+iggm-server,rfantibody-server,4,4,0,4,False,True,
+iggm-server,rfdiffusion-server,1,1,0,1,False,True,
+iggm-server,rfdiffusion2-server,29,22,3,19,False,False,einops(0.8.0|0.7.0:major); pandas(2.2.2=py310hf9f9076_1|1.5.0:major); torchdata(0.6.1=py310hdeae4e7_2|0.9.0:major)
+iggm-server,semlaflow-server,13,13,1,12,False,False,pytorch-cuda(11.7=h778d358_5|12.1:major)
+iggm-server,turbohopp-server,119,85,11,74,False,False,biopandas(0.5.1=pyhd8ed1ab_0|0.4.1:major); huggingface_hub(0.24.0|0.23.0:major); libgcc-ng(14.1.0=h77fa898_0|13.2.0=h807b86a_5:major); libgfortran-ng(14.1.0=h69a702a_0|13.2.0=h69a702a_7:major); libgfortran5(14.1.0=hc5f4f2c_0|13.2.0=hca663fb_7:major); libgomp(14.1.0=h77fa898_0|13.2.0=h807b86a_5:major); libstdcxx-ng(14.1.0=hc0a3c3a_0|13.2.0=hc0a3c3a_7:major); protobuf(5.27.2|4.25.3:major); psutil(6.0.0=py310hc51659f_0|5.9.8:major); pyzmq(26.0.3|25.1.2:major); setuptools(71.0.4=pyhd8ed1ab_0|69.2.0=pyhd8ed1ab_0:major)
+immunebuilder-server,lasermpnn-server,2,1,0,1,False,True,
+immunebuilder-server,lightdock-server,1,1,0,1,False,True,
+immunebuilder-server,megalodon-server,2,2,0,2,False,True,
+immunebuilder-server,odesign-server,5,5,0,5,False,True,
+immunebuilder-server,openadmet-server,0,0,0,0,True,True,
+immunebuilder-server,plip-server,1,1,0,1,False,True,
+immunebuilder-server,pocketxmol-server,2,2,1,1,False,False,"scipy(>=1.6|==1.8.0,==1.10.1:range)"
+immunebuilder-server,ppiflow-server,5,5,0,5,False,True,
+immunebuilder-server,promera-server,3,3,0,3,False,True,
+immunebuilder-server,qligfep-server,1,1,0,1,False,True,
+immunebuilder-server,reinvent-server,3,3,0,3,False,True,
+immunebuilder-server,rfantibody-server,2,2,1,1,False,False,torch(>=1.8|==2.3.*:range)
+immunebuilder-server,rfdiffusion-server,1,1,0,1,False,True,
+immunebuilder-server,rfdiffusion2-server,3,3,0,3,False,True,
+immunebuilder-server,semlaflow-server,2,2,0,2,False,True,
+immunebuilder-server,turbohopp-server,4,4,0,4,False,True,
+lasermpnn-server,lightdock-server,2,2,0,2,False,True,
+lasermpnn-server,megalodon-server,3,3,0,3,False,True,
+lasermpnn-server,odesign-server,11,11,0,11,False,True,
+lasermpnn-server,openadmet-server,1,1,0,1,False,True,
+lasermpnn-server,plip-server,1,1,0,1,False,True,
+lasermpnn-server,pocketxmol-server,10,10,1,9,False,False,"python(>=3.8|==3.8,==3.10:range)"
+lasermpnn-server,ppiflow-server,12,12,0,12,False,True,
+lasermpnn-server,promera-server,7,7,0,7,False,True,
+lasermpnn-server,qligfep-server,3,3,0,3,False,True,
+lasermpnn-server,reinvent-server,6,6,0,6,False,True,
+lasermpnn-server,rfantibody-server,4,3,0,3,False,True,
+lasermpnn-server,rfdiffusion-server,1,1,0,1,False,True,
+lasermpnn-server,rfdiffusion2-server,13,11,0,11,False,True,
+lasermpnn-server,semlaflow-server,8,4,0,4,False,True,
+lasermpnn-server,turbohopp-server,12,12,0,12,False,True,
+lightdock-server,megalodon-server,0,0,0,0,True,True,
+lightdock-server,odesign-server,1,1,0,1,False,True,
+lightdock-server,openadmet-server,0,0,0,0,True,True,
+lightdock-server,plip-server,0,0,0,0,True,True,
+lightdock-server,pocketxmol-server,1,1,1,0,False,False,"scipy(>=1.7.0|==1.8.0,==1.10.1:range)"
+lightdock-server,ppiflow-server,2,2,0,2,False,True,
+lightdock-server,promera-server,1,1,0,1,False,True,
+lightdock-server,qligfep-server,0,0,0,0,True,True,
+lightdock-server,reinvent-server,0,0,0,0,True,True,
+lightdock-server,rfantibody-server,0,0,0,0,True,True,
+lightdock-server,rfdiffusion-server,0,0,0,0,True,True,
+lightdock-server,rfdiffusion2-server,1,1,0,1,False,True,
+lightdock-server,semlaflow-server,1,1,0,1,False,True,
+lightdock-server,turbohopp-server,1,1,0,1,False,True,
+megalodon-server,odesign-server,12,9,1,8,False,False,rdkit(2025.3.2|2023.3.1:major)
+megalodon-server,openadmet-server,0,0,0,0,True,True,
+megalodon-server,plip-server,0,0,0,0,True,True,
+megalodon-server,pocketxmol-server,5,5,2,3,False,False,pandas(2.2.3|1.5.2:major); rdkit(2025.3.2|2023.9.3:major)
+megalodon-server,ppiflow-server,13,9,7,2,False,False,"pyg-lib(0.4.0+pt27cu126|0.4.0+pt23cu121:build); rdkit(2025.3.2|2023.3.1:major); torch(2.7.0|2.3.1+cu121:build); torch-cluster(==1.6.3,==1.6.3+pt27cu126|1.6.3+pt23cu121:range); torch-scatter(==2.1.2,==2.1.2+pt27cu126|2.1.2+pt23cu121:range); torch-sparse(==0.6.18,==0.6.18+pt27cu126|0.6.18+pt23cu121:range); torch-spline-conv(==1.2.2,==1.2.2+pt27cu126|1.2.2+pt23cu121:range)"
+megalodon-server,promera-server,6,6,4,2,False,False,einops(0.8.1|>=0.8.2:range); pandas(2.2.3|>=3.0.0:range); rdkit(2025.3.2|2024.9.6:major); wandb(0.19.11|>=0.24.2:range)
+megalodon-server,qligfep-server,0,0,0,0,True,True,
+megalodon-server,reinvent-server,3,3,2,1,False,False,"pandas(2.2.3|>=3,<4:range); rdkit(2025.3.2|>=2025.09.1:range)"
+megalodon-server,rfantibody-server,4,4,2,2,False,False,torch(2.7.0|==2.3.*:range); wandb(0.19.11|0.12.0:major)
+megalodon-server,rfdiffusion-server,2,2,1,1,False,False,wandb(0.19.11|0.12.0:major)
+megalodon-server,rfdiffusion2-server,10,10,4,6,False,False,"einops(0.8.1|0.7.0:major); pandas(2.2.3|1.5.0:major); rdkit(2025.3.2|2024.3.5:major); wandb(0.19.11|==0.13.10,==0.12.0:range)"
+megalodon-server,semlaflow-server,4,4,0,4,False,True,
+megalodon-server,turbohopp-server,12,11,7,4,False,False,"pyg-lib(0.4.0+pt27cu126|0.4.0+pt22cu121:build); rdkit(2025.3.2|2023.9.5:major); torch-cluster(==1.6.3,==1.6.3+pt27cu126|1.6.3+pt22cu121:range); torch-scatter(==2.1.2,==2.1.2+pt27cu126|2.1.2+pt22cu121:range); torch-sparse(==0.6.18,==0.6.18+pt27cu126|0.6.18+pt22cu121:range); torch-spline-conv(==1.2.2,==1.2.2+pt27cu126|1.2.2+pt22cu121:range); wandb(0.19.11|0.16.5:major)"
+odesign-server,openadmet-server,0,0,0,0,True,True,
+odesign-server,plip-server,1,1,0,1,False,True,
+odesign-server,pocketxmol-server,14,11,7,4,False,False,"networkx(3.3|2.8:major); pandas(2.2.3|1.5.2:major); pip(25.0.1|==23.3.1,==24.3.1:range); pyyaml(6.0.2|==5.4.1,==6.0.2:range); scipy(1.15.2|==1.8.0,==1.10.1:range); seaborn(0.13.2|0.12.1:major); setuptools(75.8.2|<70:range)"
+odesign-server,ppiflow-server,139,28,9,19,False,False,"deepspeed(0.17.4|0.16.4:major); lightning-utilities(0.15.2|0.14.0:major); numpy(1.26.3|==1.22.4,==1.26.3:range); propcache(0.4.1|0.3.0:major); pytorch-lightning(1.9.0|2.5.0.post0:major); torch(2.3.1|2.3.1+cu121:build); torchaudio(2.3.1|2.3.1+cu121:build); torchvision(0.18.1|0.18.1+cu121:build); typeguard(4.3.0|2.13.3:major)"
+odesign-server,promera-server,12,12,10,2,False,False,dm-tree(0.1.6|>=0.1.10:range); einops(0.8.1|>=0.8.2:range); matplotlib(3.9.2|>=3.10.9:range); ml-collections(1.0.0|>=1.1.0:range); numpy(1.26.3|>=2.4.2:range); pandas(2.2.3|>=3.0.0:range); rdkit(2023.3.1|2024.9.6:major); scikit-learn(1.7.2|>=1.8.0:range); triton(2.3.1|3.5.0:major); wandb(0.19.8|>=0.24.2:range)
+odesign-server,qligfep-server,5,5,4,1,False,False,pip(25.0.1|22.1=pyhd8ed1ab_0:major); setuptools(75.8.2|62.2.0=py310hff52083_0:major); tzdata(2025.1|2022a=h191b570_0:major); wheel(0.45.1|0.37.1=pyhd8ed1ab_0:major)
+odesign-server,reinvent-server,12,12,4,8,False,False,"numpy(1.26.3|>=2,<3:range); pandas(2.2.3|>=3,<4:range); pillow(11.0.0|>=12.2.0:range); rdkit(2023.3.1|>=2025.09.1:range)"
+odesign-server,rfantibody-server,10,10,1,9,False,False,wandb(0.19.8|0.12.0:major)
+odesign-server,rfdiffusion-server,3,3,1,2,False,False,wandb(0.19.8|0.12.0:major)
+odesign-server,rfdiffusion2-server,33,25,6,19,False,False,"einops(0.8.1|0.7.0:major); ipykernel(7.0.1|6.29.5:major); ml-collections(1.0.0|0.1.1:major); pandas(2.2.3|1.5.0:major); rdkit(2023.3.1|2024.3.5:major); wandb(0.19.8|==0.13.10,==0.12.0:range)"
+odesign-server,semlaflow-server,10,10,0,10,False,True,
+odesign-server,turbohopp-server,119,92,23,69,False,False,asttokens(3.0.0|2.4.1:major); async-timeout(5.0.1|4.0.3:major); attrs(25.4.0|23.2.0:major); certifi(2025.1.31|2024.2.2:major); cffi(2.0.0|1.16.0:major); huggingface_hub(0.36.0|0.23.0:major); importlib-metadata(8.0.0|7.1.0:major); ipykernel(7.0.1|6.29.4:major); lightning-utilities(0.15.2|0.11.2:major); pillow(11.0.0|10.2.0:major); pip(25.0.1|24.0=pyhd8ed1ab_0:major); protobuf(3.20.2|4.25.3:major); psutil(7.0.0|5.9.8:major); pytorch-lightning(1.9.0|2.2.1:major); pytz(2025.1|2024.1:major); pyzmq(27.1.0|25.1.2:major); safetensors(0.7.0|0.4.3:major); sentry-sdk(2.22.0|1.44.0:major); setuptools(75.8.2|69.2.0=pyhd8ed1ab_0:major); torchvision(0.18.1|0.17.2:major); tzdata(2025.1|2024.1:major); wandb(0.19.8|0.16.5:major); wheel(0.45.1|0.43.0=pyhd8ed1ab_1:major)
+openadmet-server,plip-server,0,0,0,0,True,True,
+openadmet-server,pocketxmol-server,0,0,0,0,True,True,
+openadmet-server,ppiflow-server,1,1,0,1,False,True,
+openadmet-server,promera-server,0,0,0,0,True,True,
+openadmet-server,qligfep-server,0,0,0,0,True,True,
+openadmet-server,reinvent-server,2,2,0,2,False,True,
+openadmet-server,rfantibody-server,1,1,0,1,False,True,
+openadmet-server,rfdiffusion-server,0,0,0,0,True,True,
+openadmet-server,rfdiffusion2-server,1,1,0,1,False,True,
+openadmet-server,semlaflow-server,0,0,0,0,True,True,
+openadmet-server,turbohopp-server,0,0,0,0,True,True,
+plip-server,pocketxmol-server,2,2,1,1,False,False,openbabel(>=3.2.0|3.1.1:range)
+plip-server,ppiflow-server,1,1,1,0,False,False,"numpy(>=1.13.3|==1.22.4,==1.26.3:range)"
+plip-server,promera-server,1,1,0,1,False,True,
+plip-server,qligfep-server,1,1,0,1,False,True,
+plip-server,reinvent-server,1,1,0,1,False,True,
+plip-server,rfantibody-server,1,1,0,1,False,True,
+plip-server,rfdiffusion-server,0,0,0,0,True,True,
+plip-server,rfdiffusion2-server,2,2,1,1,False,False,openbabel(>=3.2.0|3.1.1:range)
+plip-server,semlaflow-server,1,1,0,1,False,True,
+plip-server,turbohopp-server,3,3,1,2,False,False,openbabel(>=3.2.0|3.1.1.1:range)
+pocketxmol-server,ppiflow-server,18,17,9,8,False,False,"networkx(2.8|3.3:major); numpy(1.24|==1.22.4,==1.26.3:range); pandas(1.5.2|2.2.3:major); pip(==23.3.1,==24.3.1|25.0:range); python(==3.8,==3.10|3.10.13:range); pyyaml(==5.4.1,==6.0.2|6.0.2:range); scipy(==1.8.0,==1.10.1|1.15.2:range); seaborn(0.12.1|0.13.2:major); setuptools(<70|75.8.0:range)"
+pocketxmol-server,promera-server,5,5,4,1,False,False,numpy(1.24|>=2.4.2:range); pandas(1.5.2|>=3.0.0:range); rdkit(2023.9.3|2024.9.6:major); scikit-learn(1.1.0|>=1.8.0:range)
+pocketxmol-server,qligfep-server,4,4,0,4,False,True,
+pocketxmol-server,reinvent-server,6,6,4,2,False,False,"numpy(1.24|>=2,<3:range); pandas(1.5.2|>=3,<4:range); pyyaml(==5.4.1,==6.0.2|>=6.0:range); rdkit(2023.9.3|>=2025.09.1:range)"
+pocketxmol-server,rfantibody-server,2,2,0,2,False,True,
+pocketxmol-server,rfdiffusion-server,0,0,0,0,True,True,
+pocketxmol-server,rfdiffusion2-server,14,10,6,4,False,False,"python(==3.8,==3.10|3.11:range); pytorch(2.0.0|==2.4,==2.4.0:range); pytorch-cuda(11.7|==12.1,==12.4:range); rdkit(2023.9.3|2024.3.5:major); scipy(==1.8.0,==1.10.1|1.13.1:range); seaborn(0.12.1|0.13.2:major)"
+pocketxmol-server,semlaflow-server,9,8,4,4,False,False,"pandas(1.5.2|2.2.2:major); python(==3.8,==3.10|3.11:range); pytorch-cuda(11.7|12.1:major); scipy(==1.8.0,==1.10.1|1.11.4:range)"
+pocketxmol-server,turbohopp-server,20,19,6,13,False,False,"meeko(0.1.dev3|0.5.0:major); networkx(2.8|3.2.1:major); openmm(0.2|8.1.1=py310h43b6314_1:major); pandas(1.5.2|2.2.1:major); pyyaml(==5.4.1,==6.0.2|6.0.1:range); scipy(==1.8.0,==1.10.1|1.12.0:range)"
+ppiflow-server,promera-server,14,14,11,3,False,False,"dm-tree(0.1.6|>=0.1.10:range); einops(0.8.1|>=0.8.2:range); matplotlib(3.9.2|>=3.10.9:range); ml-collections(1.0.0|>=1.1.0:range); numpy(==1.22.4,==1.26.3|>=2.4.2:range); pandas(2.2.3|>=3.0.0:range); rdkit(2023.3.1|2024.9.6:major); scikit-learn(1.2.2|>=1.8.0:range); torch(2.3.1+cu121|2.9.0:build); triton(2.3.1|3.5.0:major); wandb(0.19.8|>=0.24.2:range)"
+ppiflow-server,qligfep-server,25,25,9,16,False,False,ca-certificates(2025.2.25|2021.10.8=ha878542_0:major); libgcc-ng(15.1.0|12.1.0=h8d9b700_16:major); libgfortran5(15.1.0|12.1.0=hdcd56e2_16:major); libgomp(15.1.0|12.1.0=h8d9b700_16:major); libstdcxx-ng(15.1.0|12.1.0=ha89aaad_16:major); pip(25.0|22.1=pyhd8ed1ab_0:major); setuptools(75.8.0|62.2.0=py310hff52083_0:major); tzdata(2025.1|2022a=h191b570_0:major); wheel(0.45.1|0.37.1=pyhd8ed1ab_0:major)
+ppiflow-server,reinvent-server,13,13,6,7,False,False,"numpy(==1.22.4,==1.26.3|>=2,<3:range); pandas(2.2.3|>=3,<4:range); pillow(11.0.0|>=12.2.0:range); pytest(8.3.5|>=9.0.3:range); rdkit(2023.3.1|>=2025.09.1:range); torch(2.3.1+cu121|2.12.0:build)"
+ppiflow-server,rfantibody-server,13,13,3,10,False,False,"e3nn(0.5.6|0.3.3:major); numpy(==1.22.4,==1.26.3|>=1.0,<2.0:range); wandb(0.19.8|0.12.0:major)"
+ppiflow-server,rfdiffusion-server,4,4,2,2,False,False,e3nn(0.5.6|0.3.3:major); wandb(0.19.8|0.12.0:major)
+ppiflow-server,rfdiffusion2-server,37,33,7,26,False,False,"e3nn(0.5.6|==0.5.1,==0.3.3:range); einops(0.8.1|0.7.0:major); ml-collections(1.0.0|0.1.1:major); numpy(==1.22.4,==1.26.3|<2:range); pandas(2.2.3|1.5.0:major); rdkit(2023.3.1|2024.3.5:major); wandb(0.19.8|==0.13.10,==0.12.0:range)"
+ppiflow-server,semlaflow-server,14,14,1,13,False,False,"numpy(==1.22.4,==1.26.3|1.26.2:range)"
+ppiflow-server,turbohopp-server,128,102,28,74,False,False,asttokens(3.0.0|2.4.1:major); async-timeout(5.0.1|4.0.3:major); attrs(25.1.0|23.2.0:major); ca-certificates(2025.2.25|2024.2.2=hbcca054_0:major); certifi(2025.4.26|2024.2.2:major); libgcc-ng(15.1.0|13.2.0=h807b86a_5:major); libgfortran5(15.1.0|13.2.0=hca663fb_7:major); libgomp(15.1.0|13.2.0=h807b86a_5:major); libstdcxx-ng(15.1.0|13.2.0=hc0a3c3a_7:major); lightning-utilities(0.14.0|0.11.2:major); pillow(11.0.0|10.2.0:major); pip(25.0|24.0=pyhd8ed1ab_0:major); protobuf(3.20.2|4.25.3:major); psutil(7.0.0|5.9.8:major); pyg-lib(0.4.0+pt23cu121|0.4.0+pt22cu121:build); pytz(2025.1|2024.1:major); sentry-sdk(2.22.0|1.44.0:major); setuptools(75.8.0|69.2.0=pyhd8ed1ab_0:major); torch(2.3.1+cu121|2.2.2:build); torch-cluster(1.6.3+pt23cu121|1.6.3+pt22cu121:build); torch-scatter(2.1.2+pt23cu121|2.1.2+pt22cu121:build); torch-sparse(0.6.18+pt23cu121|0.6.18+pt22cu121:build); torch-spline-conv(1.2.2+pt23cu121|1.2.2+pt22cu121:build); torchaudio(2.3.1+cu121|2.2.2:build); torchvision(0.18.1+cu121|0.17.2:build); tzdata(2025.1|2024.1:major); wandb(0.19.8|0.16.5:major); wheel(0.45.1|0.43.0=pyhd8ed1ab_1:major)
+promera-server,qligfep-server,1,1,0,1,False,True,
+promera-server,reinvent-server,5,5,1,4,False,False,rdkit(2024.9.6|>=2025.09.1:range)
+promera-server,rfantibody-server,4,4,3,1,False,False,"numpy(>=2.4.2|>=1.0,<2.0:range); torch(2.9.0|==2.3.*:range); wandb(>=0.24.2|0.12.0:range)"
+promera-server,rfdiffusion-server,2,2,1,1,False,False,wandb(>=0.24.2|0.12.0:range)
+promera-server,rfdiffusion2-server,9,9,6,3,False,False,"dm-tree(>=0.1.10|0.1.8:range); einops(>=0.8.2|0.7.0:range); ml-collections(>=1.1.0|0.1.1:range); numpy(>=2.4.2|<2:range); pandas(>=3.0.0|1.5.0:range); wandb(>=0.24.2|==0.13.10,==0.12.0:range)"
+promera-server,semlaflow-server,5,5,2,3,False,False,numpy(>=2.4.2|1.26.2:range); pandas(>=3.0.0|2.2.2:range)
+promera-server,turbohopp-server,12,12,8,4,False,False,dm-tree(>=0.1.10|0.1.8:range); lmdb(>=1.7.5|1.4.1:range); matplotlib(>=3.10.9|3.8.3:range); pandas(>=3.0.0|2.2.1:range); rdkit(2024.9.6|2023.9.5:major); scikit-learn(>=1.8.0|1.4.1.post1:range); triton(3.5.0|2.2.0:major); wandb(>=0.24.2|0.16.5:range)
+qligfep-server,reinvent-server,1,1,0,1,False,True,
+qligfep-server,rfantibody-server,1,1,0,1,False,True,
+qligfep-server,rfdiffusion-server,0,0,0,0,True,True,
+qligfep-server,rfdiffusion2-server,3,3,0,3,False,True,
+qligfep-server,semlaflow-server,4,4,0,4,False,True,
+qligfep-server,turbohopp-server,28,27,10,17,False,False,ca-certificates(2021.10.8=ha878542_0|2024.2.2=hbcca054_0:major); libgcc-ng(12.1.0=h8d9b700_16|13.2.0=h807b86a_5:major); libgfortran-ng(12.1.0=h69a702a_16|13.2.0=h69a702a_7:major); libgfortran5(12.1.0=hdcd56e2_16|13.2.0=hca663fb_7:major); libgomp(12.1.0=h8d9b700_16|13.2.0=h807b86a_5:major); libstdcxx-ng(12.1.0=ha89aaad_16|13.2.0=hc0a3c3a_7:major); pip(22.1=pyhd8ed1ab_0|24.0=pyhd8ed1ab_0:major); setuptools(62.2.0=py310hff52083_0|69.2.0=pyhd8ed1ab_0:major); tzdata(2022a=h191b570_0|2024.1:major); wheel(0.37.1=pyhd8ed1ab_0|0.43.0=pyhd8ed1ab_1:major)
+reinvent-server,rfantibody-server,5,4,2,2,False,False,"numpy(>=2,<3|>=1.0,<2.0:range); torch(2.12.0|==2.3.*:range)"
+reinvent-server,rfdiffusion-server,1,1,0,1,False,True,
+reinvent-server,rfdiffusion2-server,7,7,4,3,False,False,"numpy(>=2,<3|<2:range); pandas(>=3,<4|1.5.0:range); pytest(>=9.0.3|8.2.0:range); rdkit(>=2025.09.1|2024.3.5:range)"
+reinvent-server,semlaflow-server,4,4,2,2,False,False,"numpy(>=2,<3|1.26.2:range); pandas(>=3,<4|2.2.2:range)"
+reinvent-server,turbohopp-server,10,10,3,7,False,False,"pandas(>=3,<4|2.2.1:range); pillow(>=12.2.0|10.2.0:range); rdkit(>=2025.09.1|2023.9.5:range)"
+rfantibody-server,rfdiffusion-server,4,1,0,1,False,True,
+rfantibody-server,rfdiffusion2-server,12,11,2,9,False,False,"e3nn(0.3.3|==0.5.1,==0.3.3:range); wandb(0.12.0|==0.13.10,==0.12.0:range)"
+rfantibody-server,semlaflow-server,3,3,0,3,False,True,
+rfantibody-server,turbohopp-server,8,8,2,6,False,False,torch(==2.3.*|2.2.2:range); wandb(0.12.0|0.16.5:major)
+rfdiffusion-server,rfdiffusion2-server,3,2,2,0,False,False,"e3nn(0.3.3|==0.5.1,==0.3.3:range); wandb(0.12.0|==0.13.10,==0.12.0:range)"
+rfdiffusion-server,semlaflow-server,1,1,0,1,False,True,
+rfdiffusion-server,turbohopp-server,3,3,1,2,False,False,wandb(0.12.0|0.16.5:major)
+rfdiffusion2-server,semlaflow-server,10,9,2,7,False,False,"pandas(1.5.0|2.2.2:major); pytorch-cuda(==12.1,==12.4|12.1:range)"
+rfdiffusion2-server,turbohopp-server,26,23,3,20,False,False,"pandas(1.5.0|2.2.1:major); rdkit(2024.3.5|2023.9.5:major); wandb(==0.13.10,==0.12.0|0.16.5:range)"
+semlaflow-server,turbohopp-server,14,14,0,14,False,True,

@@ -1,0 +1,14 @@
+# service: immunebuilder-server
+# repo: opensource/ImmuneBuilder
+# source_files: setup.py
+# packages: 5
+# extracted: 2026-08-11T06:05:08Z
+# source: declared dependencies from opensource git checkout
+#         (PEP 621/poetry pyproject.toml, setup.py/cfg, requirements*, conda env)
+# note: constraints AND-joined per package; alternative variant files
+#       (e.g. cuda121/cuda124) are not distinguished
+einops>=0.3
+numpy
+requests
+scipy>=1.6
+torch>=1.8

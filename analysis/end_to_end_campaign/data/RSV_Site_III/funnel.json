@@ -1,0 +1,39 @@
+{
+  "target": "RSV_Site_III",
+  "filter": "interaction_pae < 10.0 & framework_aligned_cdr_rmsd < 2.0",
+  "stages": {
+    "rfdiffusion_backbones": 1000,
+    "mpnn_sequences": 8000,
+    "rf2_scored": 8000,
+    "pae_pass": 317,
+    "passed_filter": 293
+  },
+  "in_silico_pass_fraction": 0.0366,
+  "pae_pass_fraction": 0.0396,
+  "n_designs": 8000,
+  "backbones_scored": 1000,
+  "backbone_pass": 172,
+  "backbone_pass_fraction": 0.172,
+  "source": [
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_00/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_01/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_02/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_03/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_04/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_05/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_06/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_07/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_08/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_09/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_10/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_11/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_12/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_13/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_14/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_15/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_16/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_17/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_18/rf2/3_rf2.qv",
+    "/data/fc/rfantibody/results/RSV_Site_III/batch_19/rf2/3_rf2.qv"
+  ]
+}

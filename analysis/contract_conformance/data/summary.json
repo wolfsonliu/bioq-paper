@@ -1,0 +1,36 @@
+{
+  "n_services_listed": 30,
+  "n_services_audited": 30,
+  "n_services_unaudited": 0,
+  "unaudited": [],
+  "n_endpoints_all": 141,
+  "n_endpoints_task": 68,
+  "pct_endpoints_fully_conformant_task": 98.5,
+  "pct_endpoints_fully_conformant_all": 98.6,
+  "threshold": 0.9,
+  "pct_services_above_threshold": 96.7,
+  "median_service_score_task": 1.0,
+  "mean_service_score_task": 0.9933,
+  "per_check": {
+    "typed_params": {
+      "pass_rate_task": 1.0,
+      "pass_rate_all": 1.0
+    },
+    "file_fields": {
+      "pass_rate_task": 1.0,
+      "pass_rate_all": 1.0
+    },
+    "defaults": {
+      "pass_rate_task": 0.9853,
+      "pass_rate_all": 0.9858
+    },
+    "machine_view": {
+      "pass_rate_task": 1.0,
+      "pass_rate_all": 1.0
+    },
+    "docs_text": {
+      "pass_rate_task": 1.0,
+      "pass_rate_all": 1.0
+    }
+  }
+}

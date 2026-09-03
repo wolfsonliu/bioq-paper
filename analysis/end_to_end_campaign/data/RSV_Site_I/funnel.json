@@ -1,0 +1,20 @@
+{
+  "target": "RSV_Site_I",
+  "filter": "interaction_pae < 10.0 & framework_aligned_cdr_rmsd < 2.0",
+  "stages": {
+    "rfdiffusion_backbones": 1000,
+    "mpnn_sequences": 8000,
+    "rf2_scored": 8000,
+    "pae_pass": 47,
+    "passed_filter": 37
+  },
+  "in_silico_pass_fraction": 0.0046,
+  "pae_pass_fraction": 0.0059,
+  "n_designs": 8000,
+  "backbones_scored": 1000,
+  "backbone_pass": 24,
+  "backbone_pass_fraction": 0.024,
+  "source": [
+    "/data/fc/rfantibody/results/RSV_Site_I/merged/3_rf2.qv"
+  ]
+}

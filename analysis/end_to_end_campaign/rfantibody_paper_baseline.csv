@@ -1,0 +1,11 @@
+target,type,paper_target,pdb_accession,hotspot_residues,designs_screened,screening_method,confirmed_binders,experimental_success_rate_pct,cdr_h3_seq_similarity_pct,orthorep_fold_improvement,rf2_success_hotspot1_pct,rf2_success_hotspot01_pct,rf2_success_hotspot0_pct,af3_success_pct,note
+HIV_Env,VHH,HIV Env,2NY7,"A371, A375, A435, A475",,,,,,,,,,,design campaign only; no screening reported in Suppl. Table 6
+SARS_CoV2_RBD,VHH,SARS-CoV-2 RBD,6M0J,"B492, B493, B494, B495, B496, B497",9000,YSD,5,0.06,20.4,~1000x,28.0,23.5,11.0,0.0,
+RSV_Site_I,VHH,RSV-F Site I,7LVW,"D469, D384",,,,,,,,,,,design campaign only; no screening reported in Suppl. Table 6
+RSV_Site_III,VHH,RSV-F Site III,7LUC,"T305, T456",9000,YSD,1,0.01,N/A,N/A,25.0,3.0,1.0,0.0,AF3 success=0*: epitope not correctly predicted on cropped target (R.M.S.D. 19 A)
+Influenza_HA,VHH,Influenza HA (H1 stem),5VLI,"B521, B545, B552",96,SPR,1,1.0,33.4,N/A,11.5,7.5,3.5,5.0,
+Influenza_HA,VHH,Influenza HA (H1 stem),5VLI,"B521, B545, B552",9000,YSD,20,0.2,33.4,~1000x,11.5,7.5,3.5,5.0,same RF2 in-silico rates as the 96-design SPR screen
+TcdB,VHH,TcdB,6C0B,"A1433, A1435, A1437, A1438, A1493",96,SPR,2,2.0,22.2,~100x,41.0,33.5,27.5,27.5,
+IL7R_alpha,VHH,IL-7 Receptor alpha,3DI3,"B81, B139, B192",96,SPR,0,0.0,N/A,N/A,34.5,27.0,12.5,5.0,
+TcdB_scFv_unique,scFv,scFv TcdB - Unique Pairing,7ML7,"A1816, A1818, A1819, A1823, A1831",,,,,,,,,,,scFv campaign (Table 7); no per-target screening table in Suppl. Methods
+TcdB_scFv_combinatorial,scFv,scFv TcdB - Combinatorially Assembled,6C0B,"A1433, A1435, A1437, A1438, A1493",,,,,,,,,,,scFv campaign (Table 7); no per-target screening table in Suppl. Methods

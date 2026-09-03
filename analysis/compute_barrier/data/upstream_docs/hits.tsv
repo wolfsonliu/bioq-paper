@@ -1,0 +1,343 @@
+repo	relpath	line	matched_patterns	text
+AutoDock-GPU	README.md	9	cuda	* OpenCL and Cuda accelerated version of AutoDock4.2.6. It leverages its embarrasingly parallelizable LGA by processing ligand-receptor poses in parallel over multiple compute units.
+AutoDock-GPU	README.md	11	nvidia,cuda	* The Cuda version was developed in collaboration with Nvidia to run AutoDock-GPU on the Oak Ridge National Laboratory's (ORNL) Summit, and it included a batched ligand pipeline developed by Aaron Scheinberg from Jubilee Development.
+AutoDock-GPU	README.md	23	cuda	* Cuda and OpenCL paths to support a wide variety of target platforms based on GPU as well as multicore CPU accelerators.
+AutoDock-GPU	README.md	25	cuda	* A batched ligand pipeline to run virtual screenings on the same receptor (both OpenCL and Cuda)
+AutoDock-GPU	README.md	31	cuda	|CentOS 6.7 & 6.8 / Ubuntu 14.04 & 16.04   | Intel SDK for OpenCL 2017    | OpenCL / CUDA >= 11                            |
+AutoDock-GPU	README.md	35	cuda	Other environments or configurations likely work as well, but are untested. AutoDock-GPU since commit 846dc2b requires a C++17-capable compiler, which in practice means GCC >= 9. This also means the minimum version supported for Cuda-compilation is Cuda 11, however, since all versions of Cuda also come with OpenCL older versions can still be used using the OpenCL code path (`DEVICE=OCLGPU`).
+AutoDock-GPU	README.md	48	cuda	| `<TYPE>`   | Accelerator chosen           | `CPU`, `GPU`, `CUDA`, `OCLGPU`, `OPENCL`           |
+AutoDock-GPU	README.md	51	cuda	When `DEVICE=GPU` is chosen, the Makefile will automatically tests if it can compile Cuda succesfully. To override, use `DEVICE=CUDA` or `DEVICE=OCLGPU`. The cpu target is only supported using OpenCL. Furthermore, an OpenMP-enabled overlapped pipeline (for setup and processing) can be compiled with `OVERLAP=ON`.
+AutoDock-GPU	README.md	110	cuda	|--devnum           |-D | OpenCL/Cuda device number (counting starts at 1)      | 1                |
+AutoDock-GPU	README.md	179	gpu_requirement	AutoDock-GPU requires [Meeko](https://github.com/forlilab/meeko) for
+BindCraft	README.md	15	nvidia,cuda	The navigate into your install folder using *cd* and run the installation code. BindCraft requires a CUDA-compatible Nvidia graphics card to run. In the *cuda* setting, please specify the CUDA version compatible with your graphics card, for example '11.8'. If unsure, leave blank but it's possible that the installation might select the wrong version, which will lead to errors. In *pkg_manager* specify whether you are using 'mamba' or 'conda', if left blank it will use 'conda' by default.
+BindCraft	README.md	19	cuda	`bash install_bindcraft.sh --cuda '12.4' --pkg_manager 'conda'`
+BindCraft	README.md	25	gpu_memory,min_memory	We prepared a convenient google colab notebook to test the bindcraft code functionalities. However, as the pipeline requires significant amount of GPU memory to run for larger target+binder complexes, we highly recommend to run it using a local installation and at least 32 Gb of GPU memory.
+BindCraft	README.md	27	gpu_memory,memory_footprint	**Always try to trim the input target PDB to the smallest size possible! It will significantly speed up the binder generation and minimise the GPU memory requirements.**
+BindFlow	docs/source/guides/customizing.md	135	nvidia	- module load nvidia/latest
+BindFlow	docs/source/guides/customizing.md	490	min_memory	Additionally, note that a high amount of memory is allocated for the execution of calculations (`cluster/options/mem = 10GB`). This is necessary because [gmx_MMPBSA](https://valdes-tresanco-ms.github.io/gmx_MMPBSA/dev/) is memory-intensive, as it uses MPI to process frames in parallel. As a general rule, allocate at least 1 GB of memory per thread specified in the `{py:func}`bindflow.runners.calculate` function.
+BindFlow	docs/source/guides/deploy.md	47	gpu_requirement	These estimates only represent the parallelization at the job level. Each of these jobs is also parallelized at the GMX level, where GPU acceleration can be utilized, just like any typical GROMACS simulation (and this is even cooler 😎).
+BindFlow	docs/source/guides/performance/index.md	416	consumer_gpu	|           1 | RTX 4070 Ti SUPER | EPYC 7443                     |
+BindFlow	docs/source/guides/performance/index.md	417	consumer_gpu	|           2 | RTX 4000 Ada      | Xeon E-2136 CPU               |
+BindFlow	docs/source/guides/performance/index.md	420	consumer_gpu	|           5 | GTX 1070 Ti       | Xeon CPU E5-2630 v4           |
+BindFlow	docs/source/guides/performance/index.md	421	consumer_gpu	|           6 | GTX 1070          | Xeon CPU E5-2630 v4           |
+BindFlow	docs/source/guides/performance/index.md	426	nvidia	To estimate the completion time, we selected the thrombin system, which achieved a mid-range performance of 270 ns/day for the protein--ligand complex using an Nvidia RTX A4000 GPU and 10 CPU cores of and Ryzen Threadripper PRO 3975WX (second row of previous fgure).
+BindFlow	docs/source/guides/performance/index.md	444	disk	As a numerical example, for the P38 system that comprised 86376 atoms, calculations with 29 ligands (triplicated calculations) required 320 GB disk space for FEP and 40 GB for MMGBSA during runtime, respectively.
+BindFlow	docs/source/guides/performance/index.md	446	disk	By excluding log files (`.snakemake` directory and `*.log` and `*.err` files) and irrelevant GROMACS files (`.edr`, `mdout.mdp` and `*.tpr`) during archive and compressing all non-trajectory files, the disk space was reduced to 137 GB for FEP and 19 GB for MMGBSA. However, owing to BindFlow full automation, to reproduce the simulations, only the BindFlow version, input structures, run script, and configuration file are required; involving typically only few megabytes for long-term archive.
+BindFlow	docs/source/guides/performance/index.md	453	disk	Disk space used by BindFlow for all simulation sets of this study. Top: for FEP. Bottom: for MM(PB/GB)SA. Red bars: disk space used during simulations. Blue bars: after compression of raw simulation data. Yielding  compression factors of 2.6 and 2.3 for FEP and MM(PB/GB)SA, respectively.
+BindFlow	docs/source/installation.md	164	cuda	"cmake -DGMX_GPU=""CUDA"" -DCMAKE_C_COMPILER=gcc-13 -DCMAKE_CXX_COMPILER=g++-13 \"
+ColabFold	README.md	70	cuda,gpu_requirement	# With CUDA GPU support
+ColabFold	README.md	71	cuda	pip install colabfold[alphafold,openmm] jax[cuda] openmm[cuda12]
+ColabFold	README.md	128	min_memory	(2) Fast single query searches require the full index (the `.idx` files) to be kept in memory. This can be done with e.g. by using [vmtouch](https://github.com/hoytech/vmtouch). Thus, this type of search requires a machine with at least 768GB to 1TB RAM for the ColabfoldDB. If the index is present in memory, use the `--db-load-mode 2` parameter in `colabfold_search` to avoid index loading overhead.
+ColabFold	README.md	175	gpu_requirement	### GPU-accelerated search with ⁠`colabfold_search` ⁠
+ColabFold	README.md	176	gpu_requirement	ColabFold supports GPU-accelerated MSA searches through [MMseqs2-GPU](https://www.biorxiv.org/content/10.1101/2024.11.13.623350v1).
+ColabFold	README.md	185	gpu_memory	This will download and setup the GPU databases in the specified folder. Note that here we do not pass ⁠`MMSEQS_NO_INDEX=1`⁠ as an argument since the indices are useful in the GPU search since we will keep them in the GPU memory.
+ColabFold	README.md	200	gpu_memory	For frequent searches or to achieve minimal latency, you can run a dedicated GPU server. This server holds databases permanently in GPU memory, largely eliminating search overhead:
+ColabFold	README.md	211	gpu_memory,cuda	Important: Ensure that the `CUDA_VISIBLE_DEVICES` environment variable is set consistently for both `gpuserver` and `colabfold_search`, otherwise `colabfold_search` will try wait for the `gpuserver` to appear until a set timeout (by default 5 minutes). If your database exceeds GPU memory capacity, the GPU server efficiently streams data between host and GPU memory using asynchronous CUDA streams.
+ColabFold	README.md	225	gpu_requirement	For more details, see [GPU-accelerated search](https://github.com/soedinglab/MMseqs2/wiki#gpu-accelerated-search).
+DiffDock	README.md	94	nvidia,cuda	docker run --rm --gpus all nvidia/cuda:11.7.1-devel-ubuntu22.04 nvidia-smi
+DiffDock	requirements.txt	6	nvidia	dllogger@git+https://github.com/NVIDIA/dllogger.git
+DiffDock-PP	README.md	26	nvidia,cuda	conda install pytorch=1.13.0 pytorch-cuda=11.6 -c pytorch -c nvidia
+DiffDock-PP	README.md	33	nvidia	Note that the code was tested on Ubuntu 22.04 using NVIDIA RTX A6000 GPUs.
+DrugHIVE	README.md	28	cuda	| CUDA              | 11.6      |
+DrugHIVE	README.md	39	nvidia	conda create -n drughive -c conda-forge -c pytorch -c nvidia -c rdkit --file requirements.txt
+DrugHIVE	requirements.txt	8	cuda	pytorch-cuda=11.7
+FlowMol	readme.md	46	cuda	model = flowmol.load_pretrained().cuda().eval() # load model
+LASErMPNN	README.md	29	cuda	#### CUDA 11 Instructions
+LASErMPNN	README.md	31	cuda	To install the training environment on a system running CUDA 11 (check your cuda version by running `nvcc --version`), run the following set of commands using a [MiniForge](https://github.com/conda-forge/miniforge/releases/tag/24.11.3-2) installation (recommended) or an existing conda installation with a libmamba solver (see above).
+LASErMPNN	README.md	37	cuda	#### CUDA 12 Instructions
+LASErMPNN	README.md	39	cuda	To install the training environment on a system running CUDA 12 (check your cuda version by running `nvcc --version`), run the following set of commands using a [MiniForge](https://github.com/conda-forge/miniforge/releases/tag/24.11.3-2) installation (recommended) or an existing conda installation with a libmamba solver (see above).
+LASErMPNN	README.md	41	cuda	This was tested on a system with CUDA 12.4, you might need to update the specfic CUDA version at the top of the `conda_env_12p4.yml` file if you have a different CUDA 12.x version.
+LASErMPNN	README.md	94	cuda	"Pytorch style device string. Ex: ""cuda:0"" or ""cpu""."
+LASErMPNN	README.md	137	gpu_memory	Number of designs to generate per batch. If designs_per_input > designs_per_batch, chunks up the inference calls in batches of this size. Default is 30, can increase/decrease depending on available GPU memory.
+LASErMPNN	README.md	152	cuda	"PyTorch style device string (e.g. ""cuda:0"")."
+LigandMPNN	README.md	383	datacenter_gpu	"#""./inputs/4GYT.pdb"": ""A7 A8 A9 A10 A11 A12 A13 B38"""
+LigandMPNN	README.md	397	datacenter_gpu	"#""./inputs/4GYT.pdb"": ""A7 A8 A9 A10 A12 A13 B38"""
+LigandMPNN	requirements.txt	9	nvidia	nvidia-cublas-cu12==12.1.3.1
+LigandMPNN	requirements.txt	10	nvidia,cuda	nvidia-cuda-cupti-cu12==12.1.105
+LigandMPNN	requirements.txt	11	nvidia,cuda	nvidia-cuda-nvrtc-cu12==12.1.105
+LigandMPNN	requirements.txt	12	nvidia,cuda	nvidia-cuda-runtime-cu12==12.1.105
+LigandMPNN	requirements.txt	13	nvidia	nvidia-cudnn-cu12==8.9.2.26
+LigandMPNN	requirements.txt	14	nvidia	nvidia-cufft-cu12==11.0.2.54
+LigandMPNN	requirements.txt	15	nvidia	nvidia-curand-cu12==10.3.2.106
+LigandMPNN	requirements.txt	16	nvidia	nvidia-cusolver-cu12==11.4.5.107
+LigandMPNN	requirements.txt	17	nvidia	nvidia-cusparse-cu12==12.1.0.106
+LigandMPNN	requirements.txt	18	nvidia	nvidia-nccl-cu12==2.19.3
+LigandMPNN	requirements.txt	19	nvidia	nvidia-nvjitlink-cu12==12.4.99
+LigandMPNN	requirements.txt	20	nvidia	nvidia-nvtx-cu12==12.1.105
+MMseqs2	README.md	14	gpu_requirement	[Kallenborn F, Chacon A, Hundt C, Sirelkhatim H, Didi K, Cha S, Dallago C, Mirdita M, Schmidt B, Steinegger M: GPU-accelerated homology search with MMseqs2. Nature Methods, doi: 10.1038/s41592-025-02819-8 (2025)](https://www.nature.com/articles/s41592-025-02819-8)
+MMseqs2	README.md	34	nvidia	# MMseqs2-GPU mostly-static AVX2 build requiring glibc >= 2.29 and nvidia driver >=525.60.13 (see below)
+MMseqs2	README.md	45	cuda,gpu_requirement	MMseqs2 requires an AMD or Intel 64-bit system (check with `uname -a | grep x86_64`). We recommend using a system with at least the SSE4.1 instruction set (check by executing `cat /proc/cpuinfo | grep sse4_1` on Linux or `sysctl -a | grep machdep.cpu.features | grep SSE4.1` on MacOS). The AVX2 version is faster than SSE4.1, check if AVX2 is supported by executing `cat /proc/cpuinfo | grep avx2` on Linux and `sysctl -a | grep machdep.cpu.leaf7_features | grep AVX2` on MacOS. A SSE2 version is also available for very old systems. MMseqs2 also works on ARM64 systems and on PPC64LE systems with POWER8 ISA or newer. MMseqs2-GPU requires the support of CUDA-enabled GPUs of the Turing generation or newer.
+MMseqs2	README.md	48	nvidia,gpu_requirement	> We recently added support for GPU-accelerated protein sequence and profile searches. This requires an NVIDIA GPU of the Ampere generation or newer for full speed, however, also works at reduced speed for Turing-generation GPUs. The bioconda- and precompiled binaries will not work on older GPU generations (e.g. Volta or Pascal).
+MMseqs2	README.md	49	gpu_requirement	> Check the [wiki](https://github.com/soedinglab/MMseqs2/wiki#compile-from-source-for-linux-with-gpu-support) for instructions on how to get started.
+MMseqs2	README.md	76	disk	Please adjust the [clustering criteria](https://github.com/soedinglab/MMseqs2/wiki#clustering-criteria) and check if temporary directory provides enough free space. For disk space requirements, see the user guide.
+MMseqs2	README.md	91	gpu_requirement	To perform searches using GPU acceleration, you can add the `--gpu` flag to `easy-search` (see [GPU-accelerated search](https://github.com/soedinglab/MMseqs2/wiki#gpu-accelerated-search)). For frequently searched databases, you can precompute a GPU-compatible database using makepaddedseqdb, which can also be used for CPU-based searches. By default, MMseqs2 uses all visible GPUs; you can adjust this behavior using the `CUDA_VISIBLE_DEVICES` environment variable.
+MMseqs2	README.md	134	memory_footprint	### Memory requirements
+MMseqs2	README.md	135	memory_footprint	MMseqs2 minimum memory requirements for `cluster` or `linclust` is 1 byte per sequence residue, `search` needs 1 byte per target residue. Sequence databases can be compressed using the `--compress` flag, DNA sequences can be reduced by a factor of `~3.5` and proteins by `~1.7`.
+MMseqs2	README.md	137	memory_footprint	MMseqs2 checks the available system memory and automatically divides the target database in parts that fit into memory. Splitting the database will increase the runtime slightly. It is possible to control the memory usage using `--split-memory-limit`.
+ODesign	README.md	50	cuda	**Step 2 — Prepare the Environment (cuda 12.1)**
+ODesign	README.md	312	disk	Before training ODesign, please download the `odesign_full_data.tar.gz` from [Google Drive](https://drive.google.com/drive/folders/1wPmwIrC3G52q1JFY0RXY95tjKDl7YEln?usp=drive_link), and unzip the file using the following command. About 850 GB of disk space is required to keep the unzipped files.
+ODesign	requirements.txt	120	nvidia	nvidia-cublas-cu12==12.1.3.1
+ODesign	requirements.txt	121	nvidia,cuda	nvidia-cuda-cupti-cu12==12.1.105
+ODesign	requirements.txt	122	nvidia,cuda	nvidia-cuda-nvrtc-cu12==12.1.105
+ODesign	requirements.txt	123	nvidia,cuda	nvidia-cuda-runtime-cu12==12.1.105
+ODesign	requirements.txt	124	nvidia	nvidia-cudnn-cu12==8.9.2.26
+ODesign	requirements.txt	125	nvidia	nvidia-cufft-cu12==11.0.2.54
+ODesign	requirements.txt	126	nvidia	nvidia-curand-cu12==10.3.2.106
+ODesign	requirements.txt	127	nvidia	nvidia-cusolver-cu12==11.4.5.107
+ODesign	requirements.txt	128	nvidia	nvidia-cusparse-cu12==12.1.0.106
+ODesign	requirements.txt	129	nvidia	nvidia-ml-py==12.570.86
+ODesign	requirements.txt	130	nvidia	nvidia-nccl-cu12==2.20.5
+ODesign	requirements.txt	131	nvidia	nvidia-nvjitlink-cu12==12.1.105
+ODesign	requirements.txt	132	nvidia	nvidia-nvtx-cu12==12.1.105
+PXDesign	README.md	50	cuda	PXDesign involves complex models and custom CUDA kernels. We **strongly recommend** the Web Server as the fastest, most stable, and most user-friendly way to use PXDesign:
+PXDesign	README.md	52	gpu_requirement	- **Zero Setup**: No installation, no GPU required, no environment debugging.
+PXDesign	README.md	115	cuda	2. Install **PyTorch** matching your specified CUDA version
+PXDesign	README.md	126	cuda	--cuda-version <ver>   CUDA version string, e.g. 12.1, 12.2, 12.4
+PXDesign	README.md	133	cuda	bash -x install.sh --env pxdesign --pkg_manager conda --cuda-version 12.1
+PXDesign	README.md	230	datacenter_gpu	> For runs on modern GPUs (e.g., A100/H100), we recommend the BF16 precision and kernel optimizations by setting `--dtype bf16 --use_fast_ln True --use_deepspeed_evo_attention True`. <br>
+PXDesign	README.md	231	datacenter_gpu	> If you are running on older GPUs (e.g., V100), you may set `--dtype fp32 --use_deepspeed_evo_attention False`.
+PXDesign	README.md	417	datacenter_gpu	> For most production runs on modern GPUs (e.g., A100/H100), we recommend the **Full Pipeline Extended Mode** with BF16 precision and kernel optimizations.
+PXDesign	README.md	474	datacenter_gpu	| `--dtype` | `bf16` | Controls numerical precision.<br>🔹 `bf16` is recommended on modern GPUs (e.g., A100/H100)<br>for faster speed and lower memory.<br>🔹 `fp32` may be preferred for debugging or on older hardware.<br> |
+PXDesign	README.md	476	nvidia	| `--use_deepspeed_evo_attention` | `False` | Enables DeepSpeed Evo attention kernels (Protenix only).<br>🔹 This kernel is only used by the Protenix filter.<br>🔹 NVIDIA CUTLASS (v3.5.1) is required and is expected at `${CUTLASS_PATH:-$HOME/cutlass}`|
+PXDesign	requirements.txt	22	nvidia	nvidia-cublas-cu12
+PocketXMol	README.md	37	cuda	Using conda to create the environment. For CUDA 11.7, use the provided `environment.yml`:
+PocketXMol	README.md	63	cuda	--device cuda:0
+PocketXMol	docs/sample_provided_data.md	52	cuda	--device cuda:0
+PocketXMol	docs/sample_provided_data.md	62	cuda	| `--device` | No | `cuda:0` | Device (e.g., `cuda:0`, `cpu`) |
+PocketXMol	docs/sample_provided_data.md	87	cuda	--device cuda:0
+PocketXMol	docs/sample_provided_data.md	183	gpu_memory	| `batch_size` | `int` | Number of molecules processed in parallel. Can be overridden with `--batch_size` CLI flag. Larger → faster but more GPU memory |
+PocketXMol	docs/sample_test_sets.md	8	datacenter_gpu	> - **Hardware:** Verified on an 80G A100 GPU. Batch sizes in configs are optimized for this.
+PocketXMol	docs/sample_test_sets.md	10	datacenter_gpu	> - **Runtime:** 1 ~ 6 hours per test set on a single A100.
+PocketXMol	docs/sample_test_sets.md	22	cuda	--device cuda:0
+PocketXMol	docs/sample_test_sets.md	42	cuda	--device cuda:0
+PocketXMol	docs/sample_test_sets.md	62	cuda	--device cuda:0
+PocketXMol	docs/sample_test_sets.md	80	cuda	--device cuda:0
+PocketXMol	docs/sample_test_sets.md	90	cuda	--device cuda:0
+PocketXMol	docs/sample_test_sets.md	105	cuda	--device cuda:0
+PocketXMol	docs/sample_test_sets.md	120	cuda	--device cuda:0
+PocketXMol	docs/sample_test_sets.md	131	cuda	--device cuda:0
+PocketXMol	docs/sample_test_sets.md	144	cuda	--device cuda:0
+PocketXMol	docs/sample_test_sets.md	154	cuda	--device cuda:0
+PocketXMol	docs/sample_test_sets.md	162	cuda	--device cuda:0
+PocketXMol	docs/setup.md	9	cuda	To set up the environment on Linux (with CUDA 11.7), use [Anaconda](https://docs.anaconda.com/free/anaconda/install/index.html) to create a new environment `pxm` from `environment.yml`:
+PocketXMol	docs/setup.md	16	cuda	> **Note:** If you have a different CUDA version, modify the pytorch-related package versions in `environment.yml` before creating the environment.
+PocketXMol	docs/setup.md	18	cuda	### Option A2: Conda for CUDA 12.8
+PocketXMol	docs/setup.md	20	cuda	For systems with **CUDA 12.8**, use the provided base environment file `environment_cu128_base.yml`:
+PocketXMol	docs/setup.md	27	cuda	Then install the CUDA 12.8 PyTorch + PyG stack (copy/paste as a whole):
+PocketXMol	docs/setup.md	38	cuda	If you need custom versions (e.g., specific CUDA/PyTorch/PyG pins), install packages step by step.
+PocketXMol	docs/setup.md	40	cuda	For example, for CUDA 12.6 (Python 3.10):
+PocketXMol	docs/setup.md	42	cuda	# PyTorch for CUDA 12.6
+PocketXMol	docs/setup.md	49	cuda	# PyG extensions (must match torch version + CUDA tag)
+PocketXMol	docs/train.md	22	gpu_memory	> - To adjust for GPU memory, modify `batch_size` in the config file.
+ProteinMPNN	README.md	39	gpu_memory,consumer_gpu	"argparser.add_argument(""--batch_size"", type=int, default=1, help=""Batch size; can set higher for titan, quadro GPUs, reduce this if running out of GPU memory"")"
+Protenix	docs/docker_installation.md	3	gpu_requirement	1. Install Docker (with GPU Support)
+Protenix	docs/docker_installation.md	5	gpu_requirement	Ensure that Docker is installed and configured with GPU support. Follow these steps:
+Protenix	docs/docker_installation.md	7	nvidia,gpu_requirement	*   Install the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) to enable GPU support.
+Protenix	docs/docker_installation.md	10	nvidia,cuda	docker run --rm --gpus all nvidia/cuda:12.6.3-base-ubuntu22.04 nvidia-smi
+Protenix	docs/kernels.md	3	cuda	- **Custom CUDA layernorm kernels** modified from [FastFold](https://github.com/hpcaitech/FastFold) and [Oneflow](https://github.com/Oneflow-Inc/oneflow) accelerate about 30%-50% during different training stages.
+Protenix	docs/kernels.md	21	nvidia	Optimized implementation using NVIDIA's [cuEquivariance](https://github.com/NVIDIA/cuEquivariance) library.
+Protenix	docs/kernels.md	25	nvidia	DS4Sci_EvoformerAttention is implemented based on [CUTLASS](https://github.com/NVIDIA/cutlass). If you use this feature, you need to clone the CUTLASS repository and specify the path to it in the environment variable `CUTLASS_PATH`. The [Dockerfile](Dockerfile) already includes this setting:
+Protenix	docs/kernels.md	27	nvidia	RUN git clone -b v3.5.1 https://github.com/NVIDIA/cutlass.git  /opt/cutlass
+Protenix	docs/kernels.md	33	nvidia	git clone -b v3.5.1 https://github.com/NVIDIA/cutlass.git  /path/to/cutlass
+Protenix	docs/kernels.md	47	nvidia	Optimized implementation using NVIDIA's [cuEquivariance](https://github.com/NVIDIA/cuEquivariance) library.
+Protenix	docs/training_inference_instructions.md	131	nvidia,cuda	> **Performance Tip**: By default, specialized CUDA kernels are enabled. For significant speedups on NVIDIA GPUs, follow the [**Kernels Setup Guide**](./kernels.md).
+Protenix	docs/training_inference_instructions.md	137	disk	To download the [wwPDB dataset](https://www.wwpdb.org/) and preprocessed training data, you need at least 1.5T disk space.
+Protenix	docs/training_inference_instructions.md	252	datacenter_gpu	| Throughput (A100-80G, s/step) | ~12 | ~30 | ~44 | ~13 |
+Protenix	docs/training_inference_instructions.md	253	gpu_memory	| Peak GPU Memory (GB) | ~34 | ~35 | ~48 | ~24 |
+Protenix	docs/training_inference_instructions.md	255	datacenter_gpu,nvidia	We recommend training on high-performance GPUs such as NVIDIA A100 (80GB), H20, or H100. When using BF16 mixed-precision, the initial training stage can also be conducted on NVIDIA A800 (40GB). For GPUs with smaller memory capacities (e.g., NVIDIA A30), it is necessary to adjust the model configuration—such as reducing `model.pairformer.nblocks` or `diffusion_batch_size`—to ensure compatibility.
+Protenix	docs/training_inference_instructions.md	261	gpu_memory	The table below provides benchmark data for GPU memory utilization and inference latency across various input sizes.
+Protenix	docs/training_inference_instructions.md	275	memory_footprint	Adjust inference configurations based on the number of tokens to manage memory usage and prevent OOM.
+REINVENT4	README.md	38	nvidia	CPU automatically.  REINVENT [supports](https://pytorch.org/get-started/locally/), as of this writing, NVIDIA GPUs,
+REINVENT4	README.md	40	gpu_memory	of about 8 GiB for both CPU main memory and GPU memory is sufficient.
+REINVENT4	README.md	57	nvidia,cuda	"1. Change directory to the repository to install.  You will need to set the right processor type, see [PyTorch versions](https://pytorch.org/get-started/locally/). Make sure that the toolkit version (e.g. CUDA) is compatible with the hardware driver (e.g. NVIDIA) of your OS.  Linux supports CUDA (e.g. ""cu126""), AMD ROCm (e.g. ""rocm6.4""), Intel XPU (""xpu"") and CPU. Windows supports CUDA, XPU and CPU.  Newer Apple chips e.g. M5 are supported by PyTorch's MPS backend (use ""mac"" as processor type). Optionally, you can select dependencies ""openeye"" (for ROCS; you need to obtain your own license), ""chemprop1"" for Chemprop v1, ""isim"" for similarity tracking in TensorBoard or ""none"" to skip all.  The default is installation of ""all"" dependencies.  See the help text from the install script for details."
+REINVENT4	README.md	61	cuda	# install all packages including chemprop2 for e.g. CUDA 12.6
+REINVENT4	README.md	62	nvidia,cuda	# make sure the CUDA version is compatible with the NVIDIA driver
+REINVENT4	README.md	82	cuda	1. Change directory to the repository and run `uv sync`.  The PyTorch index for CUDA 12.6 is pre-configured in `pyproject.toml`.
+REINVENT4	README.md	130	cuda	| `-d`, `--device` | Torch device: cuda, cpu. Overwrites config file setting | — |
+REINVENT4	README.md	216	cuda	$ pytest tests --json /path/to/config.json --device cuda
+RFantibody	README.md	45	gpu_requirement	### GPU Acceleration
+RFantibody	README.md	47	nvidia,cuda	RFantibody requires an NVIDIA GPU with CUDA support to run. You can check whether you have a compatible NVIDIA GPU available by running:
+RFantibody	README.md	49	nvidia	nvidia-smi
+RFantibody	README.md	55	nvidia,cuda	- **GPU**: NVIDIA GPU with CUDA 11.8+ support
+RFantibody	README.md	98	cuda	- Install all dependencies including PyTorch with CUDA 11.8 support
+RFantibody	README.md	99	cuda	- Install [Deep Graph Library](https://www.dgl.ai) from CUDA-enabled wheels
+RFantibody	README.md	197	gpu_requirement	Always use the `--nv` flag (for GPU support) and `--writable-tmpfs` flag (for temporary file writes):
+RFdiffusion	README.md	97	nvidia	You also need to install [NVIDIA's implementation of SE(3)-Transformers](https://developer.nvidia.com/blog/accelerating-se3-transformers-training-using-an-nvidia-open-source-model-implementation/) Here is how to install the NVIDIA SE(3)-Transformer code:
+RFdiffusion	README.md	114	cuda	Note: Due to the variation in GPU types and drivers that users have access to, we are not able to make one environment that will run on all setups. As such, we are only providing a yml file with support for CUDA 11.1 and leaving it to each user to customize it to work on their setups. This customization will involve changing the cudatoolkit and (possibly) the PyTorch version specified in the yml file.
+RFdiffusion	README.md	193	datacenter_gpu	- Anything prefixed by a letter indicates that this is a motif, with the letter corresponding to the chain letter in the input pdb files. E.g. A10-25 pertains to residues ('A',10),('A',11)...('A',25) in the corresponding input pdb
+RFdiffusion	README.md	197	datacenter_gpu	"In more detail, if we want to scaffold a motif, the input is just like RFjoint Inpainting, except needing to navigate the hydra config input. If we want to scaffold residues 10-25 on chain A a pdb, this would be done with `'contigmap.contigs=[5-15/A10-25/30-40]'`. This asks RFdiffusion to build 5-15 residues (randomly sampled at each inference cycle) N-terminally of A10-25 from the input pdb, followed by 30-40 residues (again, randomly sampled) to its C-terminus. If we wanted to ensure the length was always e.g. 55 residues, this can be specified with `contigmap.length=55-55`. You need to obviously also provide a path to your pdb file: `inference.input_pdb=path/to/file.pdb`. It doesn't matter if your input pdb has residues you *don't* want to scaffold - the contig map defines which residues in the pdb are actually used as the ""motif"". In other words, even if your pdb files has a B chain, and other residues on the A chain, *only* A10-25 will be provided to RFdiffusion."
+RFdiffusion	README.md	202	datacenter_gpu	'contigmap.contigs=[5-15/A10-25/30-40/0 B1-100]'
+RFdiffusion	README.md	217	datacenter_gpu	'contigmap.inpaint_seq=[A1/A30-40]'
+RFdiffusion	README.md	219	datacenter_gpu	Here, we're masking the residue identity of residue A1, and all residues between A30 and A40 (inclusive).
+RFdiffusion	README.md	274	datacenter_gpu	"We solve this issue by providing the model with what we call ""hotspot residues"". The complex models we refer to earlier in this README file have all been trained with hotspot residues, in this training regime, during each example, the model is told (some of) the residues on the target protein which contact the target (i.e., resides that are part of the interface). The model readily learns that it should be making an interface which involved these hotspot residues. At inference time then, we can provide our own hotspot residues to define a region which the binder must contact. These are specified like this: `'ppi.hotspot_res=[A30,A33,A34]'`, where `A` is the chain ID in the input pdb file of the hotspot residue and the number is the residue index in the input pdb file of the hotspot residue."
+RFdiffusion2	README.md	94	consumer_gpu	The demo generates 150 residue proteins with many of the residues atomized, so it can take upwards of 30 minutes to run all cases.  Each case may take up to 10 minutes on an RTX2060.
+TurboHopp	README.md	31	cuda	- CUDA 11.8
+alphafold	README.md	41	disk	operating systems. Full installation requires up to 3 TB of disk space to keep
+alphafold	README.md	42	nvidia	genetic databases (SSD storage is recommended) and a modern NVIDIA GPU (GPUs
+alphafold	README.md	50	nvidia	[NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
+alphafold	README.md	51	gpu_requirement	for GPU support.
+alphafold	README.md	88	nvidia,cuda	docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
+alphafold	README.md	93	nvidia	[NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
+alphafold	README.md	95	nvidia	[NVIDIA Docker issue](https://github.com/NVIDIA/nvidia-docker/issues/1447#issuecomment-801479573).
+alphafold	README.md	112	nvidia,cuda	W: GPG error: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64 InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY A4B469963BF863CC
+alphafold	README.md	113	nvidia,cuda	E: The repository 'https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64 InRelease' is not signed.
+alphafold	README.md	313	nvidia	was tested on Google Cloud with a machine using the `nvidia-gpu-cloud-image`
+alphafold	README.md	315	datacenter_gpu,disk	3 TB disk, and an A100 GPU. For your first run, please follow the instructions
+alphafold	README.md	323	nvidia	[GPU enumeration](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/user-guide.html#gpu-enumeration)
+alphafold	README.md	351	disk	requires 8 CPU cores (vCPUs), 8 GB of RAM, and 600 GB of disk space.
+alphafold	README.md	413	datacenter_gpu,nvidia	from a single A100 NVIDIA GPU. Prediction speed on A100 for smaller structures
+boltz	README.md	28	cuda	pip install boltz[cuda] -U
+boltz	README.md	35	cuda	cd boltz; pip install -e .[cuda]
+boltz	README.md	38	cuda	If you are installing on CPU-only or non-CUDA GPus hardware, remove `[cuda]` from the above commands. Note that the CPU version is significantly slower than the GPU version.
+boltz	README.md	79	nvidia	On recent NVIDIA GPUs, Boltz leverages the acceleration provided by [NVIDIA  cuEquivariance](https://developer.nvidia.com/cuequivariance) kernels. Boltz also runs on Tenstorrent hardware thanks to a [fork](https://github.com/moritztng/tt-boltz) by Moritz Thüning.
+boltz	docs/prediction.md	347	nvidia	- When running on old NVIDIA GPUs, you may encounter an error related to the `cuequivariance` library. In this case, you should run the model with the `--no_kernels` flag, which will disable the use of the `cuequivariance` library and allow the model to run without it. This may result in slightly lower performance, but it will allow you to run the model on older hardware.
+boltzgen	README.md	127	datacenter_gpu	BoltzGen should be run on a GPU. On the right you can see the time required for each step in the pipeline for a single design on an A100 GPU.
+esm	README.md	206	cuda	"model = ESMFold2Model.from_pretrained(""biohub/ESMFold2"").cuda().eval()"
+foundry	docs/source/installation_faq.md	4	consumer_gpu,nvidia	<summary><strong>Installation on NVIDIA GeForce RTX 5060 - Blackwell architecture</strong></summary>
+foundry	docs/source/installation_faq.md	6	cuda	If, when installing any of the models included in foundry, you get an error related to CUDA (see linked issue for examples) try installing a version of torch, torchvision and torchaudio that matches your python and CUDA distribution. For CUDA, choose the next lowest available library if there is not a version that matches your exact CUDA build.
+foundry	docs/source/installation_faq.md	12	cuda	This is for Python 2.9.1 and CUDA 12.8.
+genie3	README.md	674	datacenter_gpu	"""A94"", ""A95"", ""A100"", ""A103"""
+genie3	README.md	704	cuda	| `--memory-snapshot` | Enable CUDA memory snapshot collection for debugging |
+genie3	README.md	735	gpu_memory	so GPU memory is fully released between stages.
+gnina	README.md	71	nvidia,cuda	[Follow NVIDIA's instructions](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/#axzz4TWipdwX1) to install the latest version of CUDA (>= 12.0 is required). **Make sure `nvcc` is in your PATH.**
+gnina	README.md	93	cuda	cmake ..  # -DUSE_SYSTEM_NVTX=1 may be needed with pytorch 2.7.0 and CUDA 12.9
+gnina	README.md	100	nvidia,cuda	sudo apt-get remove nvidia-cuda-toolkit
+gnina	README.md	101	nvidia,cuda	wget https://developer.download.nvidia.com/compute/cuda/12.4.0/local_installers/cuda_12.4.0_550.54.14_linux.run
+gnina	README.md	104	nvidia	wget https://developer.download.nvidia.com/compute/cudnn/9.0.0/local_installers/cudnn-local-repo-ubuntu2204-9.0.0_1.0-1_amd64.deb
+gnina	README.md	108	cuda	sudo apt-get -y install cudnn-cuda-12
+gnina	README.md	392	gpu_requirement	--no_gpu                           Disable GPU acceleration, even if
+gnina	docs/install_apt_debian.md	11	cuda	Your Distro     |  CPU_ONLY  |  CUDA  |     Alias
+gnina	docs/install_apt_debian.md	38	cuda	the cuda version cannot be installed at the same time.
+gnina	docs/install_apt_debian.md	41	cuda	# apt install [ caffe-cpu | caffe-cuda ]
+gnina	docs/install_apt_debian.md	63	cuda	$ sudo apt build-dep [ caffe-cpu | caffe-cuda ]            # the most elegant way to pull caffe build dependencies
+gnina	docs/install_apt_debian.md	64	cuda	$ apt source [ caffe-cpu | caffe-cuda ]               # download the source tarball and extract
+gnina	docs/install_apt_debian.md	86	cuda	$ sudo apt build-dep [ caffe-cpu | caffe-cuda ]
+gnina	docs/install_apt_debian.md	92	cuda	Some users may find their favorate compiler doesn't work well with CUDA.
+gnina	docs/install_apt_debian.md	94	cuda	CXX compiler |  CUDA 7.5  |  CUDA 8.0  |
+gnina	docs/install_apt_debian.md	104	cuda	`[1]` CUDA 7.5 's `host_config.h` must be patched before working with GCC-5.
+gnina	docs/install_apt_debian.md	116	cuda	* If you are installing `caffe-cuda`, APT will automatically pull some of the
+gnina	docs/install_apt_debian.md	117	nvidia,cuda	CUDA packages and the nvidia driver packages. Please be careful if you have
+gnina	docs/install_apt_debian.md	118	nvidia,cuda	manually installed or hacked nvidia driver or CUDA toolkit or any other
+gnina	docs/install_apt_debian.md	125	cuda	* The python interface is Python 3 version: `python3-caffe-{cpu,cuda}`.
+gnina	docs/install_apt_debian.md	140	cuda	* I installed the CPU version. How can I switch to the CUDA version?
+gnina	docs/install_apt_debian.md	142	cuda	`sudo apt install caffe-cuda`, apt's dependency resolver is smart enough to deal with this.
+gnina	docs/install_apt_debian.md	155	cuda	https://tracker.debian.org/pkg/caffe-contrib  (for the CUDA version)
+gnina	docs/tutorial/layers/absval.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/absval_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/absval_layer.cu)
+gnina	docs/tutorial/layers/accuracy.md	13	cuda	* CUDA GPU implementation: [`./src/caffe/layers/accuracy_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/accuracy_layer.cu)
+gnina	docs/tutorial/layers/argmax.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/argmax_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/argmax_layer.cu)
+gnina	docs/tutorial/layers/batchnorm.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/batch_norm_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/batch_norm_layer.cu)
+gnina	docs/tutorial/layers/batchreindex.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/batch_reindex_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/batch_reindex_layer.cu)
+gnina	docs/tutorial/layers/bias.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/bias_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/bias_layer.cu)
+gnina	docs/tutorial/layers/bnll.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/bnll_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/bnll_layer.cu)
+gnina	docs/tutorial/layers/concat.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/concat_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/concat_layer.cu)
+gnina	docs/tutorial/layers/contrastiveloss.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/contrastive_loss_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/contrastive_loss_layer.cu)
+gnina	docs/tutorial/layers/convolution.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/conv_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/conv_layer.cu)
+gnina	docs/tutorial/layers/crop.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/crop_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/crop_layer.cu)
+gnina	docs/tutorial/layers/deconvolution.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/deconv_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/deconv_layer.cu)
+gnina	docs/tutorial/layers/dropout.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/dropout_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/dropout_layer.cu)
+gnina	docs/tutorial/layers/eltwise.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/eltwise_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/eltwise_layer.cu)
+gnina	docs/tutorial/layers/elu.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/elu_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/elu_layer.cu)
+gnina	docs/tutorial/layers/embed.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/embed_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/embed_layer.cu)
+gnina	docs/tutorial/layers/euclideanloss.md	10	cuda	* CUDA GPU implementation: [`./src/caffe/layers/euclidean_loss_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/euclidean_loss_layer.cu)
+gnina	docs/tutorial/layers/exp.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/exp_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/exp_layer.cu)
+gnina	docs/tutorial/layers/filter.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/filter_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/filter_layer.cu)
+gnina	docs/tutorial/layers/hdf5data.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/hdf5_data_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/hdf5_data_layer.cu)
+gnina	docs/tutorial/layers/hdf5output.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/hdf5_output_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/hdf5_output_layer.cu)
+gnina	docs/tutorial/layers/im2col.md	10	cuda	* CUDA GPU implementation: [`./src/caffe/layers/im2col_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/im2col_layer.cu)
+gnina	docs/tutorial/layers/infogainloss.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/infogain_loss_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/infogain_loss_layer.cu)
+gnina	docs/tutorial/layers/innerproduct.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/inner_product_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/inner_product_layer.cu)
+gnina	docs/tutorial/layers/log.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/log_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/log_layer.cu)
+gnina	docs/tutorial/layers/lrn.md	11	cuda	* CUDA GPU Implementation: [`./src/caffe/layers/lrn_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/lrn_layer.cu)
+gnina	docs/tutorial/layers/lstm.md	12	cuda	* CUDA GPU implementation (helper): [`./src/caffe/layers/lstm_unit_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/lstm_unit_layer.cu)
+gnina	docs/tutorial/layers/mvn.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/mvn_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/mvn_layer.cu)
+gnina	docs/tutorial/layers/pooling.md	10	cuda	* CUDA GPU implementation: [`./src/caffe/layers/pooling_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/pooling_layer.cu)
+gnina	docs/tutorial/layers/power.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/power_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/power_layer.cu)
+gnina	docs/tutorial/layers/prelu.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/prelu_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/prelu_layer.cu)
+gnina	docs/tutorial/layers/python.md	27	nvidia	* [Tutorial for writing Python layers with DIGITS](https://github.com/NVIDIA/DIGITS/tree/master/examples/python-layer)
+gnina	docs/tutorial/layers/recurrent.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/recurrent_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/recurrent_layer.cu)
+gnina	docs/tutorial/layers/reduction.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/reduction_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/reduction_layer.cu)
+gnina	docs/tutorial/layers/relu.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/relu_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/relu_layer.cu)
+gnina	docs/tutorial/layers/scale.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/scale_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/scale_layer.cu)
+gnina	docs/tutorial/layers/sigmoid.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/sigmoid_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/sigmoid_layer.cu)
+gnina	docs/tutorial/layers/sigmoidcrossentropyloss.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/sigmoid_cross_entropy_loss_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/sigmoid_cross_entropy_loss_layer.cu)
+gnina	docs/tutorial/layers/silence.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/silence_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/silence_layer.cu)
+gnina	docs/tutorial/layers/slice.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/slice_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/slice_layer.cu)
+gnina	docs/tutorial/layers/softmax.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/softmax_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/softmax_layer.cu)
+gnina	docs/tutorial/layers/softmaxwithloss.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/softmax_loss_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/softmax_loss_layer.cu)
+gnina	docs/tutorial/layers/split.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/split_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/split_layer.cu)
+gnina	docs/tutorial/layers/tanh.md	9	cuda	* CUDA GPU implementation: [`./src/caffe/layers/tanh_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/tanh_layer.cu)
+gnina	docs/tutorial/layers/threshold.md	9	cuda	* CUDA GPU implementation: [`./src/caffe/layers/threshold_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/threshold_layer.cu)
+gnina	docs/tutorial/layers/tile.md	11	cuda	* CUDA GPU implementation: [`./src/caffe/layers/tile_layer.cu`](https://github.com/BVLC/caffe/blob/master/src/caffe/layers/tile_layer.cu)
+la-proteina	README.md	16	nvidia	"<a href=""https://research.nvidia.com/labs/genair/la-proteina/"" target=""_blank"">Project&nbsp;Page</a>"
+la-proteina	README.md	57	nvidia	In the paper we train our models on subsets of the AFDB. We provide lists of IDs for each dataset in [laproteina_afdb_ids.zip](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/la_proteina_afdb_ids.zip/files).
+la-proteina	README.md	61	nvidia	We provide minimal dataloader implementations that allow training on different subsets of the PDB. Here we describe how to use these minimal dataloaders. Note that all our models are trained on subsets of the AFDB, not on the PDB, as described in the paper. We provide the indices of the AFDB used for the datasets described in the paper [here](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/la_proteina_afdb_ids.zip/files).
+la-proteina	README.md	117	nvidia	La-Proteina consists of two models, the autoencoder and the latent diffusion. All checkpoints should be downloaded and placed in the directory `./checkpoints_laproteina` in the codebase's root directory. The code loads checkpoints from this directory automatically. All checkpoints can be found [here](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/collections/laproteina_weights_data/artifacts). We also provide individual links below.
+la-proteina	README.md	120	nvidia	- (LD1) Unconditional generation, no triangular update layers, generation up to 500 residues: [LD1_ucond_notri_512.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/ld1_ucond_notri_512.ckpt/files).
+la-proteina	README.md	121	nvidia	- (LD2) Unconditional generation, triangular multiplicative update layers, generation up to 500: [LD2_ucond_tri_512.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/ld2_ucond_tri_512.ckpt/files).
+la-proteina	README.md	122	nvidia	- (LD3) Unconditional generation, no triangular update layers, generation between 300 and 800 residues: [LD3_ucond_notri_800.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/ld3_ucond_notri_800.ckpt/files).
+la-proteina	README.md	123	nvidia	- (LD4) Indexed atomistic motif scaffolding, all atom: [LD4_motif_idx_aa.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/ld4_motif_idx_aa.ckpt/files).
+la-proteina	README.md	124	nvidia	- (LD5) Indexed atomistic motif scaffolding, tip atom: [LD5_motif_idx_tip.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/ld5_motif_idx_tip.ckpt/files).
+la-proteina	README.md	125	nvidia	- (LD6) Unindexed atomistic motif scaffolding, all atom: [LD6_motif_uidx_aa.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/ld6_motif_uidx_aa.ckpt/files).
+la-proteina	README.md	126	nvidia	- (LD7) Unindexed atomistic motif scaffolding, tip atom: [LD7_motif_uidx_tip.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/ld7_motif_uidx_tip.ckpt/files).
+la-proteina	README.md	129	nvidia	- (AE1) Autoencoder for unconditional generation up to 500 residues, which should be used with models (LD1, LD2): [AE1_ucond_512.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/ae1_ucond_512.ckpt/files).
+la-proteina	README.md	130	nvidia	- (AE2) Autoencoder for unconditional generation between 300 and 800 residues, which should be used with model (LD3): [AE2_ucond_800.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/ae2_ucond_800.ckpt/files).
+la-proteina	README.md	131	nvidia	- (AE3) Autoencoder for atomistic motif scaffolding, which should be used with model (LD4, LD5, LD6, LD7): [AE3_motif.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/ae3_motif.ckpt/files).
+la-proteina	README.md	176	nvidia	Source code is released under the Apache 2.0 license. Please see the [LICENSE](https://www.apache.org/licenses/LICENSE-2.0). Model Weights are released under [NVIDIA Open Model License Agreement](https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-open-model-license/). All other materials are released under the Creative Commons Attribution 4.0 International License, [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode).
+megalodon	README.md	9	nvidia	<sup>*</sup>NVIDIA &emsp; <b>&middot;</b> &emsp; Department of Computational Biology, Carnegie Mellon University
+megalodon	README.md	17	nvidia	<span><sup>*</sup>Equal contributions</span> &emsp; <span><sup>†</sup>Work performed during internship at NVIDIA</span>
+megalodon	README.md	41	cuda	- CUDA-compatible GPU (recommended for training)
+megalodon	README.md	117	nvidia	- `megalodon_diffusion.yaml` - Megalodon with diffusion objective - [download weights](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/megalodon_qm9_large/files)
+megalodon	README.md	118	nvidia	- `megalodon_fm.yaml` - Megalodon with flow matching objective - [download weights](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/megalodon_qm9_fm/files)
+megalodon	README.md	119	nvidia	- `megalodon_quick_diffusion.yaml` - Megalodon with lighter architecture - [download weights](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/megalodon_qm9_quick/files)
+megalodon	README.md	122	nvidia	- `megalodon_diffusion.yaml` - Megalodon diffusion for drug-like molecules - [download weights](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/megalodon_drugs_large/files)
+megalodon	README.md	123	nvidia	- `megalodon_quick_diffusion.yaml` - Megalodon with lighter architecture - [download weights](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/megalodon_drugs_small/files)
+megalodon	README.md	124	nvidia	- `megalodon_fm.yaml` - Megalodon flow matching for drug-like molecules - [download weights](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/megalodon_drugs_fm/files)
+megalodon	requirements.txt	9	cuda	# PyTorch with CUDA support - upgraded to 2.7.0 for security compliance
+megalodon	requirements.txt	12	cuda	# PyTorch Geometric find-links for CUDA 12.6 (PyTorch 2.7.0 compatible)
+openadmet-models	docs/installation.rst	24	cuda,gpu_requirement	If you want to use GPU acceleration, ensure you have the appropriate CUDA toolkit installed and use the `openadmet-models-cuda.yaml` file instead:
+openfold-3	README.md	30	nvidia,cuda	- Kernel acceleration through [cuEquivariance](https://docs.nvidia.com/cuda/cuequivariance) and [DeepSpeed4Science](https://www.deepspeed.ai/tutorials/ds4sci_evoformerattention/) kernels - more details [here](https://openfold-3.readthedocs.io/en/latest/kernels.html)
+openfold-3	docs/source/Installation.md	8	cuda	OpenFold3 inference requires a system with a GPU with a minimum of CUDA 12.1 and 32GB of memory. Most of our testing has been performed on A100s with 40GB of memory.
+openfold-3	docs/source/Installation.md	19	nvidia,cuda	for a more reproducible and streamlined setup, especially when installing OpenFold3 with its full set of dependencies, we recommend using [pixi](https://pixi.prefix.dev/latest/index.html). Using pixi makes it easier to choose the right pre-configured environment for your hardware, such as CPU-only, NVIDIA CUDA, or AMD ROCm.
+openfold-3	docs/source/Installation.md	51	gpu_requirement	| `openfold3-cpu`    | `linux-64`, `linux-aarch64`, `osx-64`, `osx-arm64` | CPU-only environment for running OpenFold3 without GPU acceleration. |
+openfold-3	docs/source/Installation.md	52	nvidia,cuda	| `openfold3-cuda12` | `linux-64`, `linux-aarch64`                        | NVIDIA GPU environment using CUDA 12.                                |
+openfold-3	docs/source/Installation.md	53	nvidia,cuda	| `openfold3-cuda13` | `linux-64`, `linux-aarch64`                        | NVIDIA GPU environment using CUDA 13.                                |
+openfold-3	docs/source/Installation.md	56	nvidia	Choose the environment that matches your system. For example, use `openfold3-cpu` for CPU-only installations, `openfold3-cuda12` or `openfold3-cuda13` for NVIDIA GPU systems, and `openfold3-rocm7` for AMD ROCm systems.
+openfold-3	docs/source/Installation.md	80	nvidia	Installation of Deepspeed requires installation of [Nvidia CUTLASS](https://github.com/NVIDIA/cutlass)
+openfold-3	docs/source/Installation.md	82	nvidia	Nvidia CUTLASS may be installed [directly from source](https://docs.nvidia.com/cutlass/latest/media/docs/cpp/quickstart.html).
+openfold-3	docs/source/Installation.md	84	nvidia	Alternatively, a [pypi package of nvidia-cutlass](https://pypi.org/project/nvidia-cutlass/) is available, but it is no longer being maintained after version 4.2.0. To use this package, run `pip install nvidia-cutlass && export CUTLASS_PATH=DS_USE_CUTLASS_PYTHON_BINDINGS`
+openfold-3	docs/source/Installation.md	86	nvidia	Once nvidia cutlass is installed, the deepspeed extension may be installed with
+openfold-3	docs/source/Installation.md	93	gpu_requirement	To install GPU accelerated {doc}`cuEquivariance attention kernels <kernels>`, use:
+openfold-3	docs/source/Installation.md	117	cuda	OpenFold may need a few environment variables set so CUDA, compilation, and JIT-built extensions can be found correctly.
+openfold-3	docs/source/Installation.md	119	cuda	- `CUDA_HOME` should point to the CUDA installation. On many HPC clusters you will this can be set by loading the appropriate toolchain using environment modules, for example `module load cuda`.  If you do not set this you will likely get a `No such file or directory: '/usr/local/cuda/bin/nvcc'` error.
+openfold-3	docs/source/Installation.md	131	cuda	- `LD_LIBRARY_PATH` may need to be set to the matching CUDA directories. How to set this will depend on the system.
+openfold-3	docs/source/Installation.md	133	cuda	"- You can often run `find ""$CUDA_HOME"" -name 'libcurand.so*' 2>/dev/null` to find the CUDA layout of your system."
+openfold-3	docs/source/Installation.md	135	cuda	- If you get a `/usr/bin/ld: cannot find -lcurand` error, this usually means the CUDA math libraries (which include `libcurand`) are not on your library search path. You may need to add the appropriate CUDA library directory to  `LIBRARY_PATH`.
+openfold-3	docs/source/Installation.md	136	cuda	"- Example: `export LIBRARY_PATH=""$(echo ""$CUDA_HOME"" | sed 's|/cuda/|/math_libs/|')/targets/sbsa-linux/lib:${LIBRARY_PATH:-}""`"
+openfold-3	docs/source/Installation.md	218	datacenter_gpu	- Optionally run an inference integration test on two samples, without MSA alignments (~5 min on A100)
+openfold-3	docs/source/index.md	44	nvidia,cuda	- Kernel acceleration through [cuEquivariance](https://docs.nvidia.com/cuda/cuequivariance) and [DeepSpeed4Science](https://www.deepspeed.ai/tutorials/ds4sci_evoformerattention/) kernels - more details {doc}`here <kernels>`
+openfold-3	docs/source/inference.md	278	disk	For large inference jobs, especially jobs with many seeds, it is useful to skip the full confidence score generation to save disk space. This can be done with the following settings
+openfold-3	docs/source/inference.md	303	cuda	On AMD GPUs, OpenFold3 can use native Triton kernels for the Evoformer attention and TriangleMultiplicativeUpdate layers instead of the default CUDA-specific kernels.
+openfold-3	docs/source/kernels.md	3	nvidia,cuda	OF3 supports cuEquivariance [triangle_multiplicative_update](https://docs.nvidia.com/cuda/cuequivariance/api/generated/cuequivariance_torch.triangle_multiplicative_update.html) and [triangle_attention](https://docs.nvidia.com/cuda/cuequivariance/api/generated/cuequivariance_torch.triangle_attention.html) kernels which can speed up inference/training of the model.
+openfold-3	docs/source/precomputed_msa_explanation.md	116	disk	In order to reduce the disk space necessary when running predictions, we support reusing the same MSA files for identical chains across different samples. During inference, you can just specify the path to the same MSA files for identical chains in different queries (see the {ref}`How-To Guide <2-precomputed-msa-directory-structure-and-file-name-conventions>` for details on how to do this). For example, given a protein target and 3 different small molecule binders to screen:
+openfold-3	docs/source/precomputed_msa_generation_how_to.md	10	disk	- By default, running `python download_of3_databases.py` will download the UniRef90, UniProt, MGnify, and PDB SEQRES databases for proteins - requires *330GB* of disk space
+openfold-3	docs/source/precomputed_msa_generation_how_to.md	12	disk	- `--download-bfd` downloads **BFD** (Deepmind) - requires an additional *2.3TB* of disk space
+openfold-3	docs/source/precomputed_msa_generation_how_to.md	13	disk	- `--download-cfdb` downloads **ColabFold** database (OF3 and the Steinneger lab, intended to replace BFD)  - requires an additional *1.5TB* of disk space
+openfold-3	docs/source/precomputed_msa_generation_how_to.md	14	disk	- `--download-rna-dbs` downloads **Rfam, RNACentral, Nucleotide Collection** (RNA alignments) - requires an additional *27GB* disk space
+openfold-3	docs/source/precomputed_msa_how_to.md	159	disk	For main MSAs, we provide support for preparsing MSA files from `a3m` and `sto` into `npz` numpy array format. This optional step reduces overall MSA parsing and processing times in the inference pipeline for large batch jobs with redundant sets of sequences as well as the disk space required to store these MSAs (see {ref}`this <5-preparsing-raw-msas-into-npz-format>` section for details). The preparsed, compressed MSA files can be generated from raw MSA data with the directory and file structure specified above using [this preparsing script](https://github.com/aqlaboratory/openfold-3/blob/main/scripts/data_preprocessing/preparse_alignments_of3.py).
+openfold-3	docs/source/template_how_to.md	180	nvidia	- Stateless inference environments (e.g., NVIDIA Inference Microservices)
+protein-design-mcp	README.md	36	nvidia	- Checks for Docker and NVIDIA GPU
+protein-design-mcp	README.md	135	nvidia	GPU mode requires [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html). The image stdin/stdout is the MCP protocol — you normally don't run it directly, your MCP client does (see below).
+protein-design-mcp	README.md	213	disk	The GPU build needs ~30 GB free disk and ~20 minutes.
+protein-design-mcp	README.md	543	cuda	"| `DEVICE` | `""auto""`, `""cuda""`, or `""cpu""` | `auto` |"
+proteina	README.md	19	nvidia	"<a href=""https://research.nvidia.com/labs/genair/proteina/"" target=""_blank"">Project&nbsp;Page</a>"
+proteina	README.md	54	nvidia	Training and sampling models requires the files in [proteina_additional_files.zip](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/proteina_additional_files/files), which include:
+proteina	README.md	62	nvidia	"Additionally, the dataloaders (see section ""Dataloaders"" below) require the files in [proteina_training_data_indices.zip](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/proteina_training_data_indices/files), which include:"
+proteina	README.md	168	nvidia	- model $`\mathcal{M}_{\textrm{FS}}`$: Proteina trained on $`\mathcal{D}_{\textrm{FS}}`$, with ~200M transformer and ~15M triangle layer parameters: [proteina_v1.1_DFS_200M_tri.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/proteina_v1.1_dfs_200m_tri/files).
+proteina	README.md	169	nvidia	- model $`\mathcal{M}^{\textrm{no-tri}}_{\textrm{FS}}`$: Proteina trained on $`\mathcal{D}_{\textrm{FS}}`$, with ~200M transformer parameters, no triangle layers: [proteina_v1.2_DFS_200M_notri.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/proteina_v1.2_dfs_200m_notri/files).
+proteina	README.md	170	nvidia	- model $`\mathcal{M}^{\textrm{small}}_{\textrm{FS}}`$: Proteina trained on $`\mathcal{D}_{\textrm{FS}}`$, with ~60M transformer parameters, no triangle layers: [proteina_v1.3_DFS_60M_notri.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/proteina_v1.3_dfs_60m_notri/files).
+proteina	README.md	171	nvidia	- model $`\mathcal{M}_{\textrm{21M}}`$: Proteina trained on $`\mathcal{D}_{\textrm{21M}}`$, with ~400M transformer and ~15M triangle layer parameters: [proteina_v1.4_D21M_400M_tri.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/proteina_v1.4_d21m_400m_tri/files).
+proteina	README.md	172	nvidia	- model $`\mathcal{M}_{\textrm{LoRA}}`$: LoRA checkpoint fine-tuned from $`\mathcal{M}_{\textrm{FS}}`$, see paper: [proteina_v1.5_DFS_200M_tri_PDB_LoRA.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/proteina_v1.5_dfs_200m_tri_pdb_lora/files).
+proteina	README.md	173	nvidia	- model $`\mathcal{M}_{\textrm{long}}`$: Proteina fine-tuned from $`\mathcal{M}^{\textrm{no-tri}}_{\textrm{FS}}`$ for long chain generation, using ~200M parameters without triangular multiplicative updates: [proteina_v1.6_DFS_200M_notri_long_chain_generation.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/proteina_v1.6_dfs_200m_notri_long_chain_generation/files).
+proteina	README.md	174	nvidia	- model $`\mathcal{M}_{\textrm{motif}}`$: Proteina trained on $`\mathcal{D}_{\textrm{FS}}`$ for motif-scaffolding checkpoint, using a model with ~60M transformer parameters and ~12M parameters in triangle multiplicative updates: [proteina_v1.7_DFS_60M_notri_motif_scaffolding.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/proteina_v1.7_dfs_60m_notri_motif_scaffolding/files) (the model does actually use multiplicative triangle layers; we apologize for the typo in the filename).
+proteina	README.md	175	nvidia	"- model $`\mathcal{M}_{\textrm{autoguidance}}`$: A ""weak"" checkpoint of $`\mathcal{M}_{\textrm{21M}}`$ from early in training, after 10k steps (for autoguidance): [proteina_v1.8_D21M_400M_tri_autoguidance.ckpt](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/resources/proteina_v1.8_d21m_400m_tri_autoguidance/files)."
+proteina	README.md	333	nvidia	Proteina source code, model weights, dataset indices and auxiliary files are released under an NVIDIA license for non-commercial or research purposes only. Please see the [LICENSE](LICENSE) file.

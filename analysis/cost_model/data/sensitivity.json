@@ -1,0 +1,92 @@
+{
+  "default_-30pct": {
+    "mix": "default",
+    "price_pct": -30,
+    "break_even_d": 0.126,
+    "wavg_job_cost_usd": 0.126491
+  },
+  "default_-15pct": {
+    "mix": "default",
+    "price_pct": -15,
+    "break_even_d": 0.1038,
+    "wavg_job_cost_usd": 0.153596
+  },
+  "default_+0pct": {
+    "mix": "default",
+    "price_pct": 0,
+    "break_even_d": 0.0882,
+    "wavg_job_cost_usd": 0.180701
+  },
+  "default_+15pct": {
+    "mix": "default",
+    "price_pct": 15,
+    "break_even_d": 0.0767,
+    "wavg_job_cost_usd": 0.207806
+  },
+  "default_+30pct": {
+    "mix": "default",
+    "price_pct": 30,
+    "break_even_d": 0.0679,
+    "wavg_job_cost_usd": 0.234912
+  },
+  "heavy-design_-30pct": {
+    "mix": "heavy-design",
+    "price_pct": -30,
+    "break_even_d": 0.1293,
+    "wavg_job_cost_usd": 0.191597
+  },
+  "heavy-design_-15pct": {
+    "mix": "heavy-design",
+    "price_pct": -15,
+    "break_even_d": 0.1065,
+    "wavg_job_cost_usd": 0.232653
+  },
+  "heavy-design_+0pct": {
+    "mix": "heavy-design",
+    "price_pct": 0,
+    "break_even_d": 0.0905,
+    "wavg_job_cost_usd": 0.273709
+  },
+  "heavy-design_+15pct": {
+    "mix": "heavy-design",
+    "price_pct": 15,
+    "break_even_d": 0.0787,
+    "wavg_job_cost_usd": 0.314766
+  },
+  "heavy-design_+30pct": {
+    "mix": "heavy-design",
+    "price_pct": 30,
+    "break_even_d": 0.0696,
+    "wavg_job_cost_usd": 0.355822
+  },
+  "heavy-screening_-30pct": {
+    "mix": "heavy-screening",
+    "price_pct": -30,
+    "break_even_d": 0.1182,
+    "wavg_job_cost_usd": 0.069615
+  },
+  "heavy-screening_-15pct": {
+    "mix": "heavy-screening",
+    "price_pct": -15,
+    "break_even_d": 0.0974,
+    "wavg_job_cost_usd": 0.084532
+  },
+  "heavy-screening_+0pct": {
+    "mix": "heavy-screening",
+    "price_pct": 0,
+    "break_even_d": 0.0828,
+    "wavg_job_cost_usd": 0.09945
+  },
+  "heavy-screening_+15pct": {
+    "mix": "heavy-screening",
+    "price_pct": 15,
+    "break_even_d": 0.072,
+    "wavg_job_cost_usd": 0.114367
+  },
+  "heavy-screening_+30pct": {
+    "mix": "heavy-screening",
+    "price_pct": 30,
+    "break_even_d": 0.0637,
+    "wavg_job_cost_usd": 0.129285
+  }
+}

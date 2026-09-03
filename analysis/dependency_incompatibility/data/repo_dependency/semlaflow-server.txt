@@ -1,0 +1,27 @@
+# service: semlaflow-server
+# repo: opensource/semla-flow
+# source_files: environment.yaml
+# packages: 18
+# extracted: 2026-08-11T06:05:08Z
+# source: declared dependencies from opensource git checkout
+#         (PEP 621/poetry pyproject.toml, setup.py/cfg, requirements*, conda env)
+# note: constraints AND-joined per package; alternative variant files
+#       (e.g. cuda121/cuda124) are not distinguished
+ca-certificates
+certifi
+cxx-compiler
+ipython
+lightning
+numpy==1.26.2
+openbabel-wheel
+openssl
+pandas==2.2.2
+python==3.11
+pytorch
+pytorch-cuda==12.1
+rdkit
+scipy==1.11.4
+torchmetrics
+tqdm
+typing_extensions
+wandb

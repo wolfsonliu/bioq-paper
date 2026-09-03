@@ -1,0 +1,15 @@
+# service: rfdiffusion-server
+# repo: opensource/RFdiffusion
+# source_files: setup.py, env/SE3Transformer/requirements.txt
+# packages: 6
+# extracted: 2026-08-11T06:05:08Z
+# source: declared dependencies from opensource git checkout
+#         (PEP 621/poetry pyproject.toml, setup.py/cfg, requirements*, conda env)
+# note: constraints AND-joined per package; alternative variant files
+#       (e.g. cuda121/cuda124) are not distinguished
+decorator==5.1.0
+e3nn==0.3.3
+pynvml==11.0.0
+se3-transformer
+torch
+wandb==0.12.0

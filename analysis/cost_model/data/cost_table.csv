@@ -1,0 +1,11 @@
+service,gpu_class,gpu_sec_per_job,billable_sec_per_job,usd_per_job,usd_per_1000_jobs,jobs_per_month_typical,usd_per_month_typical
+rfdiffusion2-server,A100,13.5,23.5,0.029846,29.8461,200,5.97
+proteinmpnn-server,T4,28.2,38.2,0.022668,22.6681,500,11.33
+boltz-server,A100,600.0,610.0,0.775059,775.0588,50,38.75
+dockq-server,T4,12.7,22.7,0.013448,13.4479,300,4.03
+diffdock-server,A100,480.0,490.0,0.622588,622.5882,30,18.68
+reinvent-server,A10,30.1,40.1,0.030555,30.5551,10,0.31
+flowmol-server,A10,300.0,310.0,0.236329,236.3294,50,11.82
+esmfold2-server,T4,180.0,190.0,0.112659,112.6588,100,11.27
+alphafold-server,A100,900.0,910.0,1.156235,1156.2353,20,23.12
+genie3-server,T4,60.0,70.0,0.041506,41.5059,100,4.15

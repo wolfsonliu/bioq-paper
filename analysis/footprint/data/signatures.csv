@@ -1,0 +1,39 @@
+service,base_kind,runtime_base,cuda,cuda_flavor,ubuntu,python,python_source,torch,torch_source,notes
+alphafold-server,nvidia-cuda,nvidia/cuda:12.2.2-cudnn8-runtime-ubuntu20.04,12.2,runtime,20.04,3.12,dockerfile,,,
+bindflow-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04,12.4,runtime,22.04,3.10,dockerfile,,,
+boltz-server,uv-pip,ghcr.io/astral-sh/uv:python3.12-bookworm-slim,,,,3.12,base-image,>=2.2,dockerfile,cpu or conda-managed cuda (unresolved)
+boltzgen-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04,12.4,runtime,22.04,3.12,dockerfile,==2.4.1,dockerfile,
+chembounce-server,python-slim,python:3.11-slim-bookworm,,,,3.11,base-image,,,
+deeprank-ab-server,nvidia-cuda,nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04,11.8,devel,22.04,3.9,dockerfile,==2.0.1,,overridden
+diamond-server,uv-pip,ghcr.io/astral-sh/uv:python3.11-bookworm-slim,,,,3.11,base-image,,,cpu or conda-managed cuda (unresolved)
+diffdock-pp-server,nvidia-cuda,nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04,11.8,runtime,22.04,3.10,dockerfile,==1.13.0,dockerfile,
+diffdock-server,nvidia-cuda,nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04,11.8,runtime,22.04,3.10,dockerfile,==1.13.1,dockerfile,
+diffusion-hopping-server,nvidia-cuda,nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04,11.8,runtime,22.04,3.10,dockerfile,==1.13,dockerfile,
+dockq-server,uv-pip,ghcr.io/astral-sh/uv:python3.11-bookworm-slim,,,,3.11,base-image,,,cpu or conda-managed cuda (unresolved)
+drughive-server,nvidia-cuda,nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04,11.8,runtime,22.04,3.10,dockerfile,==1.12,dockerfile,
+ensemble-server,uv-pip,ghcr.io/astral-sh/uv:python3.12-bookworm-slim,,,,3.12,base-image,,,cpu or conda-managed cuda (unresolved)
+esmfold2-server,uv-pip,ghcr.io/astral-sh/uv:python3.12-bookworm-slim,,,,3.12,base-image,>=2.2,dockerfile,cpu or conda-managed cuda (unresolved)
+flowmol-server,nvidia-cuda,nvidia/cuda:12.1.0-cudnn8-runtime-ubuntu22.04,12.1,runtime,22.04,3.10,dockerfile,==2.2,dockerfile,
+genie3-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04,12.4,runtime,22.04,3.10,pyproject,==2.7.1,dockerfile,
+haddock3-server,uv-pip,ghcr.io/astral-sh/uv:python3.11-bookworm-slim,,,,3.11,base-image,,,cpu or conda-managed cuda (unresolved)
+iggm-server,nvidia-cuda,nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04,11.8,runtime,22.04,3.10,dockerfile,==2.0.1,dockerfile,
+immunebuilder-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04,12.4,runtime,22.04,3.10,dockerfile,==2.7.1,dockerfile,
+lasermpnn-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04,12.4,runtime,22.04,3.10,pyproject,==2.4.1,dockerfile,
+lightdock-server,uv-pip,ghcr.io/astral-sh/uv:python3.11-bookworm-slim,,,,3.11,base-image,,,cpu or conda-managed cuda (unresolved)
+megalodon-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04,12.4,runtime,22.04,3.10,dockerfile,==2.7.0,dockerfile,
+mmseqs2-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04,12.4,runtime,22.04,3.11,pyproject,,,
+odesign-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04,12.4,devel,22.04,3.10,dockerfile,==2.3.1,,overridden
+openadmet-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04,12.4,runtime,22.04,3.12,dockerfile,,,
+openbpmd-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04,12.4,runtime,22.04,3.10,dockerfile,,,
+plip-server,debian,debian:bookworm-slim,,,,3.11,dockerfile-comment-corrected,,,overridden
+pocketxmol-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04,12.4,runtime,22.04,3.10,dockerfile,==2.7.0,dockerfile,
+ppiflow-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04,12.4,devel,22.04,3.10,pyproject,==2.3.1,dockerfile,
+promera-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04,12.4,runtime,22.04,3.12,pyproject,==2.9.0,dockerfile,
+proteinmpnn-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04,12.4,runtime,22.04,3.10,pyproject,==2.4.1,dockerfile,
+qligfep-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04,12.4,runtime,22.04,3.11,dockerfile,,,
+reinvent-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04,12.4,runtime,22.04,3.11,dockerfile,==2.12.0,dockerfile,
+rfantibody-server,nvidia-cuda,nvidia/cuda:12.1.0-cudnn8-runtime-ubuntu22.04,12.1,runtime,22.04,3.10,pyproject,==2.3,,overridden
+rfdiffusion-server,nvidia-cuda,nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04,11.8,runtime,22.04,3.10,pyproject,==2.0.1,dockerfile,
+rfdiffusion2-server,nvidia-cuda,nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04,12.4,devel,22.04,3.11,pyproject,,,
+semlaflow-server,nvidia-cuda,nvidia/cuda:12.1.0-cudnn8-runtime-ubuntu22.04,12.1,runtime,22.04,3.11,dockerfile,==2.2,dockerfile,
+turbohopp-server,nvidia-cuda,nvidia/cuda:12.1.0-cudnn8-runtime-ubuntu22.04,12.1,runtime,22.04,3.10,dockerfile,==2.2.2,dockerfile,

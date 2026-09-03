@@ -1,0 +1,12 @@
+{
+  "rfdiffusion2-server": 380.0,
+  "proteinmpnn-server": 85.0,
+  "boltz-server": 620.0,
+  "dockq-server": 28.0,
+  "diffdock-server": 510.0,
+  "reinvent-server": 1250.0,
+  "flowmol-server": 320.0,
+  "esmfold2-server": 190.0,
+  "alphafold-server": 880.0,
+  "genie3-server": 55.0
+}

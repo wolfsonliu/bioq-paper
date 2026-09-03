@@ -1,0 +1,324 @@
+{
+  "proteinmpnn": {
+    "1": {
+      "n_replicates": 3,
+      "makespan_mean_s": 27.79,
+      "makespan_std_s": 8.55,
+      "makespan_values": [
+        18.59,
+        29.28,
+        35.49
+      ],
+      "throughput_mean_jobs_per_hour": 139.4,
+      "throughput_std_jobs_per_hour": 48.3,
+      "speedup_mean": 1.09,
+      "speedup_std": 0.38,
+      "peak_concurrency_mean": 1,
+      "peak_concurrency_max": 1,
+      "cold_start_mean_s": 14.67
+    },
+    "10": {
+      "n_replicates": 3,
+      "makespan_mean_s": 45.63,
+      "makespan_std_s": 0.73,
+      "makespan_values": [
+        44.85,
+        45.74,
+        46.3
+      ],
+      "throughput_mean_jobs_per_hour": 789.1,
+      "throughput_std_jobs_per_hour": 12.7,
+      "speedup_mean": 6.19,
+      "speedup_std": 0.1,
+      "peak_concurrency_mean": 10,
+      "peak_concurrency_max": 10,
+      "cold_start_mean_s": 20.24
+    },
+    "50": {
+      "n_replicates": 3,
+      "makespan_mean_s": 133.43,
+      "makespan_std_s": 7.01,
+      "makespan_values": [
+        141.4,
+        130.68,
+        128.21
+      ],
+      "throughput_mean_jobs_per_hour": 1351.4,
+      "throughput_std_jobs_per_hour": 69.2,
+      "speedup_mean": 10.6,
+      "speedup_std": 0.54,
+      "peak_concurrency_mean": 28.3,
+      "peak_concurrency_max": 41,
+      "cold_start_mean_s": 42.87
+    }
+  },
+  "mmseqs2": {
+    "1": {
+      "n_replicates": 3,
+      "makespan_mean_s": 8.36,
+      "makespan_std_s": 5.17,
+      "makespan_values": [
+        13.05,
+        2.81,
+        9.21
+      ],
+      "throughput_mean_jobs_per_hour": 649.3,
+      "throughput_std_jobs_per_hour": 550.2,
+      "speedup_mean": 1.52,
+      "speedup_std": 1.29,
+      "peak_concurrency_mean": 0,
+      "peak_concurrency_max": 0,
+      "cold_start_mean_s": 7.61
+    },
+    "10": {
+      "n_replicates": 3,
+      "makespan_mean_s": 23.42,
+      "makespan_std_s": 5.32,
+      "makespan_values": [
+        28.17,
+        17.68,
+        24.42
+      ],
+      "throughput_mean_jobs_per_hour": 1596.1,
+      "throughput_std_jobs_per_hour": 393.5,
+      "speedup_mean": 3.74,
+      "speedup_std": 0.92,
+      "peak_concurrency_mean": 0,
+      "peak_concurrency_max": 0,
+      "cold_start_mean_s": 12.56
+    },
+    "50": {
+      "n_replicates": 3,
+      "makespan_mean_s": 102.33,
+      "makespan_std_s": 3.06,
+      "makespan_values": [
+        102.14,
+        105.48,
+        99.37
+      ],
+      "throughput_mean_jobs_per_hour": 1760.1,
+      "throughput_std_jobs_per_hour": 52.5,
+      "speedup_mean": 4.12,
+      "speedup_std": 0.12,
+      "peak_concurrency_mean": 0,
+      "peak_concurrency_max": 0,
+      "cold_start_mean_s": 43.46
+    }
+  },
+  "rfdiffusion2": {
+    "1": {
+      "n_replicates": 3,
+      "makespan_mean_s": 11.94,
+      "makespan_std_s": 4.07,
+      "makespan_values": [
+        7.25,
+        14.16,
+        14.42
+      ],
+      "throughput_mean_jobs_per_hour": 333.5,
+      "throughput_std_jobs_per_hour": 141.3,
+      "speedup_mean": 1.25,
+      "speedup_std": 0.53,
+      "peak_concurrency_mean": 0,
+      "peak_concurrency_max": 0,
+      "cold_start_mean_s": 11.21
+    },
+    "10": {
+      "n_replicates": 3,
+      "makespan_mean_s": 30.88,
+      "makespan_std_s": 4.71,
+      "makespan_values": [
+        35.72,
+        30.6,
+        26.32
+      ],
+      "throughput_mean_jobs_per_hour": 1184.0,
+      "throughput_std_jobs_per_hour": 180.1,
+      "speedup_mean": 4.44,
+      "speedup_std": 0.68,
+      "peak_concurrency_mean": 0,
+      "peak_concurrency_max": 0,
+      "cold_start_mean_s": 21.97
+    },
+    "50": {
+      "n_replicates": 3,
+      "makespan_mean_s": 89.88,
+      "makespan_std_s": 13.21,
+      "makespan_values": [
+        82.41,
+        82.1,
+        105.14
+      ],
+      "throughput_mean_jobs_per_hour": 2029.5,
+      "throughput_std_jobs_per_hour": 275.0,
+      "speedup_mean": 7.61,
+      "speedup_std": 1.03,
+      "peak_concurrency_mean": 0,
+      "peak_concurrency_max": 0,
+      "cold_start_mean_s": 43.22
+    }
+  },
+  "rfdiffusion": {},
+  "boltz": {},
+  "boltzgen": {},
+  "alphafold": {},
+  "reinvent": {
+    "1": {
+      "n_replicates": 3,
+      "makespan_mean_s": 34.28,
+      "makespan_std_s": 6.27,
+      "makespan_values": [
+        41.51,
+        30.53,
+        30.79
+      ],
+      "throughput_mean_jobs_per_hour": 107.2,
+      "throughput_std_jobs_per_hour": 17.7,
+      "speedup_mean": 0.9,
+      "speedup_std": 0.15,
+      "peak_concurrency_mean": 1,
+      "peak_concurrency_max": 1,
+      "cold_start_mean_s": 8.93
+    },
+    "10": {
+      "n_replicates": 3,
+      "makespan_mean_s": 69.93,
+      "makespan_std_s": 13.47,
+      "makespan_values": [
+        85.42,
+        63.42,
+        60.94
+      ],
+      "throughput_mean_jobs_per_hour": 526.6,
+      "throughput_std_jobs_per_hour": 91.8,
+      "speedup_mean": 4.4,
+      "speedup_std": 0.77,
+      "peak_concurrency_mean": 10,
+      "peak_concurrency_max": 10,
+      "cold_start_mean_s": 11.7
+    },
+    "50": {
+      "n_replicates": 3,
+      "makespan_mean_s": 144.76,
+      "makespan_std_s": 0.39,
+      "makespan_values": [
+        144.42,
+        145.18,
+        144.68
+      ],
+      "throughput_mean_jobs_per_hour": 1243.4,
+      "throughput_std_jobs_per_hour": 3.4,
+      "speedup_mean": 10.39,
+      "speedup_std": 0.03,
+      "peak_concurrency_mean": 48,
+      "peak_concurrency_max": 49,
+      "cold_start_mean_s": 39.77
+    }
+  },
+  "plip": {
+    "1": {
+      "n_replicates": 3,
+      "makespan_mean_s": 15.66,
+      "makespan_std_s": 2.66,
+      "makespan_values": [
+        12.58,
+        17.19,
+        17.2
+      ],
+      "throughput_mean_jobs_per_hour": 235.0,
+      "throughput_std_jobs_per_hour": 44.4,
+      "speedup_mean": 1.1,
+      "speedup_std": 0.21,
+      "peak_concurrency_mean": 1,
+      "peak_concurrency_max": 1,
+      "cold_start_mean_s": 4.49
+    },
+    "10": {
+      "n_replicates": 3,
+      "makespan_mean_s": 27.51,
+      "makespan_std_s": 3.56,
+      "makespan_values": [
+        31.41,
+        26.69,
+        24.44
+      ],
+      "throughput_mean_jobs_per_hour": 1322.6,
+      "throughput_std_jobs_per_hour": 165.0,
+      "speedup_mean": 6.2,
+      "speedup_std": 0.77,
+      "peak_concurrency_mean": 9.3,
+      "peak_concurrency_max": 10,
+      "cold_start_mean_s": 7.75
+    },
+    "50": {
+      "n_replicates": 3,
+      "makespan_mean_s": 50.47,
+      "makespan_std_s": 4.39,
+      "makespan_values": [
+        46.23,
+        50.19,
+        54.99
+      ],
+      "throughput_mean_jobs_per_hour": 3584.4,
+      "throughput_std_jobs_per_hour": 310.2,
+      "speedup_mean": 16.8,
+      "speedup_std": 1.46,
+      "peak_concurrency_mean": 1,
+      "peak_concurrency_max": 2,
+      "cold_start_mean_s": 23.38
+    }
+  },
+  "dockq": {
+    "1": {
+      "n_replicates": 3,
+      "makespan_mean_s": 16.58,
+      "makespan_std_s": 11.66,
+      "makespan_values": [
+        13.31,
+        29.53,
+        6.9
+      ],
+      "throughput_mean_jobs_per_hour": 304.7,
+      "throughput_std_jobs_per_hour": 202.1,
+      "speedup_mean": 1.07,
+      "speedup_std": 0.71,
+      "peak_concurrency_mean": 1,
+      "peak_concurrency_max": 1,
+      "cold_start_mean_s": 8.73
+    },
+    "10": {
+      "n_replicates": 3,
+      "makespan_mean_s": 36.76,
+      "makespan_std_s": 29.01,
+      "makespan_values": [
+        70.25,
+        20.18,
+        19.84
+      ],
+      "throughput_mean_jobs_per_hour": 1370.3,
+      "throughput_std_jobs_per_hour": 743.0,
+      "speedup_mean": 4.82,
+      "speedup_std": 2.62,
+      "peak_concurrency_mean": 7.7,
+      "peak_concurrency_max": 10,
+      "cold_start_mean_s": 8.15
+    },
+    "50": {
+      "n_replicates": 3,
+      "makespan_mean_s": 4855.53,
+      "makespan_std_s": 4145.75,
+      "makespan_values": [
+        68.43,
+        7247.26,
+        7250.91
+      ],
+      "throughput_mean_jobs_per_hour": 891.7,
+      "throughput_std_jobs_per_hour": 1505.8,
+      "speedup_mean": 3.15,
+      "speedup_std": 5.29,
+      "peak_concurrency_mean": 9.7,
+      "peak_concurrency_max": 20,
+      "cold_start_mean_s": 33.31
+    }
+  }
+}

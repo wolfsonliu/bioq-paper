@@ -1,0 +1,15 @@
+{
+  "svc": "plip",
+  "endpoint": "profile",
+  "N": 1,
+  "rep": 1,
+  "makespan_s": 12.58,
+  "peak_concurrency": 1,
+  "n_completed": 1,
+  "n_failed": 0,
+  "n_cancelled": 0,
+  "n_pending": 0,
+  "bioq_version": "",
+  "gateway_url": "",
+  "timestamp": "2026-08-13T10:32:06"
+}

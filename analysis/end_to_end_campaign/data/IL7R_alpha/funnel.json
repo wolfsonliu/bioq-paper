@@ -1,0 +1,20 @@
+{
+  "target": "IL7R_alpha",
+  "filter": "interaction_pae < 10.0 & framework_aligned_cdr_rmsd < 2.0",
+  "stages": {
+    "rfdiffusion_backbones": 1000,
+    "mpnn_sequences": 8000,
+    "rf2_scored": 8000,
+    "pae_pass": 1235,
+    "passed_filter": 1200
+  },
+  "in_silico_pass_fraction": 0.15,
+  "pae_pass_fraction": 0.1544,
+  "n_designs": 8000,
+  "backbones_scored": 1000,
+  "backbone_pass": 430,
+  "backbone_pass_fraction": 0.43,
+  "source": [
+    "/data/fc/rfantibody/results/IL7R_alpha/merged/3_rf2.qv"
+  ]
+}

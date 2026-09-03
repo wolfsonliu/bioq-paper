@@ -1,0 +1,9 @@
+# service: diffdock-pp-server
+# repo: opensource/DiffDock-PP
+# source_files: -
+# packages: 0
+# extracted: 2026-08-11T06:05:07Z
+# source: declared dependencies from opensource git checkout
+#         (PEP 621/poetry pyproject.toml, setup.py/cfg, requirements*, conda env)
+# note: constraints AND-joined per package; alternative variant files
+#       (e.g. cuda121/cuda124) are not distinguished

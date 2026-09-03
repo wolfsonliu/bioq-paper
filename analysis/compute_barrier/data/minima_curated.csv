@@ -1,0 +1,17 @@
+service,min_vram_gb,kind,source,confidence
+alphafold-server,16,inferred,≤ provisioned 16 GB (fc.gpu.tesla.1); AF2 monomer ~12–16 GB; upstream lists an A100,low
+boltz-server,16,inferred,≤ provisioned 16 GB; wrapper recommends ada.1 24 GB for ≤1000-residue complexes,low
+boltzgen-server,16,inferred,"≤ provisioned 16 GB; AF2+MPNN pipeline, upstream cites A100",low
+deeprank-ab-server,8,inferred,"GNN scoring, lightweight inference ≈ 8 GB; provisioned 16 GB",low
+diffdock-pp-server,16,inferred,wrapper 'T4 16 GB'; upstream tested RTX A6000 (48 GB),low
+diffdock-server,24,inferred,wrapper 'fc.gpu.ampere.1 (A10 24GB)' (provisioned),low
+ensemble-server,0,cpu,wrapper: 'ensemble-server 是 CPU 函数（不跑 GPU 计算）' (deploy gpuConfig appears spurious),high
+esmfold2-server,32,inferred,≤ provisioned 32 GB (blackwell); ESMC 6B embeddings + diffusion backbone,low
+iggm-server,16,inferred,≤ provisioned 16 GB; antibody diffusion; upstream offers --max_antigen_size 384 to avoid memory issues,low
+immunebuilder-server,8,inferred,"IgFold/NanoNet, '>100x faster than AF2', lightweight; provisioned 16 GB",low
+megalodon-server,16,inferred,≤ provisioned 16 GB; molecule flow/diffusion (40M params) + 3D structure,low
+mmseqs2-server,4,inferred,CPU-native; GPU search optional (Ampere); provisioned 16 GB,low
+openbpmd-server,16,inferred,"≤ provisioned 16 GB; GPU MD, scales with system (wrapper: ~5–10h/10reps on A100)",low
+promera-server,24,inferred,wrapper 'fc.gpu.ada.1 (24 GB) for typical complexes' (deploy ada.1 48 GB),low
+proteinmpnn-server,4,inferred,"tiny model, CPU-capable; wrapper 'T4 16 GB' overshoots; upstream: reduce batch on OOM",low
+semlaflow-server,16,inferred,≤ provisioned 16 GB; flow-matching model,low

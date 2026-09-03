@@ -1,0 +1,3 @@
+service,endpoint,is_task,score,missing
+chembounce,/api/scaffold_hop,0,0.8,defaults
+chembounce,/api/tasks/scaffold_hop,1,0.8,defaults

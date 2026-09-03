@@ -1,0 +1,3208 @@
+{
+ "service": "proteinmpnn-server",
+ "manifest": {
+  "service": "proteinmpnn",
+  "title": "ProteinMPNN Server",
+  "version": "0.0.16",
+  "description": null,
+  "endpoints": [
+   {
+    "method": "POST",
+    "path": "/api/design",
+    "summary": "Sequence design (FASTA output) over the input PDB.",
+    "description": "Sequence design (FASTA output) over the input PDB.",
+    "operation_id": null,
+    "request_content_type": "multipart/form-data",
+    "request_schema_ref": "#/components/schemas/Body_post_design_api_design_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "pdb",
+      "type": "file",
+      "required": false,
+      "description": null,
+      "is_file": true,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "pdb_uri",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "Output basename. Restricted to [A-Za-z0-9_.-] (no slashes/spaces) because it becomes the input PDB filename and ProteinMPNN derives the output FASTA name from the PDB stem, so `name=foo` → `seqs/foo.fa`.",
+      "is_file": false,
+      "default": "run",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "model_variant",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "vanilla",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "model_name",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "v_48_020",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "seed",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "batch_size",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 1,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "backbone_noise",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0.0,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "num_seq_per_target",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 8,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "sampling_temp",
+      "type": "string",
+      "required": false,
+      "description": "Space-separated list of temperatures, e.g. '0.1 0.2 0.3'.",
+      "is_file": false,
+      "default": "0.1",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "chains_to_design",
+      "type": "string",
+      "required": false,
+      "description": "Space-separated chain IDs, e.g. 'A C'. Omit to design all chains.",
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "fixed_positions",
+      "type": "string",
+      "required": false,
+      "description": "Per-chain residue indices to fix, e.g. '1 2 3, 10 11' (segments aligned to chains_to_design).",
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "tied_positions",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "homooligomer",
+      "type": "boolean",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": false,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "bias_AA",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "bias_by_res",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "omit_AAs",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "X",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "omit_AA_per_chain",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     }
+    ],
+    "examples": [
+     {
+      "title": "basic vanilla design",
+      "curl": "curl -X POST $URL/api/design -F pdb=@input.pdb -F model_variant=vanilla -F model_name=v_48_020 -F num_seq_per_target=8 -F sampling_temp=0.1 -F name=run1",
+      "python": null,
+      "body": null,
+      "notes": "Output: output/seqs/run1.fa once the job completes."
+     },
+     {
+      "title": "abmpnn CDR design with fixed framework",
+      "curl": "curl -X POST $URL/api/design -F pdb=@antibody.pdb -F model_variant=abmpnn -F model_name=abmpnn -F 'chains_to_design=H L' -F 'fixed_positions=1 2 3 4 5, 1 2 3 4 5' -F name=cdr_run",
+      "python": null,
+      "body": null,
+      "notes": "AbMPNN weights; framework positions fixed, CDRs free to design."
+     }
+    ]
+   },
+   {
+    "method": "POST",
+    "path": "/api/probs",
+    "summary": "Per-residue AA probability output (conditional / unconditional).",
+    "description": "Per-residue AA probability output (conditional / unconditional).",
+    "operation_id": null,
+    "request_content_type": "multipart/form-data",
+    "request_schema_ref": "#/components/schemas/Body_post_probs_api_probs_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "pdb",
+      "type": "file",
+      "required": false,
+      "description": null,
+      "is_file": true,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "pdb_uri",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "Output basename. Restricted to [A-Za-z0-9_.-] (no slashes/spaces) because it becomes the input PDB filename and ProteinMPNN derives the output FASTA name from the PDB stem, so `name=foo` → `seqs/foo.fa`.",
+      "is_file": false,
+      "default": "run",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "model_variant",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "vanilla",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "model_name",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "v_48_020",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "seed",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "batch_size",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 1,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "backbone_noise",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0.0,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "kind",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "conditional",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "save_probs",
+      "type": "boolean",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": true,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "chains_to_design",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     }
+    ],
+    "examples": [
+     {
+      "title": "conditional residue probabilities",
+      "curl": "curl -X POST $URL/api/probs -F pdb=@input.pdb -F kind=conditional -F name=p1",
+      "python": null,
+      "body": null,
+      "notes": "Output: output/probs/p1.npz with per-residue 21-vector log probs."
+     }
+    ]
+   },
+   {
+    "method": "POST",
+    "path": "/api/score",
+    "summary": "Score a (structure, sequence) pair via --score_only 1.",
+    "description": "Score a (structure, sequence) pair via --score_only 1.",
+    "operation_id": null,
+    "request_content_type": "multipart/form-data",
+    "request_schema_ref": "#/components/schemas/Body_post_score_api_score_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "pdb",
+      "type": "file",
+      "required": false,
+      "description": null,
+      "is_file": true,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "pdb_uri",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "Output basename. Restricted to [A-Za-z0-9_.-] (no slashes/spaces) because it becomes the input PDB filename and ProteinMPNN derives the output FASTA name from the PDB stem, so `name=foo` → `seqs/foo.fa`.",
+      "is_file": false,
+      "default": "run",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "model_variant",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "vanilla",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "model_name",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "v_48_020",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "seed",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "batch_size",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 1,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "backbone_noise",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0.0,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "num_seq_per_target",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 10,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "sampling_temp",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "0.1",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "chains_to_design",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "save_score",
+      "type": "boolean",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": true,
+      "default_kind": "literal",
+      "default_note": null
+     }
+    ],
+    "examples": [
+     {
+      "title": "score complex against vanilla weights",
+      "curl": "curl -X POST $URL/api/score -F pdb=@complex.pdb -F num_seq_per_target=10 -F name=score1",
+      "python": null,
+      "body": null,
+      "notes": "Score output: output/score_only/score1_pdb.npz."
+     }
+    ]
+   },
+   {
+    "method": "POST",
+    "path": "/api/tasks/design",
+    "summary": "Sequence design as a single atomic task.",
+    "description": "Sequence design as a single atomic task.",
+    "operation_id": null,
+    "request_content_type": "multipart/form-data",
+    "request_schema_ref": "#/components/schemas/Body_post_design_task_api_tasks_design_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "pdb",
+      "type": "file",
+      "required": false,
+      "description": null,
+      "is_file": true,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "pdb_uri",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "Output basename. Restricted to [A-Za-z0-9_.-] (no slashes/spaces) because it becomes the input PDB filename and ProteinMPNN derives the output FASTA name from the PDB stem, so `name=foo` → `seqs/foo.fa`.",
+      "is_file": false,
+      "default": "run",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "model_variant",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "vanilla",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "model_name",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "v_48_020",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "seed",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "batch_size",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 1,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "backbone_noise",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0.0,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "num_seq_per_target",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 8,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "sampling_temp",
+      "type": "string",
+      "required": false,
+      "description": "Space-separated list of temperatures, e.g. '0.1 0.2 0.3'.",
+      "is_file": false,
+      "default": "0.1",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "chains_to_design",
+      "type": "string",
+      "required": false,
+      "description": "Space-separated chain IDs, e.g. 'A C'. Omit to design all chains.",
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "fixed_positions",
+      "type": "string",
+      "required": false,
+      "description": "Per-chain residue indices to fix, e.g. '1 2 3, 10 11' (segments aligned to chains_to_design).",
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "tied_positions",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "homooligomer",
+      "type": "boolean",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": false,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "bias_AA",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "bias_by_res",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "omit_AAs",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "X",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "omit_AA_per_chain",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     }
+    ],
+    "examples": []
+   },
+   {
+    "method": "POST",
+    "path": "/api/tasks/probs",
+    "summary": "Probabilities as a single atomic task.",
+    "description": "Probabilities as a single atomic task.",
+    "operation_id": null,
+    "request_content_type": "multipart/form-data",
+    "request_schema_ref": "#/components/schemas/Body_post_probs_task_api_tasks_probs_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "pdb",
+      "type": "file",
+      "required": false,
+      "description": null,
+      "is_file": true,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "pdb_uri",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "Output basename. Restricted to [A-Za-z0-9_.-] (no slashes/spaces) because it becomes the input PDB filename and ProteinMPNN derives the output FASTA name from the PDB stem, so `name=foo` → `seqs/foo.fa`.",
+      "is_file": false,
+      "default": "run",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "model_variant",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "vanilla",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "model_name",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "v_48_020",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "seed",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "batch_size",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 1,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "backbone_noise",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0.0,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "kind",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "conditional",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "save_probs",
+      "type": "boolean",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": true,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "chains_to_design",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     }
+    ],
+    "examples": []
+   },
+   {
+    "method": "POST",
+    "path": "/api/tasks/score",
+    "summary": "Score as a single atomic task.",
+    "description": "Score as a single atomic task.",
+    "operation_id": null,
+    "request_content_type": "multipart/form-data",
+    "request_schema_ref": "#/components/schemas/Body_post_score_task_api_tasks_score_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "pdb",
+      "type": "file",
+      "required": false,
+      "description": null,
+      "is_file": true,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "pdb_uri",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "name",
+      "type": "string",
+      "required": false,
+      "description": "Output basename. Restricted to [A-Za-z0-9_.-] (no slashes/spaces) because it becomes the input PDB filename and ProteinMPNN derives the output FASTA name from the PDB stem, so `name=foo` → `seqs/foo.fa`.",
+      "is_file": false,
+      "default": "run",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "model_variant",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "vanilla",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "model_name",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "v_48_020",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "seed",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "batch_size",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 1,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "backbone_noise",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0.0,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "num_seq_per_target",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 10,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "sampling_temp",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "0.1",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "chains_to_design",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "save_score",
+      "type": "boolean",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": true,
+      "default_kind": "literal",
+      "default_note": null
+     }
+    ],
+    "examples": []
+   }
+  ],
+  "job_lifecycle": {
+   "poll_endpoint": "/api/jobs/{job_id}",
+   "files_endpoint": "/api/jobs/{job_id}/files",
+   "log_endpoint": "/api/jobs/{job_id}/log",
+   "download_endpoint": "/api/jobs/{job_id}/download",
+   "single_file_endpoint": "/api/jobs/{job_id}/file/{path}",
+   "delete_endpoint": "/api/jobs/{job_id}",
+   "statuses": [
+    "pending",
+    "running",
+    "completed",
+    "failed"
+   ],
+   "failure_kinds": [
+    "subprocess_error",
+    "no_outputs",
+    "timeout",
+    "dataset_invalid",
+    "interrupted"
+   ],
+   "poll_recommendation": "Poll the status endpoint every 5–120 s until status ∈ {'completed', 'failed'}. On failure, JobInfo.error_summary holds a one-line exception summary and error_tail holds the trailing ~4 KB of the subprocess log — usually enough for triage without a separate /log fetch.",
+   "restart_semantics": "Jobs survive process and FC instance restarts via a `job.json` sidecar in each job directory. Jobs that were RUNNING at the moment of restart are downgraded to FAILED with failure_kind='interrupted'."
+  },
+  "nas_layout": {
+   "jobs_base_dir": "/data/proteinmpnn_jobs",
+   "per_job_structure": "<jobs_base_dir>/<job_id>/{input/, output/, logs/run.log, job.json}",
+   "cross_instance_consistency": "When multiple FC instances mount the same NAS at jobs_base_dir, all of them can see each other's jobs via read-through cache on GET. Writes (create/update) only happen on the instance that owns the subprocess.",
+   "cross_service_sharing": "Other bioagent services mounted on the same NAS can read this service's output files directly by path, avoiding HTTP round-trips. Example: another service does `Path('/data/rfantibody_jobs/<id>/output/file.qv').read_bytes()`."
+  },
+  "service_specific": {
+   "tool_outputs": {
+    "design": "output/seqs/<name>.fa",
+    "score": "output/score_only/<name>_pdb.npz",
+    "probs_conditional": "output/conditional_probs_only/<name>.npz",
+    "probs_unconditional": "output/unconditional_probs_only/<name>.npz",
+    "note": "Use GET /api/jobs/{id}/files to enumerate; download a single file via /api/jobs/{id}/file/{relpath}."
+   },
+   "model_variants": {
+    "vanilla": {
+     "weights_dir": "vanilla_model_weights/",
+     "model_names": [
+      "v_48_002",
+      "v_48_010",
+      "v_48_020",
+      "v_48_030"
+     ],
+     "description": "Full backbone (default)."
+    },
+    "soluble": {
+     "weights_dir": "soluble_model_weights/",
+     "model_names": [
+      "v_48_002",
+      "v_48_010",
+      "v_48_020",
+      "v_48_030"
+     ],
+     "description": "Trained on soluble proteins only."
+    },
+    "ca_only": {
+     "weights_dir": "ca_model_weights/",
+     "model_names": [
+      "v_48_002",
+      "v_48_010",
+      "v_48_020"
+     ],
+     "description": "CA-only structures (no v_48_030 available)."
+    },
+    "abmpnn": {
+     "weights_dir": "AbMPNN_model_weights/",
+     "model_names": [
+      "abmpnn"
+     ],
+     "description": "Antibody-specific weights (ICML 2023 Workshop)."
+    }
+   },
+   "input_uri_schemes": {
+    "upload": "multipart/form-data (field name `pdb`).",
+    "job://<id>/<file>": "Re-use a file from a prior proteinmpnn job (same NAS).",
+    "file:///abs/path": "Direct NAS path; works across services on the shared mount.",
+    "oss://<bucket>/<key>": "Alibaba Cloud OSS object (needs OSS_ACCESS_KEY_ID / _SECRET env vars).",
+    "http(s)://...": "Generic URL, including OSS signed URLs."
+   },
+   "config_tips": {
+    "fixed_positions": "Format '<idx idx ...>, <idx idx ...>' — comma segments aligned to chains_to_design. Residue indices are 1-based and refer to position in the chain, NOT PDB residue numbers.",
+    "tied_positions": "Same format as fixed_positions. Set homooligomer=true to repeat the first chain's tied positions across symmetric subunits.",
+    "sampling_temp": "Space-separated list of temperatures, e.g. '0.1 0.2'. Each one is sampled num_seq_per_target times. Suggested 0.1–0.3.",
+    "bias_AA": "JSON dict mapping single-letter AA → bias float. Positive = more likely. Example: {\"D\":1.39,\"E\":1.39} biases toward acidic residues."
+   },
+   "endpoints_summary": {
+    "/api/design": "Generate new sequences for the given backbone.",
+    "/api/score": "Score a (structure, sequence) pair via --score_only.",
+    "/api/probs": "Output per-residue AA probabilities (conditional / conditional_backbone / unconditional)."
+   },
+   "not_in_scope_v0_0_1": "PSSM inputs, batch multi-PDB designs, and score-from-fasta are deferred to v0.0.2. For now, submit one job per PDB."
+  },
+  "openapi_url": "/openapi.json"
+ },
+ "openapi": {
+  "openapi": "3.1.0",
+  "info": {
+   "title": "ProteinMPNN Server",
+   "version": "0.0.16"
+  },
+  "paths": {
+   "/healthz": {
+    "get": {
+     "summary": "Health",
+     "operationId": "health_healthz_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "additionalProperties": {
+           "type": "string"
+          },
+          "type": "object",
+          "title": "Response Health Healthz Get"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/healthz/detail": {
+    "get": {
+     "summary": "Health Detail",
+     "operationId": "health_detail_healthz_detail_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Response Health Detail Healthz Detail Get"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/uploads": {
+    "post": {
+     "summary": "Upload File",
+     "description": "Stage a file on shared NAS and return a `file://` URI.\n\nFor inputs too large for the 128 KiB FC async event payload: upload the\nbytes here over sync HTTP, then pass the returned `uri` as a `*_uri`\nfield on the real submit / async-task request. Because the file lands on\nthe shared NAS mount, any instance can resolve it later.",
+     "operationId": "upload_file_api_uploads_post",
+     "requestBody": {
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_upload_file_api_uploads_post"
+        }
+       }
+      },
+      "required": true
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/UploadInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/pre-stop": {
+    "get": {
+     "summary": "Pre Stop",
+     "description": "FC PreStop hook — mark this instance's running jobs as interrupted.",
+     "operationId": "pre_stop_pre_stop_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Response Pre Stop Pre Stop Get"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}": {
+    "get": {
+     "summary": "Get Job",
+     "operationId": "get_job_api_jobs__job_id__get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    },
+    "delete": {
+     "summary": "Delete Job",
+     "operationId": "delete_job_api_jobs__job_id__delete",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "type": "object",
+          "additionalProperties": {
+           "type": "string"
+          },
+          "title": "Response Delete Job Api Jobs  Job Id  Delete"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}/files": {
+    "get": {
+     "summary": "List Job Files",
+     "operationId": "list_job_files_api_jobs__job_id__files_get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "type": "object",
+          "additionalProperties": true,
+          "title": "Response List Job Files Api Jobs  Job Id  Files Get"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}/log": {
+    "get": {
+     "summary": "Get Job Log",
+     "operationId": "get_job_log_api_jobs__job_id__log_get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "type": "object",
+          "additionalProperties": {
+           "type": "string"
+          },
+          "title": "Response Get Job Log Api Jobs  Job Id  Log Get"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}/download": {
+    "get": {
+     "summary": "Download Job",
+     "operationId": "download_job_api_jobs__job_id__download_get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {}
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}/file/{file_path}": {
+    "get": {
+     "summary": "Download Single File",
+     "operationId": "download_single_file_api_jobs__job_id__file__file_path__get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      },
+      {
+       "name": "file_path",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "File Path"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {}
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/manifest": {
+    "get": {
+     "summary": "Agent-friendly protocol description for this service.",
+     "operationId": "get_manifest_api_manifest_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ServiceManifest"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/design": {
+    "post": {
+     "summary": "Post Design",
+     "description": "Sequence design (FASTA output) over the input PDB.",
+     "operationId": "post_design_api_design_post",
+     "requestBody": {
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_post_design_api_design_post"
+        }
+       }
+      }
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/score": {
+    "post": {
+     "summary": "Post Score",
+     "description": "Score a (structure, sequence) pair via --score_only 1.",
+     "operationId": "post_score_api_score_post",
+     "requestBody": {
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_post_score_api_score_post"
+        }
+       }
+      }
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/probs": {
+    "post": {
+     "summary": "Post Probs",
+     "description": "Per-residue AA probability output (conditional / unconditional).",
+     "operationId": "post_probs_api_probs_post",
+     "requestBody": {
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_post_probs_api_probs_post"
+        }
+       }
+      }
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/tasks/design": {
+    "post": {
+     "summary": "Post Design Task",
+     "description": "Sequence design as a single atomic task.",
+     "operationId": "post_design_task_api_tasks_design_post",
+     "parameters": [
+      {
+       "name": "X-Bioagent-Job-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Bioagent-Job-Id"
+       }
+      },
+      {
+       "name": "X-Fc-Async-Task-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Fc-Async-Task-Id"
+       }
+      }
+     ],
+     "requestBody": {
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_post_design_task_api_tasks_design_post"
+        }
+       }
+      }
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/tasks/score": {
+    "post": {
+     "summary": "Post Score Task",
+     "description": "Score as a single atomic task.",
+     "operationId": "post_score_task_api_tasks_score_post",
+     "parameters": [
+      {
+       "name": "X-Bioagent-Job-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Bioagent-Job-Id"
+       }
+      },
+      {
+       "name": "X-Fc-Async-Task-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Fc-Async-Task-Id"
+       }
+      }
+     ],
+     "requestBody": {
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_post_score_task_api_tasks_score_post"
+        }
+       }
+      }
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/tasks/probs": {
+    "post": {
+     "summary": "Post Probs Task",
+     "description": "Probabilities as a single atomic task.",
+     "operationId": "post_probs_task_api_tasks_probs_post",
+     "parameters": [
+      {
+       "name": "X-Bioagent-Job-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Bioagent-Job-Id"
+       }
+      },
+      {
+       "name": "X-Fc-Async-Task-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Fc-Async-Task-Id"
+       }
+      }
+     ],
+     "requestBody": {
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_post_probs_task_api_tasks_probs_post"
+        }
+       }
+      }
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "components": {
+   "schemas": {
+    "Body_post_design_api_design_post": {
+     "properties": {
+      "pdb": {
+       "anyOf": [
+        {
+         "type": "string",
+         "contentMediaType": "application/octet-stream"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Pdb"
+      },
+      "pdb_uri": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Pdb Uri"
+      },
+      "name": {
+       "type": "string",
+       "title": "Name",
+       "description": "Output basename. Restricted to [A-Za-z0-9_.-] (no slashes/spaces) because it becomes the input PDB filename and ProteinMPNN derives the output FASTA name from the PDB stem, so `name=foo` → `seqs/foo.fa`.",
+       "default": "run"
+      },
+      "model_variant": {
+       "type": "string",
+       "enum": [
+        "vanilla",
+        "soluble",
+        "ca_only",
+        "abmpnn"
+       ],
+       "title": "Model Variant",
+       "default": "vanilla"
+      },
+      "model_name": {
+       "type": "string",
+       "title": "Model Name",
+       "default": "v_48_020"
+      },
+      "seed": {
+       "type": "integer",
+       "title": "Seed",
+       "default": 0
+      },
+      "batch_size": {
+       "type": "integer",
+       "title": "Batch Size",
+       "default": 1
+      },
+      "backbone_noise": {
+       "type": "number",
+       "title": "Backbone Noise",
+       "default": 0.0
+      },
+      "num_seq_per_target": {
+       "type": "integer",
+       "title": "Num Seq Per Target",
+       "default": 8
+      },
+      "sampling_temp": {
+       "type": "string",
+       "title": "Sampling Temp",
+       "description": "Space-separated list of temperatures, e.g. '0.1 0.2 0.3'.",
+       "default": "0.1"
+      },
+      "chains_to_design": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Chains To Design",
+       "description": "Space-separated chain IDs, e.g. 'A C'. Omit to design all chains.",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "fixed_positions": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Fixed Positions",
+       "description": "Per-chain residue indices to fix, e.g. '1 2 3, 10 11' (segments aligned to chains_to_design).",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "tied_positions": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Tied Positions",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "homooligomer": {
+       "type": "boolean",
+       "title": "Homooligomer",
+       "default": false
+      },
+      "bias_AA": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Bias Aa",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "bias_by_res": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Bias By Res",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "omit_AAs": {
+       "type": "string",
+       "title": "Omit Aas",
+       "default": "X"
+      },
+      "omit_AA_per_chain": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Omit Aa Per Chain",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      }
+     },
+     "type": "object",
+     "title": "Body_post_design_api_design_post"
+    },
+    "Body_post_design_task_api_tasks_design_post": {
+     "properties": {
+      "pdb": {
+       "anyOf": [
+        {
+         "type": "string",
+         "contentMediaType": "application/octet-stream"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Pdb"
+      },
+      "pdb_uri": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Pdb Uri"
+      },
+      "name": {
+       "type": "string",
+       "title": "Name",
+       "description": "Output basename. Restricted to [A-Za-z0-9_.-] (no slashes/spaces) because it becomes the input PDB filename and ProteinMPNN derives the output FASTA name from the PDB stem, so `name=foo` → `seqs/foo.fa`.",
+       "default": "run"
+      },
+      "model_variant": {
+       "type": "string",
+       "enum": [
+        "vanilla",
+        "soluble",
+        "ca_only",
+        "abmpnn"
+       ],
+       "title": "Model Variant",
+       "default": "vanilla"
+      },
+      "model_name": {
+       "type": "string",
+       "title": "Model Name",
+       "default": "v_48_020"
+      },
+      "seed": {
+       "type": "integer",
+       "title": "Seed",
+       "default": 0
+      },
+      "batch_size": {
+       "type": "integer",
+       "title": "Batch Size",
+       "default": 1
+      },
+      "backbone_noise": {
+       "type": "number",
+       "title": "Backbone Noise",
+       "default": 0.0
+      },
+      "num_seq_per_target": {
+       "type": "integer",
+       "title": "Num Seq Per Target",
+       "default": 8
+      },
+      "sampling_temp": {
+       "type": "string",
+       "title": "Sampling Temp",
+       "description": "Space-separated list of temperatures, e.g. '0.1 0.2 0.3'.",
+       "default": "0.1"
+      },
+      "chains_to_design": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Chains To Design",
+       "description": "Space-separated chain IDs, e.g. 'A C'. Omit to design all chains.",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "fixed_positions": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Fixed Positions",
+       "description": "Per-chain residue indices to fix, e.g. '1 2 3, 10 11' (segments aligned to chains_to_design).",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "tied_positions": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Tied Positions",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "homooligomer": {
+       "type": "boolean",
+       "title": "Homooligomer",
+       "default": false
+      },
+      "bias_AA": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Bias Aa",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "bias_by_res": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Bias By Res",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "omit_AAs": {
+       "type": "string",
+       "title": "Omit Aas",
+       "default": "X"
+      },
+      "omit_AA_per_chain": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Omit Aa Per Chain",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      }
+     },
+     "type": "object",
+     "title": "Body_post_design_task_api_tasks_design_post"
+    },
+    "Body_post_probs_api_probs_post": {
+     "properties": {
+      "pdb": {
+       "anyOf": [
+        {
+         "type": "string",
+         "contentMediaType": "application/octet-stream"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Pdb"
+      },
+      "pdb_uri": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Pdb Uri"
+      },
+      "name": {
+       "type": "string",
+       "title": "Name",
+       "description": "Output basename. Restricted to [A-Za-z0-9_.-] (no slashes/spaces) because it becomes the input PDB filename and ProteinMPNN derives the output FASTA name from the PDB stem, so `name=foo` → `seqs/foo.fa`.",
+       "default": "run"
+      },
+      "model_variant": {
+       "type": "string",
+       "enum": [
+        "vanilla",
+        "soluble",
+        "ca_only",
+        "abmpnn"
+       ],
+       "title": "Model Variant",
+       "default": "vanilla"
+      },
+      "model_name": {
+       "type": "string",
+       "title": "Model Name",
+       "default": "v_48_020"
+      },
+      "seed": {
+       "type": "integer",
+       "title": "Seed",
+       "default": 0
+      },
+      "batch_size": {
+       "type": "integer",
+       "title": "Batch Size",
+       "default": 1
+      },
+      "backbone_noise": {
+       "type": "number",
+       "title": "Backbone Noise",
+       "default": 0.0
+      },
+      "kind": {
+       "type": "string",
+       "enum": [
+        "conditional",
+        "conditional_backbone",
+        "unconditional"
+       ],
+       "title": "Kind",
+       "default": "conditional"
+      },
+      "save_probs": {
+       "type": "boolean",
+       "title": "Save Probs",
+       "default": true
+      },
+      "chains_to_design": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Chains To Design",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      }
+     },
+     "type": "object",
+     "title": "Body_post_probs_api_probs_post"
+    },
+    "Body_post_probs_task_api_tasks_probs_post": {
+     "properties": {
+      "pdb": {
+       "anyOf": [
+        {
+         "type": "string",
+         "contentMediaType": "application/octet-stream"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Pdb"
+      },
+      "pdb_uri": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Pdb Uri"
+      },
+      "name": {
+       "type": "string",
+       "title": "Name",
+       "description": "Output basename. Restricted to [A-Za-z0-9_.-] (no slashes/spaces) because it becomes the input PDB filename and ProteinMPNN derives the output FASTA name from the PDB stem, so `name=foo` → `seqs/foo.fa`.",
+       "default": "run"
+      },
+      "model_variant": {
+       "type": "string",
+       "enum": [
+        "vanilla",
+        "soluble",
+        "ca_only",
+        "abmpnn"
+       ],
+       "title": "Model Variant",
+       "default": "vanilla"
+      },
+      "model_name": {
+       "type": "string",
+       "title": "Model Name",
+       "default": "v_48_020"
+      },
+      "seed": {
+       "type": "integer",
+       "title": "Seed",
+       "default": 0
+      },
+      "batch_size": {
+       "type": "integer",
+       "title": "Batch Size",
+       "default": 1
+      },
+      "backbone_noise": {
+       "type": "number",
+       "title": "Backbone Noise",
+       "default": 0.0
+      },
+      "kind": {
+       "type": "string",
+       "enum": [
+        "conditional",
+        "conditional_backbone",
+        "unconditional"
+       ],
+       "title": "Kind",
+       "default": "conditional"
+      },
+      "save_probs": {
+       "type": "boolean",
+       "title": "Save Probs",
+       "default": true
+      },
+      "chains_to_design": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Chains To Design",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      }
+     },
+     "type": "object",
+     "title": "Body_post_probs_task_api_tasks_probs_post"
+    },
+    "Body_post_score_api_score_post": {
+     "properties": {
+      "pdb": {
+       "anyOf": [
+        {
+         "type": "string",
+         "contentMediaType": "application/octet-stream"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Pdb"
+      },
+      "pdb_uri": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Pdb Uri"
+      },
+      "name": {
+       "type": "string",
+       "title": "Name",
+       "description": "Output basename. Restricted to [A-Za-z0-9_.-] (no slashes/spaces) because it becomes the input PDB filename and ProteinMPNN derives the output FASTA name from the PDB stem, so `name=foo` → `seqs/foo.fa`.",
+       "default": "run"
+      },
+      "model_variant": {
+       "type": "string",
+       "enum": [
+        "vanilla",
+        "soluble",
+        "ca_only",
+        "abmpnn"
+       ],
+       "title": "Model Variant",
+       "default": "vanilla"
+      },
+      "model_name": {
+       "type": "string",
+       "title": "Model Name",
+       "default": "v_48_020"
+      },
+      "seed": {
+       "type": "integer",
+       "title": "Seed",
+       "default": 0
+      },
+      "batch_size": {
+       "type": "integer",
+       "title": "Batch Size",
+       "default": 1
+      },
+      "backbone_noise": {
+       "type": "number",
+       "title": "Backbone Noise",
+       "default": 0.0
+      },
+      "num_seq_per_target": {
+       "type": "integer",
+       "title": "Num Seq Per Target",
+       "default": 10
+      },
+      "sampling_temp": {
+       "type": "string",
+       "title": "Sampling Temp",
+       "default": "0.1"
+      },
+      "chains_to_design": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Chains To Design",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "save_score": {
+       "type": "boolean",
+       "title": "Save Score",
+       "default": true
+      }
+     },
+     "type": "object",
+     "title": "Body_post_score_api_score_post"
+    },
+    "Body_post_score_task_api_tasks_score_post": {
+     "properties": {
+      "pdb": {
+       "anyOf": [
+        {
+         "type": "string",
+         "contentMediaType": "application/octet-stream"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Pdb"
+      },
+      "pdb_uri": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Pdb Uri"
+      },
+      "name": {
+       "type": "string",
+       "title": "Name",
+       "description": "Output basename. Restricted to [A-Za-z0-9_.-] (no slashes/spaces) because it becomes the input PDB filename and ProteinMPNN derives the output FASTA name from the PDB stem, so `name=foo` → `seqs/foo.fa`.",
+       "default": "run"
+      },
+      "model_variant": {
+       "type": "string",
+       "enum": [
+        "vanilla",
+        "soluble",
+        "ca_only",
+        "abmpnn"
+       ],
+       "title": "Model Variant",
+       "default": "vanilla"
+      },
+      "model_name": {
+       "type": "string",
+       "title": "Model Name",
+       "default": "v_48_020"
+      },
+      "seed": {
+       "type": "integer",
+       "title": "Seed",
+       "default": 0
+      },
+      "batch_size": {
+       "type": "integer",
+       "title": "Batch Size",
+       "default": 1
+      },
+      "backbone_noise": {
+       "type": "number",
+       "title": "Backbone Noise",
+       "default": 0.0
+      },
+      "num_seq_per_target": {
+       "type": "integer",
+       "title": "Num Seq Per Target",
+       "default": 10
+      },
+      "sampling_temp": {
+       "type": "string",
+       "title": "Sampling Temp",
+       "default": "0.1"
+      },
+      "chains_to_design": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Chains To Design",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "save_score": {
+       "type": "boolean",
+       "title": "Save Score",
+       "default": true
+      }
+     },
+     "type": "object",
+     "title": "Body_post_score_task_api_tasks_score_post"
+    },
+    "Body_upload_file_api_uploads_post": {
+     "properties": {
+      "file": {
+       "type": "string",
+       "contentMediaType": "application/octet-stream",
+       "title": "File"
+      }
+     },
+     "type": "object",
+     "required": [
+      "file"
+     ],
+     "title": "Body_upload_file_api_uploads_post"
+    },
+    "EndpointExample": {
+     "properties": {
+      "title": {
+       "type": "string",
+       "title": "Title",
+       "description": "Short label (e.g., 'chain from previous job')."
+      },
+      "curl": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Curl",
+       "description": "Ready-to-run curl command."
+      },
+      "python": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Python",
+       "description": "Equivalent Python (httpx / requests) snippet."
+      },
+      "body": {
+       "anyOf": [
+        {
+         "additionalProperties": true,
+         "type": "object"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Body",
+       "description": "Structured request body, useful for JSON endpoints. Files are not represented here."
+      },
+      "notes": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Notes",
+       "description": "When an agent should reach for this example over the others."
+      }
+     },
+     "type": "object",
+     "required": [
+      "title"
+     ],
+     "title": "EndpointExample",
+     "description": "A copy-pasteable example for one endpoint."
+    },
+    "EndpointInfo": {
+     "properties": {
+      "method": {
+       "type": "string",
+       "title": "Method",
+       "description": "HTTP method, e.g. 'POST'."
+      },
+      "path": {
+       "type": "string",
+       "title": "Path",
+       "description": "URL path, e.g. '/api/rfdiffusion'."
+      },
+      "summary": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Summary",
+       "description": "One-line purpose (FastAPI route summary or first docstring line)."
+      },
+      "description": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Description",
+       "description": "Longer prose (FastAPI route description or docstring body)."
+      },
+      "operation_id": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Operation Id",
+       "description": "OpenAPI operation id; agents can fetch /openapi.json and look up /paths/{path}/{method} for the full request/response schemas."
+      },
+      "request_content_type": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Request Content Type",
+       "description": "Wire format the body uses: 'application/json' for plain JSON, 'multipart/form-data' when files are involved, etc."
+      },
+      "request_schema_ref": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Request Schema Ref",
+       "description": "JSON pointer into /openapi.json (e.g. '#/components/schemas/Body_run_rfdiffusion_api_rfdiffusion_post'). Resolve there for the full schema; the flat `request_fields` list below covers the common case."
+      },
+      "response_schema_ref": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Response Schema Ref",
+       "description": "Pointer to the 200-response schema (typically '#/components/schemas/JobInfo')."
+      },
+      "request_fields": {
+       "items": {
+        "$ref": "#/components/schemas/FieldInfo"
+       },
+       "type": "array",
+       "title": "Request Fields",
+       "description": "Top-level fields of the request body, flattened for agent consumption."
+      },
+      "examples": {
+       "items": {
+        "$ref": "#/components/schemas/EndpointExample"
+       },
+       "type": "array",
+       "title": "Examples",
+       "description": "Copy-pasteable examples (from `adapter.endpoint_examples()`)."
+      }
+     },
+     "type": "object",
+     "required": [
+      "method",
+      "path"
+     ],
+     "title": "EndpointInfo",
+     "description": "One service-defined HTTP operation, with enough metadata to construct a request."
+    },
+    "FailureKind": {
+     "type": "string",
+     "enum": [
+      "subprocess_error",
+      "no_outputs",
+      "timeout",
+      "dataset_invalid",
+      "interrupted"
+     ],
+     "title": "FailureKind",
+     "description": "Coarse classification of why a job failed.\n\nSet by `finalize_job` based on subprocess return code + output detection,\nor by `reload_from_disk` when a job was RUNNING at the moment of restart.\nLets the client distinguish recoverable from fatal failures without parsing\n`error_summary` strings."
+    },
+    "FieldInfo": {
+     "properties": {
+      "name": {
+       "type": "string",
+       "title": "Name",
+       "description": "Field name as it appears in the request body / form."
+      },
+      "type": {
+       "type": "string",
+       "title": "Type",
+       "description": "Human-friendly type name: 'string', 'integer', 'file' (multipart upload), 'array[string]', 'array[file]', or the name of a referenced pydantic model (in which case look it up in /openapi.json#/components/schemas)."
+      },
+      "required": {
+       "type": "boolean",
+       "title": "Required",
+       "description": "True iff the field must be present in the request."
+      },
+      "description": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Description",
+       "description": "From Field(description=...) / docstring."
+      },
+      "is_file": {
+       "type": "boolean",
+       "title": "Is File",
+       "description": "True iff this is a multipart file upload — a scalar 'file' or an 'array[file]' (rather than a form/json scalar).",
+       "default": false
+      },
+      "default": {
+       "title": "Default",
+       "description": "Effective default when omitted: a literal (default_kind='literal') or a semantics token 'auto'/'unset'."
+      },
+      "default_kind": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Default Kind",
+       "description": "'literal' | 'auto' | 'unset'. 'auto'/'unset' are semantics tokens (not sendable literals); 'literal' means `default` is a real value."
+      },
+      "default_note": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Default Note",
+       "description": "One-line prose for the 'auto'/'unset' omission semantics."
+      }
+     },
+     "type": "object",
+     "required": [
+      "name",
+      "type",
+      "required"
+     ],
+     "title": "FieldInfo",
+     "description": "One request-body field, flattened from the OpenAPI schema."
+    },
+    "HTTPValidationError": {
+     "properties": {
+      "detail": {
+       "items": {
+        "$ref": "#/components/schemas/ValidationError"
+       },
+       "type": "array",
+       "title": "Detail"
+      }
+     },
+     "type": "object",
+     "title": "HTTPValidationError"
+    },
+    "JobInfo": {
+     "properties": {
+      "job_id": {
+       "type": "string",
+       "minLength": 1,
+       "title": "Job Id"
+      },
+      "status": {
+       "$ref": "#/components/schemas/JobStatus"
+      },
+      "service": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Service"
+      },
+      "endpoint": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Endpoint"
+      },
+      "message": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Message"
+      },
+      "progress": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Progress"
+      },
+      "created_at": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date-time"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Created At"
+      },
+      "started_at": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date-time"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Started At"
+      },
+      "completed_at": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date-time"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Completed At"
+      },
+      "duration_seconds": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Duration Seconds"
+      },
+      "input_params": {
+       "anyOf": [
+        {
+         "additionalProperties": true,
+         "type": "object"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Input Params"
+      },
+      "output_count": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Output Count"
+      },
+      "output_total_bytes": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Output Total Bytes"
+      },
+      "error_summary": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Error Summary"
+      },
+      "error_tail": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Error Tail"
+      },
+      "failure_kind": {
+       "anyOf": [
+        {
+         "$ref": "#/components/schemas/FailureKind"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "instance_id": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Instance Id"
+      }
+     },
+     "type": "object",
+     "required": [
+      "job_id",
+      "status"
+     ],
+     "title": "JobInfo",
+     "description": "Public job state — what `GET /api/jobs/{id}` returns."
+    },
+    "JobLifecycle": {
+     "properties": {
+      "poll_endpoint": {
+       "type": "string",
+       "title": "Poll Endpoint",
+       "default": "/api/jobs/{job_id}"
+      },
+      "files_endpoint": {
+       "type": "string",
+       "title": "Files Endpoint",
+       "default": "/api/jobs/{job_id}/files"
+      },
+      "log_endpoint": {
+       "type": "string",
+       "title": "Log Endpoint",
+       "default": "/api/jobs/{job_id}/log"
+      },
+      "download_endpoint": {
+       "type": "string",
+       "title": "Download Endpoint",
+       "default": "/api/jobs/{job_id}/download"
+      },
+      "single_file_endpoint": {
+       "type": "string",
+       "title": "Single File Endpoint",
+       "default": "/api/jobs/{job_id}/file/{path}"
+      },
+      "delete_endpoint": {
+       "type": "string",
+       "title": "Delete Endpoint",
+       "default": "/api/jobs/{job_id}"
+      },
+      "statuses": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array",
+       "title": "Statuses",
+       "description": "All possible values of JobInfo.status."
+      },
+      "failure_kinds": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array",
+       "title": "Failure Kinds",
+       "description": "All possible values of JobInfo.failure_kind (only set on failure)."
+      },
+      "poll_recommendation": {
+       "type": "string",
+       "title": "Poll Recommendation",
+       "default": "Poll the status endpoint every 5–120 s until status ∈ {'completed', 'failed'}. On failure, JobInfo.error_summary holds a one-line exception summary and error_tail holds the trailing ~4 KB of the subprocess log — usually enough for triage without a separate /log fetch."
+      },
+      "restart_semantics": {
+       "type": "string",
+       "title": "Restart Semantics",
+       "default": "Jobs survive process and FC instance restarts via a `job.json` sidecar in each job directory. Jobs that were RUNNING at the moment of restart are downgraded to FAILED with failure_kind='interrupted'."
+      }
+     },
+     "type": "object",
+     "title": "JobLifecycle",
+     "description": "Framework-provided job state machine. Identical across all bioagent services."
+    },
+    "JobStatus": {
+     "type": "string",
+     "enum": [
+      "pending",
+      "running",
+      "completed",
+      "failed"
+     ],
+     "title": "JobStatus",
+     "description": "Lifecycle state of a job. Strings so JSON serialization is human-readable."
+    },
+    "NasLayout": {
+     "properties": {
+      "jobs_base_dir": {
+       "type": "string",
+       "format": "path",
+       "title": "Jobs Base Dir",
+       "description": "Root directory under which per-job dirs are created."
+      },
+      "per_job_structure": {
+       "type": "string",
+       "title": "Per Job Structure",
+       "default": "<jobs_base_dir>/<job_id>/{input/, output/, logs/run.log, job.json}"
+      },
+      "cross_instance_consistency": {
+       "type": "string",
+       "title": "Cross Instance Consistency",
+       "default": "When multiple FC instances mount the same NAS at jobs_base_dir, all of them can see each other's jobs via read-through cache on GET. Writes (create/update) only happen on the instance that owns the subprocess."
+      },
+      "cross_service_sharing": {
+       "type": "string",
+       "title": "Cross Service Sharing",
+       "default": "Other bioagent services mounted on the same NAS can read this service's output files directly by path, avoiding HTTP round-trips. Example: another service does `Path('/data/rfantibody_jobs/<id>/output/file.qv').read_bytes()`."
+      }
+     },
+     "type": "object",
+     "required": [
+      "jobs_base_dir"
+     ],
+     "title": "NasLayout",
+     "description": "Where each job's data lives on disk; shared across multi-instance FC."
+    },
+    "ServiceManifest": {
+     "properties": {
+      "service": {
+       "type": "string",
+       "title": "Service",
+       "description": "Adapter.name; stable identifier across versions."
+      },
+      "title": {
+       "type": "string",
+       "title": "Title",
+       "description": "Human-readable title (FastAPI app title)."
+      },
+      "version": {
+       "type": "string",
+       "title": "Version",
+       "description": "Semantic version of the service image."
+      },
+      "description": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Description",
+       "description": "Free-form prose (FastAPI app description)."
+      },
+      "endpoints": {
+       "items": {
+        "$ref": "#/components/schemas/EndpointInfo"
+       },
+       "type": "array",
+       "title": "Endpoints",
+       "description": "Service-specific POST routes. Framework lifecycle routes are NOT included."
+      },
+      "job_lifecycle": {
+       "$ref": "#/components/schemas/JobLifecycle"
+      },
+      "nas_layout": {
+       "$ref": "#/components/schemas/NasLayout"
+      },
+      "service_specific": {
+       "additionalProperties": true,
+       "type": "object",
+       "title": "Service Specific",
+       "description": "Whatever `adapter.manifest_extras()` returned. Services document their output filename conventions, supported input URI schemes, and any tool-specific hints here."
+      },
+      "openapi_url": {
+       "type": "string",
+       "title": "Openapi Url",
+       "description": "Where to fetch the full JSON Schema for every request/response model.",
+       "default": "/openapi.json"
+      }
+     },
+     "type": "object",
+     "required": [
+      "service",
+      "title",
+      "version",
+      "job_lifecycle",
+      "nas_layout"
+     ],
+     "title": "ServiceManifest",
+     "description": "Agent-facing protocol description for one bioagent service."
+    },
+    "UploadInfo": {
+     "properties": {
+      "filename": {
+       "type": "string",
+       "title": "Filename",
+       "description": "Sanitized basename of the staged file."
+      },
+      "size_bytes": {
+       "type": "integer",
+       "minimum": 0.0,
+       "title": "Size Bytes",
+       "description": "Bytes written to disk."
+      },
+      "path": {
+       "type": "string",
+       "title": "Path",
+       "description": "Absolute path on the shared NAS mount."
+      },
+      "uri": {
+       "type": "string",
+       "title": "Uri",
+       "description": "file:// URI resolvable by any service's *_uri input."
+      }
+     },
+     "type": "object",
+     "required": [
+      "filename",
+      "size_bytes",
+      "path",
+      "uri"
+     ],
+     "title": "UploadInfo",
+     "description": "What `POST /api/uploads` returns after staging a file on shared NAS.\n\n`uri` is a `file://` reference the caller passes as a `*_uri` field on a\nlater submit / async-task request, keeping large bytes out of the 128 KiB\nasync event payload."
+    },
+    "ValidationError": {
+     "properties": {
+      "loc": {
+       "items": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "integer"
+         }
+        ]
+       },
+       "type": "array",
+       "title": "Location"
+      },
+      "msg": {
+       "type": "string",
+       "title": "Message"
+      },
+      "type": {
+       "type": "string",
+       "title": "Error Type"
+      },
+      "input": {
+       "title": "Input"
+      },
+      "ctx": {
+       "type": "object",
+       "title": "Context"
+      }
+     },
+     "type": "object",
+     "required": [
+      "loc",
+      "msg",
+      "type"
+     ],
+     "title": "ValidationError"
+    }
+   }
+  }
+ },
+ "status": "ok",
+ "source": "registry"
+}

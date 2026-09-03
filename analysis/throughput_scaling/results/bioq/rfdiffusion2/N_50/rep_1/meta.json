@@ -1,0 +1,15 @@
+{
+  "svc": "rfdiffusion2",
+  "endpoint": "custom",
+  "N": 50,
+  "rep": 1,
+  "makespan_s": 82.41,
+  "peak_concurrency": 0,
+  "n_completed": 50,
+  "n_failed": 0,
+  "n_cancelled": 0,
+  "n_pending": 0,
+  "bioq_version": "",
+  "gateway_url": "",
+  "timestamp": "2026-08-17T13:03:51"
+}

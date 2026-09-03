@@ -1,0 +1,20 @@
+{
+  "target": "Influenza_HA",
+  "filter": "interaction_pae < 10.0 & framework_aligned_cdr_rmsd < 2.0",
+  "stages": {
+    "rfdiffusion_backbones": 1000,
+    "mpnn_sequences": 8000,
+    "rf2_scored": 8000,
+    "pae_pass": 490,
+    "passed_filter": 448
+  },
+  "in_silico_pass_fraction": 0.056,
+  "pae_pass_fraction": 0.0612,
+  "n_designs": 8000,
+  "backbones_scored": 1000,
+  "backbone_pass": 146,
+  "backbone_pass_fraction": 0.146,
+  "source": [
+    "/data/fc/rfantibody/results/Influenza_HA/merged/3_rf2.qv"
+  ]
+}

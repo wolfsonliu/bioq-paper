@@ -1,0 +1,15 @@
+{
+  "svc": "reinvent",
+  "endpoint": "sampling",
+  "N": 50,
+  "rep": 3,
+  "makespan_s": 144.68,
+  "peak_concurrency": 48,
+  "n_completed": 50,
+  "n_failed": 0,
+  "n_cancelled": 0,
+  "n_pending": 0,
+  "bioq_version": "",
+  "gateway_url": "",
+  "timestamp": "2026-08-17T15:11:24"
+}

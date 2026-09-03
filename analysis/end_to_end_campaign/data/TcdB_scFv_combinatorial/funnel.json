@@ -1,0 +1,20 @@
+{
+  "target": "TcdB_scFv_combinatorial",
+  "filter": "interaction_pae < 10.0 & framework_aligned_cdr_rmsd < 2.0",
+  "stages": {
+    "rfdiffusion_backbones": 1000,
+    "mpnn_sequences": 8000,
+    "rf2_scored": 8000,
+    "pae_pass": 866,
+    "passed_filter": 192
+  },
+  "in_silico_pass_fraction": 0.024,
+  "pae_pass_fraction": 0.1082,
+  "n_designs": 8000,
+  "backbones_scored": 1000,
+  "backbone_pass": 96,
+  "backbone_pass_fraction": 0.096,
+  "source": [
+    "/data/fc/rfantibody/results/TcdB_scFv_combinatorial/merged/3_rf2.qv"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "svc": "mmseqs2",
+  "endpoint": "msa",
+  "N": 1,
+  "rep": 3,
+  "makespan_s": 9.21,
+  "peak_concurrency": 0,
+  "n_completed": 1,
+  "n_failed": 0,
+  "n_cancelled": 0,
+  "n_pending": 0,
+  "bioq_version": "",
+  "gateway_url": "",
+  "timestamp": "2026-08-14T10:22:36"
+}

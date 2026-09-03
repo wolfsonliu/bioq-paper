@@ -1,0 +1,36 @@
+# service: bindflow-server
+# repo: opensource/BindFlow
+# source_files: pyproject.toml, requirements_docs.txt, .conda_create_env/environment.yml
+# packages: 27
+# extracted: 2026-08-11T06:05:07Z
+# source: declared dependencies from opensource git checkout
+#         (PEP 621/poetry pyproject.toml, setup.py/cfg, requirements*, conda env)
+# note: constraints AND-joined per package; alternative variant files
+#       (e.g. cuda121/cuda124) are not distinguished
+alchemlyb>=2.0.0
+conda-build
+ipykernel
+ipython
+ipywidgets
+mdanalysis
+myst-nb
+myst-parser
+numpy<2
+pandas
+pip
+pymbar>=4.0.1
+pytest
+python==3.10.*
+pyyaml
+roman
+scipy
+sphinx==7.2.6
+sphinx-autobuild==2021.3.14
+sphinx_book_theme
+sphinx_copybutton
+sphinx_design
+sphinx-inline-tabs
+sphinxcontrib-katex
+sphinxcontrib-mermaid
+uvicorn<0.30
+watchfiles<0.20

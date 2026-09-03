@@ -1,0 +1,201 @@
+[
+  {
+    "target": "HIV_Env",
+    "filter": "interaction_pae < 10.0 & framework_aligned_cdr_rmsd < 2.0",
+    "stages": {
+      "rfdiffusion_backbones": 1000,
+      "mpnn_sequences": 8000,
+      "rf2_scored": 8000,
+      "pae_pass": 845,
+      "passed_filter": 781
+    },
+    "in_silico_pass_fraction": 0.0976,
+    "pae_pass_fraction": 0.1056,
+    "n_designs": 8000,
+    "backbones_scored": 1000,
+    "backbone_pass": 342,
+    "backbone_pass_fraction": 0.342,
+    "source": [
+      "/data/fc/rfantibody/results/HIV_Env/merged/3_rf2.qv"
+    ]
+  },
+  {
+    "target": "IL7R_alpha",
+    "filter": "interaction_pae < 10.0 & framework_aligned_cdr_rmsd < 2.0",
+    "stages": {
+      "rfdiffusion_backbones": 1000,
+      "mpnn_sequences": 8000,
+      "rf2_scored": 8000,
+      "pae_pass": 1235,
+      "passed_filter": 1200
+    },
+    "in_silico_pass_fraction": 0.15,
+    "pae_pass_fraction": 0.1544,
+    "n_designs": 8000,
+    "backbones_scored": 1000,
+    "backbone_pass": 430,
+    "backbone_pass_fraction": 0.43,
+    "source": [
+      "/data/fc/rfantibody/results/IL7R_alpha/merged/3_rf2.qv"
+    ]
+  },
+  {
+    "target": "Influenza_HA",
+    "filter": "interaction_pae < 10.0 & framework_aligned_cdr_rmsd < 2.0",
+    "stages": {
+      "rfdiffusion_backbones": 1000,
+      "mpnn_sequences": 8000,
+      "rf2_scored": 8000,
+      "pae_pass": 490,
+      "passed_filter": 448
+    },
+    "in_silico_pass_fraction": 0.056,
+    "pae_pass_fraction": 0.0612,
+    "n_designs": 8000,
+    "backbones_scored": 1000,
+    "backbone_pass": 146,
+    "backbone_pass_fraction": 0.146,
+    "source": [
+      "/data/fc/rfantibody/results/Influenza_HA/merged/3_rf2.qv"
+    ]
+  },
+  {
+    "target": "RSV_Site_I",
+    "filter": "interaction_pae < 10.0 & framework_aligned_cdr_rmsd < 2.0",
+    "stages": {
+      "rfdiffusion_backbones": 1000,
+      "mpnn_sequences": 8000,
+      "rf2_scored": 8000,
+      "pae_pass": 47,
+      "passed_filter": 37
+    },
+    "in_silico_pass_fraction": 0.0046,
+    "pae_pass_fraction": 0.0059,
+    "n_designs": 8000,
+    "backbones_scored": 1000,
+    "backbone_pass": 24,
+    "backbone_pass_fraction": 0.024,
+    "source": [
+      "/data/fc/rfantibody/results/RSV_Site_I/merged/3_rf2.qv"
+    ]
+  },
+  {
+    "target": "RSV_Site_III",
+    "filter": "interaction_pae < 10.0 & framework_aligned_cdr_rmsd < 2.0",
+    "stages": {
+      "rfdiffusion_backbones": 1000,
+      "mpnn_sequences": 8000,
+      "rf2_scored": 8000,
+      "pae_pass": 317,
+      "passed_filter": 293
+    },
+    "in_silico_pass_fraction": 0.0366,
+    "pae_pass_fraction": 0.0396,
+    "n_designs": 8000,
+    "backbones_scored": 1000,
+    "backbone_pass": 172,
+    "backbone_pass_fraction": 0.172,
+    "source": [
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_00/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_01/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_02/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_03/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_04/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_05/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_06/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_07/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_08/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_09/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_10/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_11/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_12/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_13/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_14/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_15/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_16/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_17/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_18/rf2/3_rf2.qv",
+      "/data/fc/rfantibody/results/RSV_Site_III/batch_19/rf2/3_rf2.qv"
+    ]
+  },
+  {
+    "target": "SARS_CoV2_RBD",
+    "filter": "interaction_pae < 10.0 & framework_aligned_cdr_rmsd < 2.0",
+    "stages": {
+      "rfdiffusion_backbones": 1000,
+      "mpnn_sequences": 8000,
+      "rf2_scored": 8000,
+      "pae_pass": 3484,
+      "passed_filter": 3321
+    },
+    "in_silico_pass_fraction": 0.4151,
+    "pae_pass_fraction": 0.4355,
+    "n_designs": 8000,
+    "backbones_scored": 1000,
+    "backbone_pass": 706,
+    "backbone_pass_fraction": 0.706,
+    "source": [
+      "/data/fc/rfantibody/results/SARS_CoV2_RBD/merged/3_rf2.qv"
+    ]
+  },
+  {
+    "target": "TcdB",
+    "filter": "interaction_pae < 10.0 & framework_aligned_cdr_rmsd < 2.0",
+    "stages": {
+      "rfdiffusion_backbones": 1000,
+      "mpnn_sequences": 8000,
+      "rf2_scored": 8000,
+      "pae_pass": 1693,
+      "passed_filter": 1605
+    },
+    "in_silico_pass_fraction": 0.2006,
+    "pae_pass_fraction": 0.2116,
+    "n_designs": 8000,
+    "backbones_scored": 1000,
+    "backbone_pass": 489,
+    "backbone_pass_fraction": 0.489,
+    "source": [
+      "/data/fc/rfantibody/results/TcdB/merged/3_rf2.qv"
+    ]
+  },
+  {
+    "target": "TcdB_scFv_combinatorial",
+    "filter": "interaction_pae < 10.0 & framework_aligned_cdr_rmsd < 2.0",
+    "stages": {
+      "rfdiffusion_backbones": 1000,
+      "mpnn_sequences": 8000,
+      "rf2_scored": 8000,
+      "pae_pass": 866,
+      "passed_filter": 192
+    },
+    "in_silico_pass_fraction": 0.024,
+    "pae_pass_fraction": 0.1082,
+    "n_designs": 8000,
+    "backbones_scored": 1000,
+    "backbone_pass": 96,
+    "backbone_pass_fraction": 0.096,
+    "source": [
+      "/data/fc/rfantibody/results/TcdB_scFv_combinatorial/merged/3_rf2.qv"
+    ]
+  },
+  {
+    "target": "TcdB_scFv_unique",
+    "filter": "interaction_pae < 10.0 & framework_aligned_cdr_rmsd < 2.0",
+    "stages": {
+      "rfdiffusion_backbones": 1000,
+      "mpnn_sequences": 8000,
+      "rf2_scored": 8000,
+      "pae_pass": 200,
+      "passed_filter": 77
+    },
+    "in_silico_pass_fraction": 0.0096,
+    "pae_pass_fraction": 0.025,
+    "n_designs": 8000,
+    "backbones_scored": 1000,
+    "backbone_pass": 58,
+    "backbone_pass_fraction": 0.058,
+    "source": [
+      "/data/fc/rfantibody/results/TcdB_scFv_unique/merged/3_rf2.qv"
+    ]
+  }
+]

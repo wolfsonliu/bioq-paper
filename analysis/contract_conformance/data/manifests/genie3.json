@@ -1,0 +1,2694 @@
+{
+ "service": "genie3-server",
+ "manifest": {
+  "service": "genie3",
+  "title": "Genie3 Server",
+  "version": "0.0.21",
+  "description": null,
+  "endpoints": [
+   {
+    "method": "POST",
+    "path": "/api/generate",
+    "summary": "Run `genie3 generate` with a fully custom YAML config.",
+    "description": "Run `genie3 generate` with a fully custom YAML config.\n\n`paths.rootdir` and (if a dataset zip is provided) `paths.dataset` are\nrewritten so the YAML you supply doesn't need to know its job_dir.",
+    "operation_id": null,
+    "request_content_type": "multipart/form-data",
+    "request_schema_ref": "#/components/schemas/Body_generate_custom_api_generate_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "config_yaml",
+      "type": "string",
+      "required": true,
+      "description": "Full experiment YAML as a string.",
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "dataset",
+      "type": "file",
+      "required": false,
+      "description": "Optional dataset zip; extracted to <job>/input/dataset/.",
+      "is_file": true,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "num_devices",
+      "type": "integer",
+      "required": false,
+      "description": "Override GPU auto-detect.",
+      "is_file": false,
+      "default": "auto",
+      "default_kind": "auto",
+      "default_note": "auto-detect available devices/processes"
+     }
+    ],
+    "examples": [
+     {
+      "title": "custom YAML with cond_strategy override (the common gotcha)",
+      "curl": "curl -X POST $URL/api/generate -F 'config_yaml=experiment:\n  name: trem1_vhh\ngeneration:\n  dataset:\n    source: target\n    selections: trem1_vhh\n    n_sample: 4\n    cond_strategy: hotspot' -F dataset=@trem1.zip",
+      "python": null,
+      "body": null,
+      "notes": "Default cond_strategy='extended' fails with ValueError: Interface mode 'extended' not found when the problem JSON only defines 'hotspot'. Override here to use the hotspot interface."
+     }
+    ]
+   },
+   {
+    "method": "POST",
+    "path": "/api/generate/binder",
+    "summary": "Binder design generation. Dataset zip must contain `problems/` + `targets/`.",
+    "description": "Binder design generation. Dataset zip must contain `problems/` + `targets/`.",
+    "operation_id": null,
+    "request_content_type": "multipart/form-data",
+    "request_schema_ref": "#/components/schemas/Body_generate_binder_api_generate_binder_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "dataset",
+      "type": "file",
+      "required": true,
+      "description": "Zip with problems/ + targets/.",
+      "is_file": true,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "n_sample",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 4,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "batch_size",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 1,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "num_devices",
+      "type": "integer",
+      "required": false,
+      "description": "Override genie3's GPU auto-detect. Leave unset to use all visible devices.",
+      "is_file": false,
+      "default": "auto",
+      "default_kind": "auto",
+      "default_note": "auto-detect available devices/processes"
+     },
+     {
+      "name": "selections",
+      "type": "string",
+      "required": false,
+      "description": "Comma-separated problem names from the dataset. Default: all problems.",
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "direction_scale",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0.0,
+      "default_kind": "literal",
+      "default_note": null
+     }
+    ],
+    "examples": [
+     {
+      "title": "binder design against a target",
+      "curl": "curl -X POST $URL/api/generate/binder -F dataset=@binderbench.zip -F selections=01_bhrf1 -F n_sample=8 -F direction_scale=0.0",
+      "python": null,
+      "body": null,
+      "notes": "Zip layout: problems/ + targets/{pdb,fasta,msa}/."
+     }
+    ]
+   },
+   {
+    "method": "POST",
+    "path": "/api/generate/motif",
+    "summary": "Motif scaffolding generation. Dataset zip must contain `problems/` + `motifs/`.",
+    "description": "Motif scaffolding generation. Dataset zip must contain `problems/` + `motifs/`.",
+    "operation_id": null,
+    "request_content_type": "multipart/form-data",
+    "request_schema_ref": "#/components/schemas/Body_generate_motif_api_generate_motif_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "dataset",
+      "type": "file",
+      "required": true,
+      "description": "Zip with problems/ + motifs/.",
+      "is_file": true,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "n_sample",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 4,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "batch_size",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 1,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "num_devices",
+      "type": "integer",
+      "required": false,
+      "description": "Override genie3's GPU auto-detect. Leave unset to use all visible devices.",
+      "is_file": false,
+      "default": "auto",
+      "default_kind": "auto",
+      "default_note": "auto-detect available devices/processes"
+     },
+     {
+      "name": "selections",
+      "type": "string",
+      "required": false,
+      "description": "Comma-separated problem names from the dataset. Default: all problems.",
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "direction_scale",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0.1,
+      "default_kind": "literal",
+      "default_note": null
+     }
+    ],
+    "examples": [
+     {
+      "title": "motif scaffolding from a benchmark zip",
+      "curl": "curl -X POST $URL/api/generate/motif -F dataset=@motifbench.zip -F selections=22_1BCF -F n_sample=8",
+      "python": null,
+      "body": null,
+      "notes": "The zip must contain problems/*.json + motifs/*.pdb. The server rewrites motif_filepaths inside problem JSONs to absolute paths."
+     }
+    ]
+   },
+   {
+    "method": "POST",
+    "path": "/api/generate/unconditional",
+    "summary": "Unconditional protein backbone generation (no input structure).",
+    "description": "Unconditional protein backbone generation (no input structure).",
+    "operation_id": null,
+    "request_content_type": "application/x-www-form-urlencoded",
+    "request_schema_ref": "#/components/schemas/Body_generate_unconditional_api_generate_unconditional_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "n_sample",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 4,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "batch_size",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 1,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "num_devices",
+      "type": "integer",
+      "required": false,
+      "description": "Override genie3's GPU auto-detect. Leave unset to use all visible devices.",
+      "is_file": false,
+      "default": "auto",
+      "default_kind": "auto",
+      "default_note": "auto-detect available devices/processes"
+     },
+     {
+      "name": "min_length",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 100,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "max_length",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 100,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "length_step",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 50,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "direction_scale",
+      "type": "number",
+      "required": false,
+      "description": "Quality–diversity trade-off. Recommended 0.8 for length ≤ 300, 0.0 for longer.",
+      "is_file": false,
+      "default": 0.8,
+      "default_kind": "literal",
+      "default_note": null
+     }
+    ],
+    "examples": [
+     {
+      "title": "short protein, default direction_scale",
+      "curl": "curl -X POST $URL/api/generate/unconditional -F min_length=100 -F max_length=100 -F n_sample=8",
+      "python": null,
+      "body": null,
+      "notes": "No dataset needed. Use direction_scale=0.0 for length > 300."
+     }
+    ]
+   },
+   {
+    "method": "POST",
+    "path": "/api/tasks/generate",
+    "summary": "Custom YAML generation as a single atomic task.",
+    "description": "Custom YAML generation as a single atomic task.",
+    "operation_id": null,
+    "request_content_type": "multipart/form-data",
+    "request_schema_ref": "#/components/schemas/Body_generate_custom_task_api_tasks_generate_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "config_yaml",
+      "type": "string",
+      "required": true,
+      "description": "Full experiment YAML as a string.",
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "dataset",
+      "type": "file",
+      "required": false,
+      "description": null,
+      "is_file": true,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "dataset_uri",
+      "type": "string",
+      "required": false,
+      "description": "URI to an optional dataset zip (oss://, file://, job://, http(s)://) as an alternative to a multipart upload.",
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "num_devices",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "auto",
+      "default_kind": "auto",
+      "default_note": "auto-detect available devices/processes"
+     }
+    ],
+    "examples": []
+   },
+   {
+    "method": "POST",
+    "path": "/api/tasks/generate/binder",
+    "summary": "Binder design generation as a single atomic task.",
+    "description": "Binder design generation as a single atomic task.",
+    "operation_id": null,
+    "request_content_type": "multipart/form-data",
+    "request_schema_ref": "#/components/schemas/Body_generate_binder_task_api_tasks_generate_binder_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "dataset",
+      "type": "file",
+      "required": false,
+      "description": "Zip with problems/ + targets/.",
+      "is_file": true,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "dataset_uri",
+      "type": "string",
+      "required": false,
+      "description": "URI to the dataset zip (oss://, file://, job://, http(s)://) as an alternative to a multipart upload — used by the gateway.",
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "n_sample",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 4,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "batch_size",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 1,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "num_devices",
+      "type": "integer",
+      "required": false,
+      "description": "Override genie3's GPU auto-detect. Leave unset to use all visible devices.",
+      "is_file": false,
+      "default": "auto",
+      "default_kind": "auto",
+      "default_note": "auto-detect available devices/processes"
+     },
+     {
+      "name": "selections",
+      "type": "string",
+      "required": false,
+      "description": "Comma-separated problem names from the dataset. Default: all problems.",
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "direction_scale",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0.0,
+      "default_kind": "literal",
+      "default_note": null
+     }
+    ],
+    "examples": []
+   },
+   {
+    "method": "POST",
+    "path": "/api/tasks/generate/motif",
+    "summary": "Motif scaffolding generation as a single atomic task.",
+    "description": "Motif scaffolding generation as a single atomic task.",
+    "operation_id": null,
+    "request_content_type": "multipart/form-data",
+    "request_schema_ref": "#/components/schemas/Body_generate_motif_task_api_tasks_generate_motif_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "dataset",
+      "type": "file",
+      "required": false,
+      "description": "Zip with problems/ + motifs/.",
+      "is_file": true,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "dataset_uri",
+      "type": "string",
+      "required": false,
+      "description": "URI to the dataset zip (oss://, file://, job://, http(s)://) as an alternative to a multipart upload — used by the gateway.",
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "n_sample",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 4,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "batch_size",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 1,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "num_devices",
+      "type": "integer",
+      "required": false,
+      "description": "Override genie3's GPU auto-detect. Leave unset to use all visible devices.",
+      "is_file": false,
+      "default": "auto",
+      "default_kind": "auto",
+      "default_note": "auto-detect available devices/processes"
+     },
+     {
+      "name": "selections",
+      "type": "string",
+      "required": false,
+      "description": "Comma-separated problem names from the dataset. Default: all problems.",
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "direction_scale",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 0.1,
+      "default_kind": "literal",
+      "default_note": null
+     }
+    ],
+    "examples": []
+   },
+   {
+    "method": "POST",
+    "path": "/api/tasks/generate/unconditional",
+    "summary": "Unconditional protein backbone generation as a single atomic task.",
+    "description": "Unconditional protein backbone generation as a single atomic task.",
+    "operation_id": null,
+    "request_content_type": "application/x-www-form-urlencoded",
+    "request_schema_ref": "#/components/schemas/Body_generate_unconditional_task_api_tasks_generate_unconditional_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "n_sample",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 4,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "batch_size",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 1,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "num_devices",
+      "type": "integer",
+      "required": false,
+      "description": "Override genie3's GPU auto-detect. Leave unset to use all visible devices.",
+      "is_file": false,
+      "default": "auto",
+      "default_kind": "auto",
+      "default_note": "auto-detect available devices/processes"
+     },
+     {
+      "name": "min_length",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 100,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "max_length",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 100,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "length_step",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": 50,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "direction_scale",
+      "type": "number",
+      "required": false,
+      "description": "Quality–diversity trade-off. Recommended 0.8 for length ≤ 300, 0.0 for longer.",
+      "is_file": false,
+      "default": 0.8,
+      "default_kind": "literal",
+      "default_note": null
+     }
+    ],
+    "examples": []
+   }
+  ],
+  "job_lifecycle": {
+   "poll_endpoint": "/api/jobs/{job_id}",
+   "files_endpoint": "/api/jobs/{job_id}/files",
+   "log_endpoint": "/api/jobs/{job_id}/log",
+   "download_endpoint": "/api/jobs/{job_id}/download",
+   "single_file_endpoint": "/api/jobs/{job_id}/file/{path}",
+   "delete_endpoint": "/api/jobs/{job_id}",
+   "statuses": [
+    "pending",
+    "running",
+    "completed",
+    "failed"
+   ],
+   "failure_kinds": [
+    "subprocess_error",
+    "no_outputs",
+    "timeout",
+    "dataset_invalid",
+    "interrupted"
+   ],
+   "poll_recommendation": "Poll the status endpoint every 5–120 s until status ∈ {'completed', 'failed'}. On failure, JobInfo.error_summary holds a one-line exception summary and error_tail holds the trailing ~4 KB of the subprocess log — usually enough for triage without a separate /log fetch.",
+   "restart_semantics": "Jobs survive process and FC instance restarts via a `job.json` sidecar in each job directory. Jobs that were RUNNING at the moment of restart are downgraded to FAILED with failure_kind='interrupted'."
+  },
+  "nas_layout": {
+   "jobs_base_dir": "/data/genie3_jobs",
+   "per_job_structure": "<jobs_base_dir>/<job_id>/{input/, output/, logs/run.log, job.json}",
+   "cross_instance_consistency": "When multiple FC instances mount the same NAS at jobs_base_dir, all of them can see each other's jobs via read-through cache on GET. Writes (create/update) only happen on the instance that owns the subprocess.",
+   "cross_service_sharing": "Other bioagent services mounted on the same NAS can read this service's output files directly by path, avoiding HTTP round-trips. Example: another service does `Path('/data/rfantibody_jobs/<id>/output/file.qv').read_bytes()`."
+  },
+  "service_specific": {
+   "tool_outputs": {
+    "all_modes": "output/<experiment_name>/pdbs/*.pdb",
+    "note": "Each `genie3 generate` run nests its PDBs under the experiment name from the YAML (`experiment.name`). Use `/api/jobs/{id}/files` to list, or `/api/jobs/{id}/file/{relpath}` to fetch one."
+   },
+   "input_uri_schemes": {
+    "upload": "multipart/form-data zip with problems/ + targets/ (binder) or problems/ + motifs/ (motif). The server rewrites filepath fields in problem JSONs to absolute paths after extraction.",
+    "unconditional": "No dataset required."
+   },
+   "endpoints_summary": {
+    "/api/generate/unconditional": "No dataset; configurable min/max length + step.",
+    "/api/generate/motif": "Dataset zip with motifs/; scaffold around motif residues.",
+    "/api/generate/binder": "Dataset zip with targets/; design binder against target.",
+    "/api/generate": "Freeform YAML body via `config_yaml` Form field. The server auto-fills `paths.rootdir` and (if a dataset zip is attached) `paths.dataset`. Use this for `cond_strategy` overrides or iterative refinement configs."
+   },
+   "config_tips": {
+    "cond_strategy": "Default upstream `cond_strategy: extended` requires an `extended` interface in the problem JSON. If your problem only defines `hotspot`, override via `generation.dataset.cond_strategy: hotspot`.",
+    "direction_scale": "Quality/diversity knob. Recommended 0.8 for length ≤ 300, 0.0 for longer (unconditional) or for binder mode (default 0.0)."
+   }
+  },
+  "openapi_url": "/openapi.json"
+ },
+ "openapi": {
+  "openapi": "3.1.0",
+  "info": {
+   "title": "Genie3 Server",
+   "version": "0.0.21"
+  },
+  "paths": {
+   "/healthz": {
+    "get": {
+     "summary": "Health",
+     "operationId": "health_healthz_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "additionalProperties": {
+           "type": "string"
+          },
+          "type": "object",
+          "title": "Response Health Healthz Get"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/uploads": {
+    "post": {
+     "summary": "Upload File",
+     "description": "Stage a file on shared NAS and return a `file://` URI.\n\nFor inputs too large for the 128 KiB FC async event payload: upload the\nbytes here over sync HTTP, then pass the returned `uri` as a `*_uri`\nfield on the real submit / async-task request. Because the file lands on\nthe shared NAS mount, any instance can resolve it later.",
+     "operationId": "upload_file_api_uploads_post",
+     "requestBody": {
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_upload_file_api_uploads_post"
+        }
+       }
+      },
+      "required": true
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/UploadInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/pre-stop": {
+    "get": {
+     "summary": "Pre Stop",
+     "description": "FC PreStop hook — mark this instance's running jobs as interrupted.",
+     "operationId": "pre_stop_pre_stop_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Response Pre Stop Pre Stop Get"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}": {
+    "get": {
+     "summary": "Get Job",
+     "operationId": "get_job_api_jobs__job_id__get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    },
+    "delete": {
+     "summary": "Delete Job",
+     "operationId": "delete_job_api_jobs__job_id__delete",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "type": "object",
+          "additionalProperties": {
+           "type": "string"
+          },
+          "title": "Response Delete Job Api Jobs  Job Id  Delete"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}/files": {
+    "get": {
+     "summary": "List Job Files",
+     "operationId": "list_job_files_api_jobs__job_id__files_get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "type": "object",
+          "additionalProperties": true,
+          "title": "Response List Job Files Api Jobs  Job Id  Files Get"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}/log": {
+    "get": {
+     "summary": "Get Job Log",
+     "operationId": "get_job_log_api_jobs__job_id__log_get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "type": "object",
+          "additionalProperties": {
+           "type": "string"
+          },
+          "title": "Response Get Job Log Api Jobs  Job Id  Log Get"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}/download": {
+    "get": {
+     "summary": "Download Job",
+     "operationId": "download_job_api_jobs__job_id__download_get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {}
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}/file/{file_path}": {
+    "get": {
+     "summary": "Download Single File",
+     "operationId": "download_single_file_api_jobs__job_id__file__file_path__get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      },
+      {
+       "name": "file_path",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "File Path"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {}
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/manifest": {
+    "get": {
+     "summary": "Agent-friendly protocol description for this service.",
+     "operationId": "get_manifest_api_manifest_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ServiceManifest"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/healthz/detail": {
+    "get": {
+     "summary": "Healthz Detail",
+     "description": "Extended health: report whether NAS-mounted weights are reachable.\n\nPretrained checkpoints live on NAS at `GENIE3_PRETRAINED_DIR` (default\n`/data/models/genie3/pretrained/v1/`).  The image contains a symlink at\n/opt/genie3/pretrained → /data/models/genie3/pretrained so the genie3\nCLI's relative lookup succeeds; if NAS is unmounted the symlink target\nis missing.  `weights_loaded=false` lets the agent detect that early.",
+     "operationId": "healthz_detail_healthz_detail_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Response Healthz Detail Healthz Detail Get"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/generate/unconditional": {
+    "post": {
+     "summary": "Generate Unconditional",
+     "description": "Unconditional protein backbone generation (no input structure).",
+     "operationId": "generate_unconditional_api_generate_unconditional_post",
+     "requestBody": {
+      "content": {
+       "application/x-www-form-urlencoded": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_generate_unconditional_api_generate_unconditional_post"
+        }
+       }
+      }
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/generate/motif": {
+    "post": {
+     "summary": "Generate Motif",
+     "description": "Motif scaffolding generation. Dataset zip must contain `problems/` + `motifs/`.",
+     "operationId": "generate_motif_api_generate_motif_post",
+     "requestBody": {
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_generate_motif_api_generate_motif_post"
+        }
+       }
+      },
+      "required": true
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/generate/binder": {
+    "post": {
+     "summary": "Generate Binder",
+     "description": "Binder design generation. Dataset zip must contain `problems/` + `targets/`.",
+     "operationId": "generate_binder_api_generate_binder_post",
+     "requestBody": {
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_generate_binder_api_generate_binder_post"
+        }
+       }
+      },
+      "required": true
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/generate": {
+    "post": {
+     "summary": "Generate Custom",
+     "description": "Run `genie3 generate` with a fully custom YAML config.\n\n`paths.rootdir` and (if a dataset zip is provided) `paths.dataset` are\nrewritten so the YAML you supply doesn't need to know its job_dir.",
+     "operationId": "generate_custom_api_generate_post",
+     "requestBody": {
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_generate_custom_api_generate_post"
+        }
+       }
+      },
+      "required": true
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/tasks/generate/unconditional": {
+    "post": {
+     "summary": "Generate Unconditional Task",
+     "description": "Unconditional protein backbone generation as a single atomic task.",
+     "operationId": "generate_unconditional_task_api_tasks_generate_unconditional_post",
+     "parameters": [
+      {
+       "name": "X-Bioagent-Job-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Bioagent-Job-Id"
+       }
+      },
+      {
+       "name": "X-Fc-Async-Task-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Fc-Async-Task-Id"
+       }
+      }
+     ],
+     "requestBody": {
+      "content": {
+       "application/x-www-form-urlencoded": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_generate_unconditional_task_api_tasks_generate_unconditional_post"
+        }
+       }
+      }
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/tasks/generate/motif": {
+    "post": {
+     "summary": "Generate Motif Task",
+     "description": "Motif scaffolding generation as a single atomic task.",
+     "operationId": "generate_motif_task_api_tasks_generate_motif_post",
+     "parameters": [
+      {
+       "name": "X-Bioagent-Job-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Bioagent-Job-Id"
+       }
+      },
+      {
+       "name": "X-Fc-Async-Task-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Fc-Async-Task-Id"
+       }
+      }
+     ],
+     "requestBody": {
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_generate_motif_task_api_tasks_generate_motif_post"
+        }
+       }
+      }
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/tasks/generate/binder": {
+    "post": {
+     "summary": "Generate Binder Task",
+     "description": "Binder design generation as a single atomic task.",
+     "operationId": "generate_binder_task_api_tasks_generate_binder_post",
+     "parameters": [
+      {
+       "name": "X-Bioagent-Job-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Bioagent-Job-Id"
+       }
+      },
+      {
+       "name": "X-Fc-Async-Task-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Fc-Async-Task-Id"
+       }
+      }
+     ],
+     "requestBody": {
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_generate_binder_task_api_tasks_generate_binder_post"
+        }
+       }
+      }
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/tasks/generate": {
+    "post": {
+     "summary": "Generate Custom Task",
+     "description": "Custom YAML generation as a single atomic task.",
+     "operationId": "generate_custom_task_api_tasks_generate_post",
+     "parameters": [
+      {
+       "name": "X-Bioagent-Job-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Bioagent-Job-Id"
+       }
+      },
+      {
+       "name": "X-Fc-Async-Task-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Fc-Async-Task-Id"
+       }
+      }
+     ],
+     "requestBody": {
+      "required": true,
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_generate_custom_task_api_tasks_generate_post"
+        }
+       }
+      }
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "components": {
+   "schemas": {
+    "Body_generate_binder_api_generate_binder_post": {
+     "properties": {
+      "dataset": {
+       "type": "string",
+       "contentMediaType": "application/octet-stream",
+       "title": "Dataset",
+       "description": "Zip with problems/ + targets/."
+      },
+      "n_sample": {
+       "type": "integer",
+       "title": "N Sample",
+       "default": 4
+      },
+      "batch_size": {
+       "type": "integer",
+       "title": "Batch Size",
+       "default": 1
+      },
+      "num_devices": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Num Devices",
+       "description": "Override genie3's GPU auto-detect. Leave unset to use all visible devices.",
+       "bioq_default": {
+        "kind": "auto",
+        "note": "auto-detect available devices/processes"
+       }
+      },
+      "selections": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Selections",
+       "description": "Comma-separated problem names from the dataset. Default: all problems.",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "direction_scale": {
+       "type": "number",
+       "title": "Direction Scale",
+       "default": 0.0
+      }
+     },
+     "type": "object",
+     "required": [
+      "dataset"
+     ],
+     "title": "Body_generate_binder_api_generate_binder_post"
+    },
+    "Body_generate_binder_task_api_tasks_generate_binder_post": {
+     "properties": {
+      "dataset": {
+       "anyOf": [
+        {
+         "type": "string",
+         "contentMediaType": "application/octet-stream"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Dataset",
+       "description": "Zip with problems/ + targets/."
+      },
+      "dataset_uri": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Dataset Uri",
+       "description": "URI to the dataset zip (oss://, file://, job://, http(s)://) as an alternative to a multipart upload — used by the gateway."
+      },
+      "n_sample": {
+       "type": "integer",
+       "title": "N Sample",
+       "default": 4
+      },
+      "batch_size": {
+       "type": "integer",
+       "title": "Batch Size",
+       "default": 1
+      },
+      "num_devices": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Num Devices",
+       "description": "Override genie3's GPU auto-detect. Leave unset to use all visible devices.",
+       "bioq_default": {
+        "kind": "auto",
+        "note": "auto-detect available devices/processes"
+       }
+      },
+      "selections": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Selections",
+       "description": "Comma-separated problem names from the dataset. Default: all problems.",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "direction_scale": {
+       "type": "number",
+       "title": "Direction Scale",
+       "default": 0.0
+      }
+     },
+     "type": "object",
+     "title": "Body_generate_binder_task_api_tasks_generate_binder_post"
+    },
+    "Body_generate_custom_api_generate_post": {
+     "properties": {
+      "config_yaml": {
+       "type": "string",
+       "title": "Config Yaml",
+       "description": "Full experiment YAML as a string."
+      },
+      "dataset": {
+       "anyOf": [
+        {
+         "type": "string",
+         "contentMediaType": "application/octet-stream"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Dataset",
+       "description": "Optional dataset zip; extracted to <job>/input/dataset/."
+      },
+      "num_devices": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Num Devices",
+       "description": "Override GPU auto-detect.",
+       "bioq_default": {
+        "kind": "auto",
+        "note": "auto-detect available devices/processes"
+       }
+      }
+     },
+     "type": "object",
+     "required": [
+      "config_yaml"
+     ],
+     "title": "Body_generate_custom_api_generate_post"
+    },
+    "Body_generate_custom_task_api_tasks_generate_post": {
+     "properties": {
+      "config_yaml": {
+       "type": "string",
+       "title": "Config Yaml",
+       "description": "Full experiment YAML as a string."
+      },
+      "dataset": {
+       "anyOf": [
+        {
+         "type": "string",
+         "contentMediaType": "application/octet-stream"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Dataset"
+      },
+      "dataset_uri": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Dataset Uri",
+       "description": "URI to an optional dataset zip (oss://, file://, job://, http(s)://) as an alternative to a multipart upload."
+      },
+      "num_devices": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Num Devices",
+       "bioq_default": {
+        "kind": "auto",
+        "note": "auto-detect available devices/processes"
+       }
+      }
+     },
+     "type": "object",
+     "required": [
+      "config_yaml"
+     ],
+     "title": "Body_generate_custom_task_api_tasks_generate_post"
+    },
+    "Body_generate_motif_api_generate_motif_post": {
+     "properties": {
+      "dataset": {
+       "type": "string",
+       "contentMediaType": "application/octet-stream",
+       "title": "Dataset",
+       "description": "Zip with problems/ + motifs/."
+      },
+      "n_sample": {
+       "type": "integer",
+       "title": "N Sample",
+       "default": 4
+      },
+      "batch_size": {
+       "type": "integer",
+       "title": "Batch Size",
+       "default": 1
+      },
+      "num_devices": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Num Devices",
+       "description": "Override genie3's GPU auto-detect. Leave unset to use all visible devices.",
+       "bioq_default": {
+        "kind": "auto",
+        "note": "auto-detect available devices/processes"
+       }
+      },
+      "selections": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Selections",
+       "description": "Comma-separated problem names from the dataset. Default: all problems.",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "direction_scale": {
+       "type": "number",
+       "title": "Direction Scale",
+       "default": 0.1
+      }
+     },
+     "type": "object",
+     "required": [
+      "dataset"
+     ],
+     "title": "Body_generate_motif_api_generate_motif_post"
+    },
+    "Body_generate_motif_task_api_tasks_generate_motif_post": {
+     "properties": {
+      "dataset": {
+       "anyOf": [
+        {
+         "type": "string",
+         "contentMediaType": "application/octet-stream"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Dataset",
+       "description": "Zip with problems/ + motifs/."
+      },
+      "dataset_uri": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Dataset Uri",
+       "description": "URI to the dataset zip (oss://, file://, job://, http(s)://) as an alternative to a multipart upload — used by the gateway."
+      },
+      "n_sample": {
+       "type": "integer",
+       "title": "N Sample",
+       "default": 4
+      },
+      "batch_size": {
+       "type": "integer",
+       "title": "Batch Size",
+       "default": 1
+      },
+      "num_devices": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Num Devices",
+       "description": "Override genie3's GPU auto-detect. Leave unset to use all visible devices.",
+       "bioq_default": {
+        "kind": "auto",
+        "note": "auto-detect available devices/processes"
+       }
+      },
+      "selections": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Selections",
+       "description": "Comma-separated problem names from the dataset. Default: all problems.",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "direction_scale": {
+       "type": "number",
+       "title": "Direction Scale",
+       "default": 0.1
+      }
+     },
+     "type": "object",
+     "title": "Body_generate_motif_task_api_tasks_generate_motif_post"
+    },
+    "Body_generate_unconditional_api_generate_unconditional_post": {
+     "properties": {
+      "n_sample": {
+       "type": "integer",
+       "title": "N Sample",
+       "default": 4
+      },
+      "batch_size": {
+       "type": "integer",
+       "title": "Batch Size",
+       "default": 1
+      },
+      "num_devices": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Num Devices",
+       "description": "Override genie3's GPU auto-detect. Leave unset to use all visible devices.",
+       "bioq_default": {
+        "kind": "auto",
+        "note": "auto-detect available devices/processes"
+       }
+      },
+      "min_length": {
+       "type": "integer",
+       "title": "Min Length",
+       "default": 100
+      },
+      "max_length": {
+       "type": "integer",
+       "title": "Max Length",
+       "default": 100
+      },
+      "length_step": {
+       "type": "integer",
+       "title": "Length Step",
+       "default": 50
+      },
+      "direction_scale": {
+       "type": "number",
+       "title": "Direction Scale",
+       "description": "Quality–diversity trade-off. Recommended 0.8 for length ≤ 300, 0.0 for longer.",
+       "default": 0.8
+      }
+     },
+     "type": "object",
+     "title": "Body_generate_unconditional_api_generate_unconditional_post"
+    },
+    "Body_generate_unconditional_task_api_tasks_generate_unconditional_post": {
+     "properties": {
+      "n_sample": {
+       "type": "integer",
+       "title": "N Sample",
+       "default": 4
+      },
+      "batch_size": {
+       "type": "integer",
+       "title": "Batch Size",
+       "default": 1
+      },
+      "num_devices": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Num Devices",
+       "description": "Override genie3's GPU auto-detect. Leave unset to use all visible devices.",
+       "bioq_default": {
+        "kind": "auto",
+        "note": "auto-detect available devices/processes"
+       }
+      },
+      "min_length": {
+       "type": "integer",
+       "title": "Min Length",
+       "default": 100
+      },
+      "max_length": {
+       "type": "integer",
+       "title": "Max Length",
+       "default": 100
+      },
+      "length_step": {
+       "type": "integer",
+       "title": "Length Step",
+       "default": 50
+      },
+      "direction_scale": {
+       "type": "number",
+       "title": "Direction Scale",
+       "description": "Quality–diversity trade-off. Recommended 0.8 for length ≤ 300, 0.0 for longer.",
+       "default": 0.8
+      }
+     },
+     "type": "object",
+     "title": "Body_generate_unconditional_task_api_tasks_generate_unconditional_post"
+    },
+    "Body_upload_file_api_uploads_post": {
+     "properties": {
+      "file": {
+       "type": "string",
+       "contentMediaType": "application/octet-stream",
+       "title": "File"
+      }
+     },
+     "type": "object",
+     "required": [
+      "file"
+     ],
+     "title": "Body_upload_file_api_uploads_post"
+    },
+    "EndpointExample": {
+     "properties": {
+      "title": {
+       "type": "string",
+       "title": "Title",
+       "description": "Short label (e.g., 'chain from previous job')."
+      },
+      "curl": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Curl",
+       "description": "Ready-to-run curl command."
+      },
+      "python": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Python",
+       "description": "Equivalent Python (httpx / requests) snippet."
+      },
+      "body": {
+       "anyOf": [
+        {
+         "additionalProperties": true,
+         "type": "object"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Body",
+       "description": "Structured request body, useful for JSON endpoints. Files are not represented here."
+      },
+      "notes": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Notes",
+       "description": "When an agent should reach for this example over the others."
+      }
+     },
+     "type": "object",
+     "required": [
+      "title"
+     ],
+     "title": "EndpointExample",
+     "description": "A copy-pasteable example for one endpoint."
+    },
+    "EndpointInfo": {
+     "properties": {
+      "method": {
+       "type": "string",
+       "title": "Method",
+       "description": "HTTP method, e.g. 'POST'."
+      },
+      "path": {
+       "type": "string",
+       "title": "Path",
+       "description": "URL path, e.g. '/api/rfdiffusion'."
+      },
+      "summary": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Summary",
+       "description": "One-line purpose (FastAPI route summary or first docstring line)."
+      },
+      "description": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Description",
+       "description": "Longer prose (FastAPI route description or docstring body)."
+      },
+      "operation_id": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Operation Id",
+       "description": "OpenAPI operation id; agents can fetch /openapi.json and look up /paths/{path}/{method} for the full request/response schemas."
+      },
+      "request_content_type": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Request Content Type",
+       "description": "Wire format the body uses: 'application/json' for plain JSON, 'multipart/form-data' when files are involved, etc."
+      },
+      "request_schema_ref": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Request Schema Ref",
+       "description": "JSON pointer into /openapi.json (e.g. '#/components/schemas/Body_run_rfdiffusion_api_rfdiffusion_post'). Resolve there for the full schema; the flat `request_fields` list below covers the common case."
+      },
+      "response_schema_ref": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Response Schema Ref",
+       "description": "Pointer to the 200-response schema (typically '#/components/schemas/JobInfo')."
+      },
+      "request_fields": {
+       "items": {
+        "$ref": "#/components/schemas/FieldInfo"
+       },
+       "type": "array",
+       "title": "Request Fields",
+       "description": "Top-level fields of the request body, flattened for agent consumption."
+      },
+      "examples": {
+       "items": {
+        "$ref": "#/components/schemas/EndpointExample"
+       },
+       "type": "array",
+       "title": "Examples",
+       "description": "Copy-pasteable examples (from `adapter.endpoint_examples()`)."
+      }
+     },
+     "type": "object",
+     "required": [
+      "method",
+      "path"
+     ],
+     "title": "EndpointInfo",
+     "description": "One service-defined HTTP operation, with enough metadata to construct a request."
+    },
+    "FailureKind": {
+     "type": "string",
+     "enum": [
+      "subprocess_error",
+      "no_outputs",
+      "timeout",
+      "dataset_invalid",
+      "interrupted"
+     ],
+     "title": "FailureKind",
+     "description": "Coarse classification of why a job failed.\n\nSet by `finalize_job` based on subprocess return code + output detection,\nor by `reload_from_disk` when a job was RUNNING at the moment of restart.\nLets the client distinguish recoverable from fatal failures without parsing\n`error_summary` strings."
+    },
+    "FieldInfo": {
+     "properties": {
+      "name": {
+       "type": "string",
+       "title": "Name",
+       "description": "Field name as it appears in the request body / form."
+      },
+      "type": {
+       "type": "string",
+       "title": "Type",
+       "description": "Human-friendly type name: 'string', 'integer', 'file' (multipart upload), 'array[string]', 'array[file]', or the name of a referenced pydantic model (in which case look it up in /openapi.json#/components/schemas)."
+      },
+      "required": {
+       "type": "boolean",
+       "title": "Required",
+       "description": "True iff the field must be present in the request."
+      },
+      "description": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Description",
+       "description": "From Field(description=...) / docstring."
+      },
+      "is_file": {
+       "type": "boolean",
+       "title": "Is File",
+       "description": "True iff this is a multipart file upload — a scalar 'file' or an 'array[file]' (rather than a form/json scalar).",
+       "default": false
+      },
+      "default": {
+       "title": "Default",
+       "description": "Effective default when omitted: a literal (default_kind='literal') or a semantics token 'auto'/'unset'."
+      },
+      "default_kind": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Default Kind",
+       "description": "'literal' | 'auto' | 'unset'. 'auto'/'unset' are semantics tokens (not sendable literals); 'literal' means `default` is a real value."
+      },
+      "default_note": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Default Note",
+       "description": "One-line prose for the 'auto'/'unset' omission semantics."
+      }
+     },
+     "type": "object",
+     "required": [
+      "name",
+      "type",
+      "required"
+     ],
+     "title": "FieldInfo",
+     "description": "One request-body field, flattened from the OpenAPI schema."
+    },
+    "HTTPValidationError": {
+     "properties": {
+      "detail": {
+       "items": {
+        "$ref": "#/components/schemas/ValidationError"
+       },
+       "type": "array",
+       "title": "Detail"
+      }
+     },
+     "type": "object",
+     "title": "HTTPValidationError"
+    },
+    "JobInfo": {
+     "properties": {
+      "job_id": {
+       "type": "string",
+       "minLength": 1,
+       "title": "Job Id"
+      },
+      "status": {
+       "$ref": "#/components/schemas/JobStatus"
+      },
+      "service": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Service"
+      },
+      "endpoint": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Endpoint"
+      },
+      "message": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Message"
+      },
+      "progress": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Progress"
+      },
+      "created_at": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date-time"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Created At"
+      },
+      "started_at": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date-time"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Started At"
+      },
+      "completed_at": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date-time"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Completed At"
+      },
+      "duration_seconds": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Duration Seconds"
+      },
+      "input_params": {
+       "anyOf": [
+        {
+         "additionalProperties": true,
+         "type": "object"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Input Params"
+      },
+      "output_count": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Output Count"
+      },
+      "output_total_bytes": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Output Total Bytes"
+      },
+      "error_summary": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Error Summary"
+      },
+      "error_tail": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Error Tail"
+      },
+      "failure_kind": {
+       "anyOf": [
+        {
+         "$ref": "#/components/schemas/FailureKind"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "instance_id": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Instance Id"
+      }
+     },
+     "type": "object",
+     "required": [
+      "job_id",
+      "status"
+     ],
+     "title": "JobInfo",
+     "description": "Public job state — what `GET /api/jobs/{id}` returns."
+    },
+    "JobLifecycle": {
+     "properties": {
+      "poll_endpoint": {
+       "type": "string",
+       "title": "Poll Endpoint",
+       "default": "/api/jobs/{job_id}"
+      },
+      "files_endpoint": {
+       "type": "string",
+       "title": "Files Endpoint",
+       "default": "/api/jobs/{job_id}/files"
+      },
+      "log_endpoint": {
+       "type": "string",
+       "title": "Log Endpoint",
+       "default": "/api/jobs/{job_id}/log"
+      },
+      "download_endpoint": {
+       "type": "string",
+       "title": "Download Endpoint",
+       "default": "/api/jobs/{job_id}/download"
+      },
+      "single_file_endpoint": {
+       "type": "string",
+       "title": "Single File Endpoint",
+       "default": "/api/jobs/{job_id}/file/{path}"
+      },
+      "delete_endpoint": {
+       "type": "string",
+       "title": "Delete Endpoint",
+       "default": "/api/jobs/{job_id}"
+      },
+      "statuses": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array",
+       "title": "Statuses",
+       "description": "All possible values of JobInfo.status."
+      },
+      "failure_kinds": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array",
+       "title": "Failure Kinds",
+       "description": "All possible values of JobInfo.failure_kind (only set on failure)."
+      },
+      "poll_recommendation": {
+       "type": "string",
+       "title": "Poll Recommendation",
+       "default": "Poll the status endpoint every 5–120 s until status ∈ {'completed', 'failed'}. On failure, JobInfo.error_summary holds a one-line exception summary and error_tail holds the trailing ~4 KB of the subprocess log — usually enough for triage without a separate /log fetch."
+      },
+      "restart_semantics": {
+       "type": "string",
+       "title": "Restart Semantics",
+       "default": "Jobs survive process and FC instance restarts via a `job.json` sidecar in each job directory. Jobs that were RUNNING at the moment of restart are downgraded to FAILED with failure_kind='interrupted'."
+      }
+     },
+     "type": "object",
+     "title": "JobLifecycle",
+     "description": "Framework-provided job state machine. Identical across all bioagent services."
+    },
+    "JobStatus": {
+     "type": "string",
+     "enum": [
+      "pending",
+      "running",
+      "completed",
+      "failed"
+     ],
+     "title": "JobStatus",
+     "description": "Lifecycle state of a job. Strings so JSON serialization is human-readable."
+    },
+    "NasLayout": {
+     "properties": {
+      "jobs_base_dir": {
+       "type": "string",
+       "format": "path",
+       "title": "Jobs Base Dir",
+       "description": "Root directory under which per-job dirs are created."
+      },
+      "per_job_structure": {
+       "type": "string",
+       "title": "Per Job Structure",
+       "default": "<jobs_base_dir>/<job_id>/{input/, output/, logs/run.log, job.json}"
+      },
+      "cross_instance_consistency": {
+       "type": "string",
+       "title": "Cross Instance Consistency",
+       "default": "When multiple FC instances mount the same NAS at jobs_base_dir, all of them can see each other's jobs via read-through cache on GET. Writes (create/update) only happen on the instance that owns the subprocess."
+      },
+      "cross_service_sharing": {
+       "type": "string",
+       "title": "Cross Service Sharing",
+       "default": "Other bioagent services mounted on the same NAS can read this service's output files directly by path, avoiding HTTP round-trips. Example: another service does `Path('/data/rfantibody_jobs/<id>/output/file.qv').read_bytes()`."
+      }
+     },
+     "type": "object",
+     "required": [
+      "jobs_base_dir"
+     ],
+     "title": "NasLayout",
+     "description": "Where each job's data lives on disk; shared across multi-instance FC."
+    },
+    "ServiceManifest": {
+     "properties": {
+      "service": {
+       "type": "string",
+       "title": "Service",
+       "description": "Adapter.name; stable identifier across versions."
+      },
+      "title": {
+       "type": "string",
+       "title": "Title",
+       "description": "Human-readable title (FastAPI app title)."
+      },
+      "version": {
+       "type": "string",
+       "title": "Version",
+       "description": "Semantic version of the service image."
+      },
+      "description": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Description",
+       "description": "Free-form prose (FastAPI app description)."
+      },
+      "endpoints": {
+       "items": {
+        "$ref": "#/components/schemas/EndpointInfo"
+       },
+       "type": "array",
+       "title": "Endpoints",
+       "description": "Service-specific POST routes. Framework lifecycle routes are NOT included."
+      },
+      "job_lifecycle": {
+       "$ref": "#/components/schemas/JobLifecycle"
+      },
+      "nas_layout": {
+       "$ref": "#/components/schemas/NasLayout"
+      },
+      "service_specific": {
+       "additionalProperties": true,
+       "type": "object",
+       "title": "Service Specific",
+       "description": "Whatever `adapter.manifest_extras()` returned. Services document their output filename conventions, supported input URI schemes, and any tool-specific hints here."
+      },
+      "openapi_url": {
+       "type": "string",
+       "title": "Openapi Url",
+       "description": "Where to fetch the full JSON Schema for every request/response model.",
+       "default": "/openapi.json"
+      }
+     },
+     "type": "object",
+     "required": [
+      "service",
+      "title",
+      "version",
+      "job_lifecycle",
+      "nas_layout"
+     ],
+     "title": "ServiceManifest",
+     "description": "Agent-facing protocol description for one bioagent service."
+    },
+    "UploadInfo": {
+     "properties": {
+      "filename": {
+       "type": "string",
+       "title": "Filename",
+       "description": "Sanitized basename of the staged file."
+      },
+      "size_bytes": {
+       "type": "integer",
+       "minimum": 0.0,
+       "title": "Size Bytes",
+       "description": "Bytes written to disk."
+      },
+      "path": {
+       "type": "string",
+       "title": "Path",
+       "description": "Absolute path on the shared NAS mount."
+      },
+      "uri": {
+       "type": "string",
+       "title": "Uri",
+       "description": "file:// URI resolvable by any service's *_uri input."
+      }
+     },
+     "type": "object",
+     "required": [
+      "filename",
+      "size_bytes",
+      "path",
+      "uri"
+     ],
+     "title": "UploadInfo",
+     "description": "What `POST /api/uploads` returns after staging a file on shared NAS.\n\n`uri` is a `file://` reference the caller passes as a `*_uri` field on a\nlater submit / async-task request, keeping large bytes out of the 128 KiB\nasync event payload."
+    },
+    "ValidationError": {
+     "properties": {
+      "loc": {
+       "items": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "integer"
+         }
+        ]
+       },
+       "type": "array",
+       "title": "Location"
+      },
+      "msg": {
+       "type": "string",
+       "title": "Message"
+      },
+      "type": {
+       "type": "string",
+       "title": "Error Type"
+      },
+      "input": {
+       "title": "Input"
+      },
+      "ctx": {
+       "type": "object",
+       "title": "Context"
+      }
+     },
+     "type": "object",
+     "required": [
+      "loc",
+      "msg",
+      "type"
+     ],
+     "title": "ValidationError"
+    }
+   }
+  }
+ },
+ "status": "ok",
+ "source": "registry"
+}

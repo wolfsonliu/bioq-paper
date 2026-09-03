@@ -1,0 +1,10 @@
+stage,count
+rfdiffusion_backbones,1000
+mpnn_sequences,8000
+rf2_scored,8000
+pae_pass,866
+passed_filter,192
+pae_pass_fraction,0.1082
+in_silico_pass_fraction,0.024
+backbone_pass,96
+backbone_pass_fraction,0.096

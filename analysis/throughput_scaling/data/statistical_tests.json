@@ -1,0 +1,5194 @@
+{
+  "meta": {
+    "alpha": 0.05,
+    "tests": {
+      "kruskal_wallis": "omnibus across N levels (chi-square approximation, tie-corrected)",
+      "mann_whitney_u": "two-sided pairwise between N levels (exact permutation; asymptotic fallback)"
+    },
+    "effect_sizes": {
+      "rank_biserial_r": "Mann-Whitney: 1 - 2U/(n_a*n_b); +1/-1 = full separation",
+      "eta_squared": "Kruskal-Wallis: (H - k + 1)/(n - k)"
+    },
+    "caveats": [
+      "replicate_level uses n=3 per N: an exact two-sided Mann-Whitney p has a floor of 0.1 for n=3 vs n=3, so pairwise p-values can look flat \u2014 the job_level tests carry the signal for per-job metrics.",
+      "job_level pools jobs across the 3 replicates of each N; jobs within a replicate batch share contention, so treat these as exploratory.",
+      "p-values are two-sided and uncorrected for multiple comparisons."
+    ]
+  },
+  "replicate_level": {
+    "dockq": {
+      "makespan_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 13.31,
+            "mean": 16.58,
+            "values": [
+              6.9,
+              13.31,
+              29.53
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 20.18,
+            "mean": 36.757,
+            "values": [
+              19.84,
+              20.18,
+              70.25
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 7247.26,
+            "mean": 4855.533,
+            "values": [
+              68.43,
+              7247.26,
+              7250.91
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 5.0667,
+          "p_value": 0.07939393227707836,
+          "eta_squared": 0.5111,
+          "n_groups": 3,
+          "n": 9,
+          "significant": false
+        },
+        "pairwise": [
+          {
+            "U": 2.0,
+            "p_value": 0.4,
+            "rank_biserial_r": 0.5556,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 1.0,
+            "p_value": 0.2,
+            "rank_biserial_r": 0.7778,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "throughput_jobs_per_hour": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 270.5,
+            "mean": 304.7,
+            "values": [
+              121.9,
+              270.5,
+              521.7
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 1783.9,
+            "mean": 1370.3,
+            "values": [
+              512.5,
+              1783.9,
+              1814.5
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 23.3,
+            "mean": 891.667,
+            "values": [
+              21.3,
+              23.3,
+              2630.4
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 1.6889,
+          "p_value": 0.42979606748951604,
+          "eta_squared": -0.0519,
+          "n_groups": 3,
+          "n": 9,
+          "significant": false
+        },
+        "pairwise": [
+          {
+            "U": 1.0,
+            "p_value": 0.2,
+            "rank_biserial_r": 0.7778,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 6.0,
+            "p_value": 0.7,
+            "rank_biserial_r": -0.3333,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 6.0,
+            "p_value": 0.7,
+            "rank_biserial_r": -0.3333,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "speedup_vs_serial": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 0.95,
+            "mean": 1.073,
+            "values": [
+              0.43,
+              0.95,
+              1.84
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 6.28,
+            "mean": 4.823,
+            "values": [
+              1.8,
+              6.28,
+              6.39
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 0.09,
+            "mean": 3.147,
+            "values": [
+              0.09,
+              0.09,
+              9.26
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 1.7031,
+          "p_value": 0.4267569565345187,
+          "eta_squared": -0.0495,
+          "n_groups": 3,
+          "n": 9,
+          "significant": false
+        },
+        "pairwise": [
+          {
+            "U": 1.0,
+            "p_value": 0.2,
+            "rank_biserial_r": 0.7778,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 6.0,
+            "p_value": 0.7,
+            "rank_biserial_r": -0.3333,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 6.0,
+            "p_value": 0.7,
+            "rank_biserial_r": -0.3333,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "peak_concurrency": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 1.0,
+            "mean": 1.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 8.0,
+            "mean": 7.667,
+            "values": [
+              5.0,
+              8.0,
+              10.0
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 9.0,
+            "mean": 9.667,
+            "values": [
+              0.0,
+              9.0,
+              20.0
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 2.5747,
+          "p_value": 0.27599947323405416,
+          "eta_squared": 0.0958,
+          "n_groups": 3,
+          "n": 9,
+          "significant": false
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 3.0,
+            "p_value": 0.7,
+            "rank_biserial_r": 0.3333,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 4.0,
+            "p_value": 1.0,
+            "rank_biserial_r": 0.1111,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "cold_start_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 1.71,
+            "mean": 8.727,
+            "values": [
+              1.09,
+              1.71,
+              23.38
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 6.4,
+            "mean": 8.153,
+            "values": [
+              6.07,
+              6.4,
+              11.99
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 33.12,
+            "mean": 33.307,
+            "values": [
+              28.84,
+              33.12,
+              37.96
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 5.6,
+          "p_value": 0.06081006262521791,
+          "eta_squared": 0.6,
+          "n_groups": 3,
+          "n": 9,
+          "significant": false
+        },
+        "pairwise": [
+          {
+            "U": 3.0,
+            "p_value": 0.7,
+            "rank_biserial_r": 0.3333,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      }
+    },
+    "mmseqs2": {
+      "makespan_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 9.21,
+            "mean": 8.357,
+            "values": [
+              2.81,
+              9.21,
+              13.05
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 24.42,
+            "mean": 23.423,
+            "values": [
+              17.68,
+              24.42,
+              28.17
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 102.14,
+            "mean": 102.33,
+            "values": [
+              99.37,
+              102.14,
+              105.48
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.2,
+          "p_value": 0.02732372244729252,
+          "eta_squared": 0.8667,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "throughput_jobs_per_hour": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 390.9,
+            "mean": 649.3,
+            "values": [
+              275.9,
+              390.9,
+              1281.1
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 1474.2,
+            "mean": 1596.133,
+            "values": [
+              1278.0,
+              1474.2,
+              2036.2
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 1762.3,
+            "mean": 1760.067,
+            "values": [
+              1706.5,
+              1762.3,
+              1811.4
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 4.6222,
+          "p_value": 0.09915102252982538,
+          "eta_squared": 0.437,
+          "n_groups": 3,
+          "n": 9,
+          "significant": false
+        },
+        "pairwise": [
+          {
+            "U": 1.0,
+            "p_value": 0.2,
+            "rank_biserial_r": 0.7778,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 3.0,
+            "p_value": 0.7,
+            "rank_biserial_r": 0.3333,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "speedup_vs_serial": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 0.92,
+            "mean": 1.523,
+            "values": [
+              0.65,
+              0.92,
+              3.0
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 3.45,
+            "mean": 3.737,
+            "values": [
+              2.99,
+              3.45,
+              4.77
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 4.13,
+            "mean": 4.123,
+            "values": [
+              4.0,
+              4.13,
+              4.24
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 4.6222,
+          "p_value": 0.09915102252982538,
+          "eta_squared": 0.437,
+          "n_groups": 3,
+          "n": 9,
+          "significant": false
+        },
+        "pairwise": [
+          {
+            "U": 1.0,
+            "p_value": 0.2,
+            "rank_biserial_r": 0.7778,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 3.0,
+            "p_value": 0.7,
+            "rank_biserial_r": 0.3333,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "cold_start_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 8.43,
+            "mean": 7.607,
+            "values": [
+              2.01,
+              8.43,
+              12.38
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 9.05,
+            "mean": 12.563,
+            "values": [
+              8.18,
+              9.05,
+              20.46
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 42.09,
+            "mean": 43.46,
+            "values": [
+              40.55,
+              42.09,
+              47.74
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 5.6,
+          "p_value": 0.06081006262521791,
+          "eta_squared": 0.6,
+          "n_groups": 3,
+          "n": 9,
+          "significant": false
+        },
+        "pairwise": [
+          {
+            "U": 3.0,
+            "p_value": 0.7,
+            "rank_biserial_r": 0.3333,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      }
+    },
+    "plip": {
+      "makespan_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 17.19,
+            "mean": 15.657,
+            "values": [
+              12.58,
+              17.19,
+              17.2
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 26.69,
+            "mean": 27.513,
+            "values": [
+              24.44,
+              26.69,
+              31.41
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 50.19,
+            "mean": 50.47,
+            "values": [
+              46.23,
+              50.19,
+              54.99
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.2,
+          "p_value": 0.02732372244729252,
+          "eta_squared": 0.8667,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "throughput_jobs_per_hour": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 209.4,
+            "mean": 234.967,
+            "values": [
+              209.3,
+              209.4,
+              286.2
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 1348.8,
+            "mean": 1322.633,
+            "values": [
+              1146.1,
+              1348.8,
+              1473.0
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 3586.4,
+            "mean": 3584.433,
+            "values": [
+              3273.3,
+              3586.4,
+              3893.6
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.2,
+          "p_value": 0.02732372244729252,
+          "eta_squared": 0.8667,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "speedup_vs_serial": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 0.98,
+            "mean": 1.1,
+            "values": [
+              0.98,
+              0.98,
+              1.34
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 6.32,
+            "mean": 6.197,
+            "values": [
+              5.37,
+              6.32,
+              6.9
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 16.81,
+            "mean": 16.8,
+            "values": [
+              15.34,
+              16.81,
+              18.25
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.2605,
+          "p_value": 0.026509500499067192,
+          "eta_squared": 0.8768,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "peak_concurrency": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 1.0,
+            "mean": 1.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 9.0,
+            "mean": 9.333,
+            "values": [
+              9.0,
+              9.0,
+              10.0
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 1.0,
+            "mean": 1.0,
+            "values": [
+              0.0,
+              1.0,
+              2.0
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 5.945,
+          "p_value": 0.05117638600227583,
+          "eta_squared": 0.6575,
+          "n_groups": 3,
+          "n": 9,
+          "significant": false
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 4.5,
+            "p_value": 1.0,
+            "rank_biserial_r": 0.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 9.0,
+            "p_value": 0.1,
+            "rank_biserial_r": -1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "cold_start_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 6.21,
+            "mean": 4.487,
+            "values": [
+              0.71,
+              6.21,
+              6.54
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 6.1,
+            "mean": 7.747,
+            "values": [
+              4.76,
+              6.1,
+              12.38
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 22.79,
+            "mean": 23.38,
+            "values": [
+              22.73,
+              22.79,
+              24.62
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 5.4222,
+          "p_value": 0.06646291798667313,
+          "eta_squared": 0.5704,
+          "n_groups": 3,
+          "n": 9,
+          "significant": false
+        },
+        "pairwise": [
+          {
+            "U": 4.0,
+            "p_value": 1.0,
+            "rank_biserial_r": 0.1111,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      }
+    },
+    "proteinmpnn": {
+      "makespan_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 29.28,
+            "mean": 27.787,
+            "values": [
+              18.59,
+              29.28,
+              35.49
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 45.74,
+            "mean": 45.63,
+            "values": [
+              44.85,
+              45.74,
+              46.3
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 130.68,
+            "mean": 133.43,
+            "values": [
+              128.21,
+              130.68,
+              141.4
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.2,
+          "p_value": 0.02732372244729252,
+          "eta_squared": 0.8667,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "throughput_jobs_per_hour": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 123.0,
+            "mean": 139.367,
+            "values": [
+              101.4,
+              123.0,
+              193.7
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 787.1,
+            "mean": 789.1,
+            "values": [
+              777.5,
+              787.1,
+              802.7
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 1377.4,
+            "mean": 1351.433,
+            "values": [
+              1273.0,
+              1377.4,
+              1403.9
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.2,
+          "p_value": 0.02732372244729252,
+          "eta_squared": 0.8667,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "speedup_vs_serial": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 0.96,
+            "mean": 1.093,
+            "values": [
+              0.8,
+              0.96,
+              1.52
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 6.17,
+            "mean": 6.187,
+            "values": [
+              6.1,
+              6.17,
+              6.29
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 10.8,
+            "mean": 10.597,
+            "values": [
+              9.98,
+              10.8,
+              11.01
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.2,
+          "p_value": 0.02732372244729252,
+          "eta_squared": 0.8667,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "peak_concurrency": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 1.0,
+            "mean": 1.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 10.0,
+            "mean": 10.0,
+            "values": [
+              10.0,
+              10.0,
+              10.0
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 35.0,
+            "mean": 28.333,
+            "values": [
+              9.0,
+              35.0,
+              41.0
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 6.0,
+          "p_value": 0.049787068367863896,
+          "eta_squared": 0.6667,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 3.0,
+            "p_value": 0.7,
+            "rank_biserial_r": 0.3333,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "cold_start_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 16.05,
+            "mean": 14.67,
+            "values": [
+              6.58,
+              16.05,
+              21.38
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 19.56,
+            "mean": 20.24,
+            "values": [
+              19.11,
+              19.56,
+              22.05
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 43.0,
+            "mean": 42.87,
+            "values": [
+              42.26,
+              43.0,
+              43.35
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 5.9556,
+          "p_value": 0.05090583233639852,
+          "eta_squared": 0.6593,
+          "n_groups": 3,
+          "n": 9,
+          "significant": false
+        },
+        "pairwise": [
+          {
+            "U": 2.0,
+            "p_value": 0.4,
+            "rank_biserial_r": 0.5556,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      }
+    },
+    "reinvent": {
+      "makespan_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 30.79,
+            "mean": 34.277,
+            "values": [
+              30.53,
+              30.79,
+              41.51
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 63.42,
+            "mean": 69.927,
+            "values": [
+              60.94,
+              63.42,
+              85.42
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 144.68,
+            "mean": 144.76,
+            "values": [
+              144.42,
+              144.68,
+              145.18
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.2,
+          "p_value": 0.02732372244729252,
+          "eta_squared": 0.8667,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "throughput_jobs_per_hour": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 116.9,
+            "mean": 107.167,
+            "values": [
+              86.7,
+              116.9,
+              117.9
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 567.6,
+            "mean": 526.567,
+            "values": [
+              421.4,
+              567.6,
+              590.7
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 1244.1,
+            "mean": 1243.433,
+            "values": [
+              1239.8,
+              1244.1,
+              1246.4
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.2,
+          "p_value": 0.02732372244729252,
+          "eta_squared": 0.8667,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "speedup_vs_serial": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 0.98,
+            "mean": 0.897,
+            "values": [
+              0.72,
+              0.98,
+              0.99
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 4.74,
+            "mean": 4.4,
+            "values": [
+              3.52,
+              4.74,
+              4.94
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 10.4,
+            "mean": 10.39,
+            "values": [
+              10.36,
+              10.4,
+              10.41
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.2,
+          "p_value": 0.02732372244729252,
+          "eta_squared": 0.8667,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "peak_concurrency": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 1.0,
+            "mean": 1.0,
+            "values": [
+              1.0,
+              1.0,
+              1.0
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 10.0,
+            "mean": 10.0,
+            "values": [
+              10.0,
+              10.0,
+              10.0
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 48.0,
+            "mean": 48.0,
+            "values": [
+              47.0,
+              48.0,
+              49.0
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.7143,
+          "p_value": 0.021128279881183255,
+          "eta_squared": 0.9524,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "cold_start_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 7.19,
+            "mean": 8.927,
+            "values": [
+              7.18,
+              7.19,
+              12.41
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 8.02,
+            "mean": 11.697,
+            "values": [
+              7.69,
+              8.02,
+              19.38
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 38.11,
+            "mean": 39.77,
+            "values": [
+              37.17,
+              38.11,
+              44.03
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 5.9556,
+          "p_value": 0.05090583233639852,
+          "eta_squared": 0.6593,
+          "n_groups": 3,
+          "n": 9,
+          "significant": false
+        },
+        "pairwise": [
+          {
+            "U": 2.0,
+            "p_value": 0.4,
+            "rank_biserial_r": 0.5556,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      }
+    },
+    "rfdiffusion2": {
+      "makespan_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 14.16,
+            "mean": 11.943,
+            "values": [
+              7.25,
+              14.16,
+              14.42
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 30.6,
+            "mean": 30.88,
+            "values": [
+              26.32,
+              30.6,
+              35.72
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 82.41,
+            "mean": 89.883,
+            "values": [
+              82.1,
+              82.41,
+              105.14
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.2,
+          "p_value": 0.02732372244729252,
+          "eta_squared": 0.8667,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "throughput_jobs_per_hour": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 254.2,
+            "mean": 333.5,
+            "values": [
+              249.7,
+              254.2,
+              496.6
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 1176.5,
+            "mean": 1184.033,
+            "values": [
+              1007.8,
+              1176.5,
+              1367.8
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 2184.2,
+            "mean": 2029.533,
+            "values": [
+              1712.0,
+              2184.2,
+              2192.4
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.2,
+          "p_value": 0.02732372244729252,
+          "eta_squared": 0.8667,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "speedup_vs_serial": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 0.95,
+            "mean": 1.25,
+            "values": [
+              0.94,
+              0.95,
+              1.86
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 4.41,
+            "mean": 4.44,
+            "values": [
+              3.78,
+              4.41,
+              5.13
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 8.18,
+            "mean": 7.607,
+            "values": [
+              6.42,
+              8.18,
+              8.22
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.2,
+          "p_value": 0.02732372244729252,
+          "eta_squared": 0.8667,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      },
+      "cold_start_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 13.49,
+            "mean": 11.213,
+            "values": [
+              6.42,
+              13.49,
+              13.73
+            ]
+          },
+          "10": {
+            "n": 3,
+            "median": 21.59,
+            "mean": 21.967,
+            "values": [
+              18.66,
+              21.59,
+              25.65
+            ]
+          },
+          "50": {
+            "n": 3,
+            "median": 41.63,
+            "mean": 43.217,
+            "values": [
+              41.6,
+              41.63,
+              46.42
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 7.2,
+          "p_value": 0.02732372244729252,
+          "eta_squared": 0.8667,
+          "n_groups": 3,
+          "n": 9,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 0.1,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 3,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": false
+          }
+        ]
+      }
+    }
+  },
+  "job_level": {
+    "dockq": {
+      "cold_start_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 1.712,
+            "mean": 8.727,
+            "values": [
+              1.088,
+              1.712,
+              23.382
+            ]
+          },
+          "10": {
+            "n": 30,
+            "median": 7.225,
+            "mean": 9.143,
+            "values": [
+              3.736,
+              3.947,
+              4.177,
+              4.464,
+              4.706,
+              4.995,
+              5.264,
+              5.508,
+              5.802,
+              5.963,
+              6.131,
+              6.346,
+              6.668,
+              6.849,
+              7.197,
+              7.252,
+              7.312,
+              7.699,
+              7.811,
+              8.282,
+              8.665,
+              8.674,
+              9.03,
+              9.366,
+              11.518,
+              12.459,
+              13.034,
+              14.227,
+              15.703,
+              51.519
+            ]
+          },
+          "50": {
+            "n": 140,
+            "median": 33.476,
+            "mean": 32.909,
+            "values": [
+              16.514,
+              16.969,
+              17.416,
+              18.021,
+              18.669,
+              18.74,
+              18.983,
+              19.203,
+              19.426,
+              19.544,
+              19.977,
+              20.126,
+              20.155,
+              20.5,
+              20.626,
+              20.965,
+              21.245,
+              21.517,
+              21.716,
+              21.734,
+              21.936,
+              22.568,
+              23.126,
+              23.196,
+              23.291,
+              23.643,
+              23.886,
+              24.184,
+              24.216,
+              24.371,
+              24.714,
+              24.778,
+              24.917,
+              25.253,
+              25.354,
+              25.427,
+              25.716,
+              25.833,
+              25.904,
+              26.169,
+              26.286,
+              26.495,
+              26.622,
+              27.34,
+              27.436,
+              27.583,
+              27.902,
+              27.909,
+              28.378,
+              28.598,
+              28.839,
+              29.002,
+              29.321,
+              29.481,
+              29.76,
+              30.141,
+              30.223,
+              30.522,
+              30.774,
+              31.205,
+              31.373,
+              31.637,
+              31.872,
+              32.121,
+              32.398,
+              32.623,
+              32.894,
+              32.938,
+              33.122,
+              33.464,
+              33.487,
+              33.588,
+              34.042,
+              34.094,
+              34.239,
+              34.509,
+              34.602,
+              34.792,
+              35.099,
+              35.21,
+              35.55,
+              35.634,
+              35.788,
+              36.107,
+              36.12,
+              36.339,
+              36.605,
+              36.617,
+              36.887,
+              37.103,
+              37.221,
+              37.352,
+              37.586,
+              37.709,
+              37.804,
+              38.013,
+              38.219,
+              38.261,
+              38.656,
+              38.711,
+              38.833,
+              39.17,
+              39.205,
+              39.421,
+              39.603,
+              39.644,
+              39.903,
+              40.188,
+              40.449,
+              40.497,
+              40.713,
+              40.987,
+              41.172,
+              41.245,
+              41.363,
+              41.544,
+              41.689,
+              42.146,
+              42.238,
+              42.585,
+              42.7,
+              43.122,
+              43.587,
+              44.07,
+              44.277,
+              44.795,
+              45.007,
+              45.279,
+              45.758,
+              46.277,
+              46.936,
+              47.348,
+              47.654,
+              47.706,
+              48.17,
+              48.311,
+              48.842,
+              49.389,
+              49.992,
+              50.69
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 68.6875,
+          "p_value": 1.2153259781354581e-15,
+          "eta_squared": 0.3923,
+          "n_groups": 3,
+          "n": 173,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 29.0,
+            "p_value": 0.34824046920821117,
+            "rank_biserial_r": 0.3556,
+            "n_a": 3,
+            "n_b": 30,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 25.0,
+            "p_value": 0.002682364084821382,
+            "rank_biserial_r": 0.881,
+            "n_a": 3,
+            "n_b": 140,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": true
+          },
+          {
+            "U": 140.0,
+            "p_value": 1.0975699830254623e-22,
+            "rank_biserial_r": 0.9333,
+            "n_a": 30,
+            "n_b": 140,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": true
+          }
+        ]
+      },
+      "latency_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 12.679,
+            "mean": 15.986,
+            "values": [
+              6.493,
+              12.679,
+              28.787
+            ]
+          },
+          "10": {
+            "n": 30,
+            "median": 14.156,
+            "mean": 16.23,
+            "values": [
+              7.699,
+              8.282,
+              8.674,
+              9.366,
+              11.476,
+              11.986,
+              12.102,
+              12.512,
+              12.529,
+              12.995,
+              13.044,
+              13.544,
+              13.674,
+              13.681,
+              14.081,
+              14.231,
+              14.607,
+              14.822,
+              14.925,
+              15.135,
+              15.594,
+              16.053,
+              16.812,
+              17.288,
+              18.437,
+              19.385,
+              19.958,
+              21.527,
+              30.281,
+              62.211
+            ]
+          },
+          "50": {
+            "n": 140,
+            "median": 36.221,
+            "mean": 35.85,
+            "values": [
+              18.74,
+              19.544,
+              20.126,
+              20.5,
+              20.965,
+              21.517,
+              21.716,
+              21.936,
+              22.568,
+              23.126,
+              23.196,
+              23.291,
+              23.643,
+              24.184,
+              24.216,
+              24.714,
+              24.778,
+              25.24,
+              25.253,
+              25.354,
+              25.716,
+              25.904,
+              26.169,
+              26.274,
+              26.495,
+              26.622,
+              27.436,
+              27.583,
+              27.702,
+              27.902,
+              27.909,
+              28.378,
+              28.598,
+              28.839,
+              29.002,
+              29.481,
+              29.76,
+              30.141,
+              30.223,
+              30.522,
+              31.205,
+              31.373,
+              31.637,
+              31.872,
+              32.398,
+              32.623,
+              32.883,
+              32.894,
+              32.938,
+              33.122,
+              33.399,
+              33.423,
+              33.464,
+              33.487,
+              33.588,
+              34.042,
+              34.094,
+              34.239,
+              34.362,
+              34.509,
+              34.602,
+              34.839,
+              34.976,
+              35.099,
+              35.21,
+              35.634,
+              35.788,
+              35.932,
+              36.107,
+              36.12,
+              36.322,
+              36.339,
+              36.617,
+              36.887,
+              37.103,
+              37.221,
+              37.352,
+              37.586,
+              37.709,
+              37.804,
+              38.013,
+              38.219,
+              38.261,
+              38.319,
+              38.541,
+              38.656,
+              38.711,
+              38.833,
+              38.902,
+              39.17,
+              39.205,
+              39.421,
+              39.481,
+              39.603,
+              39.644,
+              39.903,
+              39.962,
+              40.188,
+              40.449,
+              40.453,
+              40.497,
+              40.713,
+              40.879,
+              40.987,
+              41.172,
+              41.245,
+              41.544,
+              41.689,
+              41.961,
+              42.146,
+              42.238,
+              42.585,
+              42.7,
+              43.122,
+              43.159,
+              43.587,
+              44.07,
+              44.277,
+              44.795,
+              45.007,
+              45.059,
+              45.279,
+              45.758,
+              46.277,
+              46.749,
+              46.936,
+              47.348,
+              47.654,
+              47.706,
+              48.17,
+              48.311,
+              48.465,
+              48.842,
+              49.389,
+              49.992,
+              50.69,
+              52.472,
+              53.218,
+              54.572,
+              61.719
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 65.1464,
+          "p_value": 7.13904543845718e-15,
+          "eta_squared": 0.3714,
+          "n_groups": 3,
+          "n": 173,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 37.0,
+            "p_value": 0.6565249266862169,
+            "rank_biserial_r": 0.1778,
+            "n_a": 3,
+            "n_b": 30,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 33.0,
+            "p_value": 0.005645538159772503,
+            "rank_biserial_r": 0.8429,
+            "n_a": 3,
+            "n_b": 140,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": true
+          },
+          {
+            "U": 188.0,
+            "p_value": 8.435867226523174e-21,
+            "rank_biserial_r": 0.9105,
+            "n_a": 30,
+            "n_b": 140,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": true
+          }
+        ]
+      }
+    },
+    "mmseqs2": {
+      "cold_start_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 8.433,
+            "mean": 7.608,
+            "values": [
+              2.006,
+              8.433,
+              12.385
+            ]
+          },
+          "10": {
+            "n": 30,
+            "median": 9.322,
+            "mean": 12.9,
+            "values": [
+              7.298,
+              7.419,
+              7.686,
+              7.692,
+              7.914,
+              8.064,
+              8.091,
+              8.274,
+              8.282,
+              8.432,
+              8.668,
+              8.907,
+              8.918,
+              9.194,
+              9.227,
+              9.418,
+              10.551,
+              10.568,
+              14.032,
+              14.054,
+              20.03,
+              20.151,
+              20.279,
+              20.336,
+              20.423,
+              20.505,
+              20.582,
+              20.594,
+              20.617,
+              20.808
+            ]
+          },
+          "50": {
+            "n": 150,
+            "median": 42.83,
+            "mean": 45.686,
+            "values": [
+              35.832,
+              36.022,
+              37.932,
+              38.054,
+              38.259,
+              38.919,
+              39.026,
+              39.121,
+              39.17,
+              39.251,
+              39.307,
+              39.343,
+              39.477,
+              39.508,
+              39.561,
+              39.615,
+              39.679,
+              39.727,
+              39.775,
+              39.852,
+              39.924,
+              40.122,
+              40.248,
+              40.353,
+              40.367,
+              40.367,
+              40.418,
+              40.445,
+              40.454,
+              40.464,
+              40.488,
+              40.532,
+              40.547,
+              40.606,
+              40.64,
+              40.641,
+              40.657,
+              40.679,
+              40.722,
+              40.736,
+              40.748,
+              40.814,
+              40.843,
+              40.848,
+              40.863,
+              40.932,
+              40.95,
+              40.965,
+              40.995,
+              41.014,
+              41.059,
+              41.19,
+              41.249,
+              41.36,
+              41.571,
+              41.85,
+              42.001,
+              42.043,
+              42.131,
+              42.177,
+              42.178,
+              42.22,
+              42.302,
+              42.375,
+              42.4,
+              42.463,
+              42.617,
+              42.646,
+              42.696,
+              42.708,
+              42.728,
+              42.732,
+              42.743,
+              42.756,
+              42.788,
+              42.871,
+              42.89,
+              42.895,
+              43.004,
+              45.872,
+              45.951,
+              45.979,
+              46.123,
+              46.167,
+              46.303,
+              46.313,
+              46.336,
+              46.459,
+              46.466,
+              46.516,
+              46.625,
+              46.682,
+              46.738,
+              46.755,
+              46.762,
+              46.765,
+              46.788,
+              46.883,
+              46.919,
+              46.938,
+              46.953,
+              47.003,
+              47.156,
+              47.607,
+              47.868,
+              48.007,
+              48.388,
+              48.479,
+              48.672,
+              48.968,
+              49.01,
+              49.528,
+              50.015,
+              50.371,
+              50.372,
+              50.43,
+              50.852,
+              50.958,
+              51.001,
+              51.093,
+              51.094,
+              51.14,
+              51.197,
+              51.293,
+              51.294,
+              51.417,
+              51.425,
+              51.56,
+              51.711,
+              51.763,
+              51.982,
+              52.024,
+              53.768,
+              54.65,
+              54.764,
+              54.907,
+              55.028,
+              55.194,
+              55.36,
+              55.528,
+              55.676,
+              55.794,
+              56.19,
+              56.326,
+              56.479,
+              56.636,
+              63.196,
+              70.211,
+              70.373,
+              73.353
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 80.7444,
+          "p_value": 2.928086447571563e-18,
+          "eta_squared": 0.4375,
+          "n_groups": 3,
+          "n": 183,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 28.0,
+            "p_value": 0.3170821114369502,
+            "rank_biserial_r": 0.3778,
+            "n_a": 3,
+            "n_b": 30,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 3.4171912055167136e-06,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 150,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": true
+          },
+          {
+            "U": 0.0,
+            "p_value": 1.5087318435214736e-34,
+            "rank_biserial_r": 1.0,
+            "n_a": 30,
+            "n_b": 150,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": true
+          }
+        ]
+      },
+      "latency_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 8.433,
+            "mean": 7.608,
+            "values": [
+              2.006,
+              8.433,
+              12.385
+            ]
+          },
+          "10": {
+            "n": 30,
+            "median": 9.322,
+            "mean": 12.9,
+            "values": [
+              7.298,
+              7.419,
+              7.686,
+              7.692,
+              7.914,
+              8.064,
+              8.091,
+              8.274,
+              8.282,
+              8.432,
+              8.668,
+              8.907,
+              8.918,
+              9.194,
+              9.227,
+              9.418,
+              10.551,
+              10.568,
+              14.032,
+              14.054,
+              20.03,
+              20.151,
+              20.279,
+              20.336,
+              20.423,
+              20.505,
+              20.582,
+              20.594,
+              20.617,
+              20.808
+            ]
+          },
+          "50": {
+            "n": 150,
+            "median": 42.83,
+            "mean": 45.686,
+            "values": [
+              35.832,
+              36.022,
+              37.932,
+              38.054,
+              38.259,
+              38.919,
+              39.026,
+              39.121,
+              39.17,
+              39.251,
+              39.307,
+              39.343,
+              39.477,
+              39.508,
+              39.561,
+              39.615,
+              39.679,
+              39.727,
+              39.775,
+              39.852,
+              39.924,
+              40.122,
+              40.248,
+              40.353,
+              40.367,
+              40.367,
+              40.418,
+              40.445,
+              40.454,
+              40.464,
+              40.488,
+              40.532,
+              40.547,
+              40.606,
+              40.64,
+              40.641,
+              40.657,
+              40.679,
+              40.722,
+              40.736,
+              40.748,
+              40.814,
+              40.843,
+              40.848,
+              40.863,
+              40.932,
+              40.95,
+              40.965,
+              40.995,
+              41.014,
+              41.059,
+              41.19,
+              41.249,
+              41.36,
+              41.571,
+              41.85,
+              42.001,
+              42.043,
+              42.131,
+              42.177,
+              42.178,
+              42.22,
+              42.302,
+              42.375,
+              42.4,
+              42.463,
+              42.617,
+              42.646,
+              42.696,
+              42.708,
+              42.728,
+              42.732,
+              42.743,
+              42.756,
+              42.788,
+              42.871,
+              42.89,
+              42.895,
+              43.004,
+              45.872,
+              45.951,
+              45.979,
+              46.123,
+              46.167,
+              46.303,
+              46.313,
+              46.336,
+              46.459,
+              46.466,
+              46.516,
+              46.625,
+              46.682,
+              46.738,
+              46.755,
+              46.762,
+              46.765,
+              46.788,
+              46.883,
+              46.919,
+              46.938,
+              46.953,
+              47.003,
+              47.156,
+              47.607,
+              47.868,
+              48.007,
+              48.388,
+              48.479,
+              48.672,
+              48.968,
+              49.01,
+              49.528,
+              50.015,
+              50.371,
+              50.372,
+              50.43,
+              50.852,
+              50.958,
+              51.001,
+              51.093,
+              51.094,
+              51.14,
+              51.197,
+              51.293,
+              51.294,
+              51.417,
+              51.425,
+              51.56,
+              51.711,
+              51.763,
+              51.982,
+              52.024,
+              53.768,
+              54.65,
+              54.764,
+              54.907,
+              55.028,
+              55.194,
+              55.36,
+              55.528,
+              55.676,
+              55.794,
+              56.19,
+              56.326,
+              56.479,
+              56.636,
+              63.196,
+              70.211,
+              70.373,
+              73.353
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 80.7444,
+          "p_value": 2.928086447571563e-18,
+          "eta_squared": 0.4375,
+          "n_groups": 3,
+          "n": 183,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 28.0,
+            "p_value": 0.3170821114369502,
+            "rank_biserial_r": 0.3778,
+            "n_a": 3,
+            "n_b": 30,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 3.4171912055167136e-06,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 150,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": true
+          },
+          {
+            "U": 0.0,
+            "p_value": 1.5087318435214736e-34,
+            "rank_biserial_r": 1.0,
+            "n_a": 30,
+            "n_b": 150,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": true
+          }
+        ]
+      }
+    },
+    "plip": {
+      "cold_start_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 6.212,
+            "mean": 4.49,
+            "values": [
+              0.713,
+              6.212,
+              6.545
+            ]
+          },
+          "10": {
+            "n": 30,
+            "median": 6.059,
+            "mean": 7.806,
+            "values": [
+              3.456,
+              3.734,
+              4.077,
+              4.362,
+              4.648,
+              4.801,
+              4.873,
+              5.12,
+              5.223,
+              5.393,
+              5.466,
+              5.557,
+              5.64,
+              5.706,
+              5.852,
+              6.266,
+              6.499,
+              6.822,
+              7.141,
+              7.882,
+              11.515,
+              11.737,
+              12.004,
+              12.252,
+              12.506,
+              12.737,
+              12.976,
+              13.114,
+              13.293,
+              13.533
+            ]
+          },
+          "50": {
+            "n": 150,
+            "median": 23.376,
+            "mean": 23.41,
+            "values": [
+              16.531,
+              16.763,
+              16.95,
+              17.278,
+              17.324,
+              17.59,
+              17.615,
+              17.676,
+              17.892,
+              17.932,
+              17.948,
+              18.145,
+              18.162,
+              18.2,
+              18.37,
+              18.436,
+              18.589,
+              18.662,
+              18.687,
+              18.88,
+              18.894,
+              18.975,
+              19.111,
+              19.234,
+              19.239,
+              19.381,
+              19.497,
+              19.505,
+              19.549,
+              19.697,
+              19.714,
+              19.772,
+              19.851,
+              20.003,
+              20.016,
+              20.077,
+              20.229,
+              20.24,
+              20.263,
+              20.437,
+              20.452,
+              20.638,
+              20.646,
+              20.646,
+              20.774,
+              20.866,
+              20.892,
+              20.945,
+              21.061,
+              21.18,
+              21.219,
+              21.294,
+              21.387,
+              21.508,
+              21.563,
+              21.774,
+              21.777,
+              21.78,
+              21.969,
+              22.007,
+              22.149,
+              22.186,
+              22.258,
+              22.403,
+              22.472,
+              22.546,
+              22.616,
+              22.662,
+              22.835,
+              22.845,
+              22.917,
+              23.068,
+              23.202,
+              23.27,
+              23.306,
+              23.446,
+              23.506,
+              23.544,
+              23.676,
+              23.695,
+              23.826,
+              23.891,
+              23.932,
+              24.1,
+              24.109,
+              24.202,
+              24.302,
+              24.31,
+              24.406,
+              24.506,
+              24.611,
+              24.736,
+              24.756,
+              24.808,
+              24.957,
+              24.999,
+              25.1,
+              25.263,
+              25.31,
+              25.367,
+              25.466,
+              25.509,
+              25.62,
+              25.748,
+              25.753,
+              25.799,
+              25.992,
+              26.014,
+              26.066,
+              26.217,
+              26.254,
+              26.38,
+              26.451,
+              26.561,
+              26.583,
+              26.731,
+              26.734,
+              26.899,
+              26.945,
+              26.965,
+              27.185,
+              27.19,
+              27.223,
+              27.366,
+              27.372,
+              27.402,
+              27.569,
+              27.596,
+              27.658,
+              27.732,
+              27.876,
+              27.921,
+              27.927,
+              28.143,
+              28.204,
+              28.208,
+              28.429,
+              28.479,
+              28.562,
+              28.682,
+              28.819,
+              28.99,
+              29.537,
+              29.93,
+              30.294,
+              30.619,
+              30.926,
+              31.404,
+              31.653,
+              32.178
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 80.7287,
+          "p_value": 2.9511339015539624e-18,
+          "eta_squared": 0.4374,
+          "n_groups": 3,
+          "n": 183,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 32.0,
+            "p_value": 0.4530791788856305,
+            "rank_biserial_r": 0.2889,
+            "n_a": 3,
+            "n_b": 30,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 3.4171912055167136e-06,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 150,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": true
+          },
+          {
+            "U": 0.0,
+            "p_value": 1.5087318435214736e-34,
+            "rank_biserial_r": 1.0,
+            "n_a": 30,
+            "n_b": 150,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": true
+          }
+        ]
+      },
+      "latency_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 16.866,
+            "mean": 15.301,
+            "values": [
+              12.158,
+              16.866,
+              16.879
+            ]
+          },
+          "10": {
+            "n": 30,
+            "median": 18.757,
+            "mean": 18.314,
+            "values": [
+              12.101,
+              12.973,
+              13.463,
+              13.514,
+              13.924,
+              13.936,
+              14.21,
+              14.479,
+              14.764,
+              15.535,
+              15.806,
+              16.073,
+              16.946,
+              18.397,
+              18.624,
+              18.891,
+              19.364,
+              19.554,
+              19.821,
+              19.831,
+              20.289,
+              20.687,
+              20.768,
+              21.057,
+              21.241,
+              21.277,
+              21.512,
+              26.244,
+              26.748,
+              27.394
+            ]
+          },
+          "50": {
+            "n": 150,
+            "median": 23.525,
+            "mean": 23.546,
+            "values": [
+              16.531,
+              16.763,
+              16.95,
+              17.278,
+              17.59,
+              17.615,
+              17.676,
+              17.892,
+              17.932,
+              17.948,
+              18.145,
+              18.162,
+              18.37,
+              18.436,
+              18.589,
+              18.662,
+              18.687,
+              18.88,
+              18.894,
+              18.975,
+              19.111,
+              19.234,
+              19.381,
+              19.497,
+              19.505,
+              19.549,
+              19.697,
+              19.714,
+              19.772,
+              19.851,
+              20.003,
+              20.016,
+              20.077,
+              20.229,
+              20.24,
+              20.263,
+              20.437,
+              20.452,
+              20.638,
+              20.646,
+              20.646,
+              20.774,
+              20.866,
+              20.892,
+              20.945,
+              21.061,
+              21.18,
+              21.219,
+              21.294,
+              21.387,
+              21.508,
+              21.563,
+              21.774,
+              21.777,
+              21.78,
+              21.969,
+              22.007,
+              22.149,
+              22.186,
+              22.258,
+              22.403,
+              22.472,
+              22.546,
+              22.616,
+              22.662,
+              22.835,
+              22.845,
+              22.917,
+              23.037,
+              23.068,
+              23.202,
+              23.27,
+              23.306,
+              23.446,
+              23.506,
+              23.544,
+              23.676,
+              23.695,
+              23.826,
+              23.891,
+              23.932,
+              24.1,
+              24.109,
+              24.202,
+              24.302,
+              24.31,
+              24.406,
+              24.506,
+              24.611,
+              24.736,
+              24.756,
+              24.808,
+              24.957,
+              24.999,
+              25.1,
+              25.263,
+              25.31,
+              25.367,
+              25.466,
+              25.473,
+              25.509,
+              25.62,
+              25.748,
+              25.753,
+              25.799,
+              25.992,
+              26.014,
+              26.066,
+              26.217,
+              26.254,
+              26.38,
+              26.451,
+              26.561,
+              26.583,
+              26.604,
+              26.731,
+              26.734,
+              26.899,
+              26.945,
+              26.965,
+              27.185,
+              27.19,
+              27.223,
+              27.366,
+              27.372,
+              27.402,
+              27.569,
+              27.596,
+              27.658,
+              27.732,
+              27.876,
+              27.921,
+              27.927,
+              28.143,
+              28.204,
+              28.208,
+              28.429,
+              28.479,
+              28.562,
+              28.682,
+              28.819,
+              28.99,
+              29.537,
+              29.93,
+              30.294,
+              30.619,
+              30.926,
+              31.404,
+              31.653,
+              32.178
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 37.2001,
+          "p_value": 8.357930097595821e-09,
+          "eta_squared": 0.1956,
+          "n_groups": 3,
+          "n": 183,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 25.0,
+            "p_value": 0.23460410557184755,
+            "rank_biserial_r": 0.4444,
+            "n_a": 3,
+            "n_b": 30,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 4.0,
+            "p_value": 3.758910326068385e-05,
+            "rank_biserial_r": 0.9822,
+            "n_a": 3,
+            "n_b": 150,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": true
+          },
+          {
+            "U": 815.0,
+            "p_value": 5.388403970942433e-09,
+            "rank_biserial_r": 0.6378,
+            "n_a": 30,
+            "n_b": 150,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": true
+          }
+        ]
+      }
+    },
+    "proteinmpnn": {
+      "cold_start_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 16.054,
+            "mean": 14.671,
+            "values": [
+              6.579,
+              16.054,
+              21.38
+            ]
+          },
+          "10": {
+            "n": 30,
+            "median": 19.803,
+            "mean": 20.316,
+            "values": [
+              18.533,
+              18.603,
+              18.73,
+              18.774,
+              18.865,
+              18.92,
+              19.04,
+              19.079,
+              19.17,
+              19.274,
+              19.309,
+              19.404,
+              19.416,
+              19.573,
+              19.709,
+              19.898,
+              20.175,
+              20.346,
+              20.512,
+              20.683,
+              21.917,
+              21.923,
+              21.983,
+              21.994,
+              22.022,
+              22.072,
+              22.129,
+              22.142,
+              22.173,
+              23.123
+            ]
+          },
+          "50": {
+            "n": 150,
+            "median": 42.826,
+            "mean": 44.113,
+            "values": [
+              39.412,
+              39.544,
+              39.551,
+              39.638,
+              39.648,
+              39.717,
+              39.802,
+              40.005,
+              40.29,
+              40.466,
+              40.625,
+              40.755,
+              40.807,
+              40.91,
+              40.921,
+              40.929,
+              41.053,
+              41.09,
+              41.337,
+              41.457,
+              41.465,
+              41.522,
+              41.542,
+              41.57,
+              41.638,
+              41.65,
+              41.668,
+              41.672,
+              41.716,
+              41.783,
+              41.793,
+              41.833,
+              41.836,
+              41.849,
+              41.85,
+              41.856,
+              41.909,
+              41.985,
+              42.033,
+              42.058,
+              42.077,
+              42.128,
+              42.152,
+              42.153,
+              42.163,
+              42.199,
+              42.209,
+              42.224,
+              42.25,
+              42.257,
+              42.258,
+              42.261,
+              42.263,
+              42.266,
+              42.314,
+              42.319,
+              42.368,
+              42.375,
+              42.379,
+              42.447,
+              42.447,
+              42.464,
+              42.465,
+              42.468,
+              42.509,
+              42.517,
+              42.567,
+              42.576,
+              42.577,
+              42.593,
+              42.616,
+              42.626,
+              42.745,
+              42.752,
+              42.786,
+              42.867,
+              42.876,
+              42.99,
+              42.997,
+              43.0,
+              43.038,
+              43.096,
+              43.126,
+              43.128,
+              43.128,
+              43.138,
+              43.195,
+              43.206,
+              43.234,
+              43.24,
+              43.303,
+              43.35,
+              43.377,
+              43.389,
+              43.392,
+              43.431,
+              43.469,
+              43.517,
+              43.575,
+              43.604,
+              43.656,
+              43.658,
+              43.66,
+              43.732,
+              43.82,
+              43.832,
+              43.846,
+              43.912,
+              43.943,
+              44.007,
+              44.086,
+              44.295,
+              44.453,
+              44.482,
+              44.518,
+              44.643,
+              44.651,
+              44.791,
+              44.85,
+              44.888,
+              45.006,
+              45.051,
+              45.163,
+              45.223,
+              45.314,
+              45.38,
+              45.413,
+              45.666,
+              45.687,
+              45.74,
+              45.873,
+              45.968,
+              46.046,
+              46.268,
+              46.295,
+              46.753,
+              46.936,
+              47.099,
+              47.244,
+              47.436,
+              47.557,
+              47.568,
+              47.637,
+              47.715,
+              48.697,
+              62.579,
+              68.988,
+              77.705,
+              77.86,
+              79.719
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 80.7883,
+          "p_value": 2.8645066622616104e-18,
+          "eta_squared": 0.4377,
+          "n_groups": 3,
+          "n": 183,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 20.0,
+            "p_value": 0.1312316715542522,
+            "rank_biserial_r": 0.5556,
+            "n_a": 3,
+            "n_b": 30,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 3.4171912055167136e-06,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 150,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": true
+          },
+          {
+            "U": 0.0,
+            "p_value": 1.5087318435214736e-34,
+            "rank_biserial_r": 1.0,
+            "n_a": 30,
+            "n_b": 150,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": true
+          }
+        ]
+      },
+      "latency_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 28.229,
+            "mean": 26.778,
+            "values": [
+              17.9,
+              28.229,
+              34.205
+            ]
+          },
+          "10": {
+            "n": 30,
+            "median": 32.164,
+            "mean": 33.94,
+            "values": [
+              30.479,
+              30.638,
+              30.802,
+              30.841,
+              30.851,
+              30.902,
+              30.934,
+              31.005,
+              31.139,
+              31.176,
+              31.302,
+              31.443,
+              31.644,
+              31.909,
+              32.108,
+              32.219,
+              32.481,
+              36.102,
+              36.193,
+              36.206,
+              36.222,
+              36.252,
+              36.264,
+              36.292,
+              36.405,
+              36.457,
+              37.106,
+              39.459,
+              41.623,
+              41.741
+            ]
+          },
+          "50": {
+            "n": 150,
+            "median": 78.949,
+            "mean": 67.276,
+            "values": [
+              41.337,
+              41.457,
+              41.465,
+              41.522,
+              41.542,
+              41.57,
+              41.638,
+              41.65,
+              41.672,
+              41.716,
+              41.783,
+              41.793,
+              41.833,
+              41.849,
+              41.856,
+              41.909,
+              42.058,
+              42.152,
+              42.153,
+              42.163,
+              42.224,
+              42.25,
+              42.257,
+              42.258,
+              42.263,
+              42.266,
+              42.375,
+              42.447,
+              42.468,
+              42.576,
+              42.577,
+              42.593,
+              42.786,
+              42.876,
+              43.038,
+              43.128,
+              43.138,
+              43.195,
+              43.234,
+              43.24,
+              43.377,
+              43.604,
+              43.656,
+              43.658,
+              43.66,
+              44.007,
+              44.453,
+              44.482,
+              44.643,
+              44.651,
+              44.888,
+              45.006,
+              45.163,
+              45.413,
+              45.666,
+              45.74,
+              46.295,
+              47.244,
+              47.557,
+              48.697,
+              58.167,
+              77.442,
+              77.693,
+              77.696,
+              77.703,
+              77.718,
+              77.74,
+              77.863,
+              78.059,
+              78.609,
+              78.649,
+              78.681,
+              78.789,
+              78.883,
+              78.913,
+              78.984,
+              79.165,
+              79.226,
+              79.678,
+              79.683,
+              79.719,
+              79.751,
+              79.767,
+              79.853,
+              79.854,
+              79.884,
+              79.906,
+              79.937,
+              79.94,
+              79.963,
+              79.989,
+              79.993,
+              79.994,
+              80.01,
+              80.014,
+              80.031,
+              80.152,
+              80.157,
+              80.232,
+              80.255,
+              80.271,
+              80.309,
+              80.331,
+              80.336,
+              80.373,
+              80.425,
+              80.552,
+              80.588,
+              81.264,
+              82.455,
+              85.079,
+              85.265,
+              85.465,
+              85.553,
+              85.569,
+              86.497,
+              86.613,
+              86.623,
+              86.866,
+              86.956,
+              87.227,
+              87.381,
+              87.446,
+              87.545,
+              87.662,
+              87.704,
+              87.797,
+              87.81,
+              87.918,
+              87.938,
+              88.126,
+              88.584,
+              88.62,
+              88.744,
+              88.816,
+              88.923,
+              89.814,
+              89.862,
+              89.982,
+              90.405,
+              90.553,
+              90.876,
+              90.945,
+              91.001,
+              91.076,
+              91.472,
+              91.599,
+              91.704,
+              92.374,
+              95.266
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 79.7798,
+          "p_value": 4.742857373893644e-18,
+          "eta_squared": 0.4321,
+          "n_groups": 3,
+          "n": 183,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 17.0,
+            "p_value": 0.08687683284457479,
+            "rank_biserial_r": 0.6222,
+            "n_a": 3,
+            "n_b": 30,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 3.4171912055167136e-06,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 150,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": true
+          },
+          {
+            "U": 16.0,
+            "p_value": 1.3804896368221485e-31,
+            "rank_biserial_r": 0.9929,
+            "n_a": 30,
+            "n_b": 150,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": true
+          }
+        ]
+      }
+    },
+    "reinvent": {
+      "cold_start_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 7.188,
+            "mean": 8.925,
+            "values": [
+              7.18,
+              7.188,
+              12.406
+            ]
+          },
+          "10": {
+            "n": 30,
+            "median": 8.11,
+            "mean": 11.398,
+            "values": [
+              6.848,
+              7.064,
+              7.157,
+              7.282,
+              7.612,
+              7.63,
+              7.708,
+              7.729,
+              7.747,
+              7.904,
+              7.981,
+              7.996,
+              8.039,
+              8.051,
+              8.091,
+              8.128,
+              8.196,
+              8.245,
+              8.302,
+              8.545,
+              9.094,
+              19.041,
+              19.1,
+              19.137,
+              19.356,
+              19.408,
+              19.712,
+              20.21,
+              20.267,
+              20.349
+            ]
+          },
+          "50": {
+            "n": 150,
+            "median": 39.003,
+            "mean": 41.057,
+            "values": [
+              34.891,
+              34.946,
+              35.017,
+              35.074,
+              35.116,
+              35.139,
+              35.199,
+              35.254,
+              35.321,
+              35.372,
+              35.422,
+              35.486,
+              35.699,
+              35.767,
+              35.785,
+              36.087,
+              36.089,
+              36.123,
+              36.194,
+              36.215,
+              36.247,
+              36.306,
+              36.348,
+              36.358,
+              36.368,
+              36.376,
+              36.38,
+              36.478,
+              36.542,
+              36.62,
+              36.766,
+              36.961,
+              36.964,
+              36.987,
+              37.04,
+              37.07,
+              37.075,
+              37.079,
+              37.081,
+              37.111,
+              37.114,
+              37.12,
+              37.205,
+              37.281,
+              37.298,
+              37.31,
+              37.382,
+              37.423,
+              37.438,
+              37.441,
+              37.496,
+              37.528,
+              37.54,
+              37.618,
+              37.622,
+              37.686,
+              37.739,
+              37.827,
+              37.942,
+              37.953,
+              38.012,
+              38.03,
+              38.149,
+              38.184,
+              38.333,
+              38.432,
+              38.438,
+              38.561,
+              38.627,
+              38.711,
+              38.756,
+              38.906,
+              38.945,
+              38.959,
+              38.998,
+              39.009,
+              39.022,
+              39.028,
+              39.038,
+              39.045,
+              39.047,
+              39.047,
+              39.061,
+              39.062,
+              39.091,
+              39.097,
+              39.152,
+              39.162,
+              39.191,
+              39.222,
+              39.371,
+              39.485,
+              39.553,
+              39.625,
+              39.677,
+              39.782,
+              42.827,
+              42.833,
+              42.854,
+              42.882,
+              42.885,
+              42.914,
+              42.916,
+              42.92,
+              42.954,
+              42.96,
+              43.265,
+              43.281,
+              43.301,
+              43.31,
+              43.323,
+              43.377,
+              43.423,
+              43.455,
+              43.477,
+              43.486,
+              43.495,
+              43.538,
+              43.595,
+              43.679,
+              43.852,
+              44.216,
+              44.466,
+              44.528,
+              44.716,
+              44.911,
+              45.496,
+              45.963,
+              46.026,
+              46.094,
+              46.145,
+              46.155,
+              46.186,
+              46.19,
+              46.52,
+              46.605,
+              46.757,
+              46.843,
+              47.02,
+              47.026,
+              47.522,
+              48.073,
+              48.308,
+              48.471,
+              48.546,
+              48.694,
+              78.841,
+              78.856,
+              78.91,
+              83.546
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 80.7489,
+          "p_value": 2.921513724013221e-18,
+          "eta_squared": 0.4375,
+          "n_groups": 3,
+          "n": 183,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 27.0,
+            "p_value": 0.28775659824046923,
+            "rank_biserial_r": 0.4,
+            "n_a": 3,
+            "n_b": 30,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": false
+          },
+          {
+            "U": 0.0,
+            "p_value": 3.4171912055167136e-06,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 150,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": true
+          },
+          {
+            "U": 0.0,
+            "p_value": 1.5087318435214736e-34,
+            "rank_biserial_r": 1.0,
+            "n_a": 30,
+            "n_b": 150,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": true
+          }
+        ]
+      },
+      "latency_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 30.08,
+            "mean": 33.595,
+            "values": [
+              29.853,
+              30.08,
+              40.851
+            ]
+          },
+          "10": {
+            "n": 30,
+            "median": 54.252,
+            "mean": 56.531,
+            "values": [
+              44.228,
+              44.349,
+              44.411,
+              44.469,
+              44.753,
+              44.777,
+              46.03,
+              46.068,
+              46.173,
+              46.376,
+              46.429,
+              46.45,
+              46.557,
+              46.925,
+              52.428,
+              56.076,
+              56.235,
+              56.376,
+              56.559,
+              59.818,
+              60.279,
+              69.066,
+              69.096,
+              70.147,
+              70.156,
+              70.246,
+              77.645,
+              77.694,
+              77.994,
+              78.118
+            ]
+          },
+          "50": {
+            "n": 150,
+            "median": 83.197,
+            "mean": 89.864,
+            "values": [
+              43.301,
+              43.538,
+              78.889,
+              79.031,
+              79.042,
+              79.111,
+              79.158,
+              79.245,
+              79.26,
+              79.314,
+              79.516,
+              79.562,
+              79.587,
+              79.809,
+              79.818,
+              79.823,
+              79.83,
+              79.848,
+              79.857,
+              79.895,
+              80.129,
+              80.261,
+              80.303,
+              80.326,
+              80.397,
+              80.426,
+              80.467,
+              80.469,
+              80.692,
+              80.702,
+              80.724,
+              80.73,
+              80.745,
+              80.75,
+              80.757,
+              80.806,
+              80.832,
+              80.842,
+              80.855,
+              80.87,
+              80.879,
+              80.932,
+              81.11,
+              81.137,
+              81.418,
+              81.443,
+              81.445,
+              81.467,
+              81.483,
+              81.518,
+              81.592,
+              81.596,
+              81.641,
+              81.711,
+              81.749,
+              81.781,
+              81.828,
+              81.936,
+              81.942,
+              82.104,
+              82.148,
+              82.161,
+              82.182,
+              82.223,
+              82.792,
+              82.829,
+              82.845,
+              82.888,
+              82.917,
+              82.94,
+              82.943,
+              82.957,
+              83.015,
+              83.075,
+              83.125,
+              83.268,
+              83.563,
+              83.578,
+              92.401,
+              95.6,
+              95.612,
+              95.647,
+              95.667,
+              95.68,
+              95.687,
+              95.753,
+              95.775,
+              95.79,
+              95.828,
+              95.837,
+              95.846,
+              95.852,
+              95.88,
+              95.924,
+              95.98,
+              96.065,
+              96.068,
+              96.077,
+              96.114,
+              96.131,
+              96.176,
+              96.25,
+              96.262,
+              96.266,
+              96.272,
+              96.564,
+              96.712,
+              96.869,
+              96.918,
+              96.948,
+              97.008,
+              97.059,
+              97.068,
+              97.139,
+              97.183,
+              97.221,
+              97.24,
+              97.326,
+              97.428,
+              97.51,
+              97.545,
+              97.646,
+              97.71,
+              97.892,
+              97.919,
+              97.956,
+              98.161,
+              98.275,
+              99.068,
+              99.085,
+              99.202,
+              99.293,
+              101.681,
+              101.687,
+              102.896,
+              102.928,
+              105.065,
+              105.735,
+              109.107,
+              111.255,
+              111.313,
+              111.332,
+              111.37,
+              114.482,
+              114.905,
+              114.946,
+              114.986,
+              123.786,
+              123.877,
+              124.232
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 77.1736,
+          "p_value": 1.7457220437996993e-17,
+          "eta_squared": 0.4176,
+          "n_groups": 3,
+          "n": 183,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.00036656891495601173,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 30,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": true
+          },
+          {
+            "U": 0.0,
+            "p_value": 3.4171912055167136e-06,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 150,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": true
+          },
+          {
+            "U": 60.0,
+            "p_value": 9.85201742946338e-28,
+            "rank_biserial_r": 0.9733,
+            "n_a": 30,
+            "n_b": 150,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": true
+          }
+        ]
+      }
+    },
+    "rfdiffusion2": {
+      "cold_start_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 13.489,
+            "mean": 11.214,
+            "values": [
+              6.423,
+              13.489,
+              13.729
+            ]
+          },
+          "10": {
+            "n": 30,
+            "median": 21.594,
+            "mean": 21.993,
+            "values": [
+              18.597,
+              18.616,
+              18.627,
+              18.64,
+              18.645,
+              18.67,
+              18.705,
+              18.732,
+              18.75,
+              19.564,
+              19.885,
+              20.216,
+              20.807,
+              21.217,
+              21.519,
+              21.668,
+              22.081,
+              22.224,
+              22.538,
+              23.665,
+              25.128,
+              25.141,
+              25.214,
+              25.427,
+              25.571,
+              25.722,
+              25.806,
+              25.876,
+              26.168,
+              26.367
+            ]
+          },
+          "50": {
+            "n": 150,
+            "median": 41.913,
+            "mean": 43.311,
+            "values": [
+              39.863,
+              39.905,
+              39.909,
+              39.931,
+              40.35,
+              40.634,
+              40.709,
+              40.781,
+              40.936,
+              40.967,
+              40.968,
+              41.063,
+              41.063,
+              41.08,
+              41.095,
+              41.114,
+              41.116,
+              41.122,
+              41.14,
+              41.147,
+              41.214,
+              41.229,
+              41.232,
+              41.292,
+              41.331,
+              41.337,
+              41.354,
+              41.403,
+              41.407,
+              41.441,
+              41.45,
+              41.493,
+              41.507,
+              41.514,
+              41.516,
+              41.522,
+              41.529,
+              41.538,
+              41.545,
+              41.548,
+              41.564,
+              41.57,
+              41.573,
+              41.575,
+              41.576,
+              41.586,
+              41.6,
+              41.6,
+              41.601,
+              41.609,
+              41.609,
+              41.628,
+              41.635,
+              41.649,
+              41.649,
+              41.65,
+              41.651,
+              41.662,
+              41.671,
+              41.758,
+              41.76,
+              41.773,
+              41.776,
+              41.796,
+              41.802,
+              41.82,
+              41.847,
+              41.85,
+              41.857,
+              41.864,
+              41.876,
+              41.887,
+              41.892,
+              41.895,
+              41.902,
+              41.923,
+              41.947,
+              41.954,
+              41.968,
+              41.973,
+              41.983,
+              41.988,
+              42.05,
+              42.28,
+              42.294,
+              42.406,
+              42.449,
+              42.461,
+              42.469,
+              42.471,
+              42.476,
+              42.477,
+              42.5,
+              42.502,
+              42.533,
+              42.562,
+              42.599,
+              42.636,
+              42.872,
+              42.905,
+              43.89,
+              44.027,
+              44.15,
+              44.397,
+              44.498,
+              44.567,
+              44.575,
+              44.579,
+              44.585,
+              44.714,
+              45.117,
+              45.398,
+              45.676,
+              45.772,
+              45.919,
+              45.932,
+              45.973,
+              45.983,
+              45.985,
+              45.991,
+              46.017,
+              46.048,
+              46.069,
+              46.311,
+              46.355,
+              46.49,
+              46.554,
+              46.794,
+              46.879,
+              47.054,
+              47.063,
+              47.151,
+              47.159,
+              47.196,
+              47.448,
+              47.575,
+              47.612,
+              47.762,
+              47.763,
+              47.842,
+              47.871,
+              47.883,
+              48.188,
+              48.217,
+              48.714,
+              48.774,
+              48.98,
+              49.325,
+              50.448,
+              55.343
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 80.9714,
+          "p_value": 2.61390720879598e-18,
+          "eta_squared": 0.4387,
+          "n_groups": 3,
+          "n": 183,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.00036656891495601173,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 30,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": true
+          },
+          {
+            "U": 0.0,
+            "p_value": 3.4171912055167136e-06,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 150,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": true
+          },
+          {
+            "U": 0.0,
+            "p_value": 1.5087318435214736e-34,
+            "rank_biserial_r": 1.0,
+            "n_a": 30,
+            "n_b": 150,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": true
+          }
+        ]
+      },
+      "latency_s": {
+        "groups": {
+          "1": {
+            "n": 3,
+            "median": 13.489,
+            "mean": 11.214,
+            "values": [
+              6.423,
+              13.489,
+              13.729
+            ]
+          },
+          "10": {
+            "n": 30,
+            "median": 21.594,
+            "mean": 21.993,
+            "values": [
+              18.597,
+              18.616,
+              18.627,
+              18.64,
+              18.645,
+              18.67,
+              18.705,
+              18.732,
+              18.75,
+              19.564,
+              19.885,
+              20.216,
+              20.807,
+              21.217,
+              21.519,
+              21.668,
+              22.081,
+              22.224,
+              22.538,
+              23.665,
+              25.128,
+              25.141,
+              25.214,
+              25.427,
+              25.571,
+              25.722,
+              25.806,
+              25.876,
+              26.168,
+              26.367
+            ]
+          },
+          "50": {
+            "n": 150,
+            "median": 41.913,
+            "mean": 43.311,
+            "values": [
+              39.863,
+              39.905,
+              39.909,
+              39.931,
+              40.35,
+              40.634,
+              40.709,
+              40.781,
+              40.936,
+              40.967,
+              40.968,
+              41.063,
+              41.063,
+              41.08,
+              41.095,
+              41.114,
+              41.116,
+              41.122,
+              41.14,
+              41.147,
+              41.214,
+              41.229,
+              41.232,
+              41.292,
+              41.331,
+              41.337,
+              41.354,
+              41.403,
+              41.407,
+              41.441,
+              41.45,
+              41.493,
+              41.507,
+              41.514,
+              41.516,
+              41.522,
+              41.529,
+              41.538,
+              41.545,
+              41.548,
+              41.564,
+              41.57,
+              41.573,
+              41.575,
+              41.576,
+              41.586,
+              41.6,
+              41.6,
+              41.601,
+              41.609,
+              41.609,
+              41.628,
+              41.635,
+              41.649,
+              41.649,
+              41.65,
+              41.651,
+              41.662,
+              41.671,
+              41.758,
+              41.76,
+              41.773,
+              41.776,
+              41.796,
+              41.802,
+              41.82,
+              41.847,
+              41.85,
+              41.857,
+              41.864,
+              41.876,
+              41.887,
+              41.892,
+              41.895,
+              41.902,
+              41.923,
+              41.947,
+              41.954,
+              41.968,
+              41.973,
+              41.983,
+              41.988,
+              42.05,
+              42.28,
+              42.294,
+              42.406,
+              42.449,
+              42.461,
+              42.469,
+              42.471,
+              42.476,
+              42.477,
+              42.5,
+              42.502,
+              42.533,
+              42.562,
+              42.599,
+              42.636,
+              42.872,
+              42.905,
+              43.89,
+              44.027,
+              44.15,
+              44.397,
+              44.498,
+              44.567,
+              44.575,
+              44.579,
+              44.585,
+              44.714,
+              45.117,
+              45.398,
+              45.676,
+              45.772,
+              45.919,
+              45.932,
+              45.973,
+              45.983,
+              45.985,
+              45.991,
+              46.017,
+              46.048,
+              46.069,
+              46.311,
+              46.355,
+              46.49,
+              46.554,
+              46.794,
+              46.879,
+              47.054,
+              47.063,
+              47.151,
+              47.159,
+              47.196,
+              47.448,
+              47.575,
+              47.612,
+              47.762,
+              47.763,
+              47.842,
+              47.871,
+              47.883,
+              48.188,
+              48.217,
+              48.714,
+              48.774,
+              48.98,
+              49.325,
+              50.448,
+              55.343
+            ]
+          }
+        },
+        "omnibus": {
+          "statistic_H": 80.9714,
+          "p_value": 2.61390720879598e-18,
+          "eta_squared": 0.4387,
+          "n_groups": 3,
+          "n": 183,
+          "significant": true
+        },
+        "pairwise": [
+          {
+            "U": 0.0,
+            "p_value": 0.00036656891495601173,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 30,
+            "method": "exact",
+            "a": 1,
+            "b": 10,
+            "significant": true
+          },
+          {
+            "U": 0.0,
+            "p_value": 3.4171912055167136e-06,
+            "rank_biserial_r": 1.0,
+            "n_a": 3,
+            "n_b": 150,
+            "method": "exact",
+            "a": 1,
+            "b": 50,
+            "significant": true
+          },
+          {
+            "U": 0.0,
+            "p_value": 1.5087318435214736e-34,
+            "rank_biserial_r": 1.0,
+            "n_a": 30,
+            "n_b": 150,
+            "method": "exact",
+            "a": 10,
+            "b": 50,
+            "significant": true
+          }
+        ]
+      }
+    }
+  }
+}

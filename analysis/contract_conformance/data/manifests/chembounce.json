@@ -1,0 +1,2381 @@
+{
+ "service": "chembounce-server",
+ "manifest": {
+  "service": "chembounce",
+  "title": "ChemBounce Server",
+  "version": "0.0.5",
+  "description": null,
+  "endpoints": [
+   {
+    "method": "POST",
+    "path": "/api/scaffold_hop",
+    "summary": "Run ChemBounce scaffold hopping.  Returns JobInfo; poll until completed.",
+    "description": "Run ChemBounce scaffold hopping.  Returns JobInfo; poll until completed.",
+    "operation_id": null,
+    "request_content_type": "application/x-www-form-urlencoded",
+    "request_schema_ref": "#/components/schemas/Body_post_scaffold_hop_api_scaffold_hop_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "input_smiles_uri",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "input_smiles",
+      "type": "string",
+      "required": true,
+      "description": "Input SMILES string of the target molecule to scaffold-hop.",
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "database",
+      "type": "string",
+      "required": false,
+      "description": "Which scaffold fingerprint DB to search:\n- '250mw': scaffolds with MW ≤ 250 (~tens of MB, fast, low recall)\n- 'full' : ~4M scaffolds (~GB, paper-grade, needs ≥64 GB RAM)",
+      "is_file": false,
+      "default": "250mw",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "core_smiles",
+      "type": "string",
+      "required": false,
+      "description": "A core substructure SMILES that must be preserved in the final candidate; if not actually contained in `input_smiles`, ChemBounce raises an error.",
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "frag_max_n",
+      "type": "integer",
+      "required": false,
+      "description": "Maximum candidates per fragment.",
+      "is_file": false,
+      "default": 100,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "overall_max_n",
+      "type": "integer",
+      "required": false,
+      "description": "Hard cap on total candidates across all fragments.",
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "scaffold_top_n",
+      "type": "integer",
+      "required": false,
+      "description": "Number of scaffolds to test per fragment.",
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "cand_max_n__rplc",
+      "type": "integer",
+      "required": false,
+      "description": "Maximum candidates per replaced scaffold.",
+      "is_file": false,
+      "default": 10,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "tanimoto_threshold",
+      "type": "number",
+      "required": false,
+      "description": "Tanimoto similarity threshold between original and generated SMILES.",
+      "is_file": false,
+      "default": 0.5,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "qed_min",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "qed_max",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "sa_min",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "sa_max",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "logp_min",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "logp_max",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "mw_min",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "mw_max",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "h_donor_min",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "h_donor_max",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "h_acceptor_min",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "h_acceptor_max",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "wo_lipinski",
+      "type": "boolean",
+      "required": false,
+      "description": "Turn off Lipinski's rule of five.  Enable for macrocycles / peptides that naturally violate it.",
+      "is_file": false,
+      "default": false,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "low_mem",
+      "type": "boolean",
+      "required": false,
+      "description": "Upstream's `-l` flag.",
+      "is_file": false,
+      "default": false,
+      "default_kind": "literal",
+      "default_note": null
+     }
+    ],
+    "examples": [
+     {
+      "title": "basic scaffold hopping (250 MW DB, default thresholds)",
+      "curl": "curl -X POST $URL/api/scaffold_hop -F 'input_smiles=CCCCC1=NC(=C(N1CC2=CC=C(C=C2)C3=CC=CC=C3C4=NNN=N4)CO)Cl' -F 'frag_max_n=100' -F 'tanimoto_threshold=0.5'",
+      "python": null,
+      "body": null,
+      "notes": "Smallest useful call.  Returns a JobInfo; poll /api/jobs/<id> until completed, then GET /api/jobs/<id>/file/output/overall_result.txt."
+     },
+     {
+      "title": "full DB + tight Tanimoto + core lock",
+      "curl": "curl -X POST $URL/api/scaffold_hop -F 'input_smiles=CCCCC1=NC(=C(N1CC2=CC=C(C=C2)C3=CC=CC=C3C4=NNN=N4)CO)Cl' -F 'database=full' -F 'tanimoto_threshold=0.7' -F 'core_smiles=C4=NNN=N4' -F 'frag_max_n=50'",
+      "python": null,
+      "body": null,
+      "notes": "Lock the tetrazole core; search the full 4M-scaffold DB.  Significantly more memory + time than the default."
+     },
+     {
+      "title": "macrocycle / peptide (Lipinski off)",
+      "curl": "curl -X POST $URL/api/scaffold_hop -F 'input_smiles=<peptide SMILES>' -F 'wo_lipinski=true' -F 'mw_max=4000'",
+      "python": null,
+      "body": null,
+      "notes": "wo_lipinski disables the rule-of-five gate; mw_max still enforced because peptide candidates can exceed 5 kDa."
+     }
+    ]
+   },
+   {
+    "method": "POST",
+    "path": "/api/tasks/scaffold_hop",
+    "summary": "FC async task mode — blocks until done; HTTP 202 on submit.",
+    "description": "FC async task mode — blocks until done; HTTP 202 on submit.",
+    "operation_id": null,
+    "request_content_type": "application/x-www-form-urlencoded",
+    "request_schema_ref": "#/components/schemas/Body_post_scaffold_hop_task_api_tasks_scaffold_hop_post",
+    "response_schema_ref": "#/components/schemas/JobInfo",
+    "request_fields": [
+     {
+      "name": "input_smiles_uri",
+      "type": "string",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "input_smiles",
+      "type": "string",
+      "required": true,
+      "description": "Input SMILES string of the target molecule to scaffold-hop.",
+      "is_file": false,
+      "default": null,
+      "default_kind": null,
+      "default_note": null
+     },
+     {
+      "name": "database",
+      "type": "string",
+      "required": false,
+      "description": "Which scaffold fingerprint DB to search:\n- '250mw': scaffolds with MW ≤ 250 (~tens of MB, fast, low recall)\n- 'full' : ~4M scaffolds (~GB, paper-grade, needs ≥64 GB RAM)",
+      "is_file": false,
+      "default": "250mw",
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "core_smiles",
+      "type": "string",
+      "required": false,
+      "description": "A core substructure SMILES that must be preserved in the final candidate; if not actually contained in `input_smiles`, ChemBounce raises an error.",
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "frag_max_n",
+      "type": "integer",
+      "required": false,
+      "description": "Maximum candidates per fragment.",
+      "is_file": false,
+      "default": 100,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "overall_max_n",
+      "type": "integer",
+      "required": false,
+      "description": "Hard cap on total candidates across all fragments.",
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "scaffold_top_n",
+      "type": "integer",
+      "required": false,
+      "description": "Number of scaffolds to test per fragment.",
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "cand_max_n__rplc",
+      "type": "integer",
+      "required": false,
+      "description": "Maximum candidates per replaced scaffold.",
+      "is_file": false,
+      "default": 10,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "tanimoto_threshold",
+      "type": "number",
+      "required": false,
+      "description": "Tanimoto similarity threshold between original and generated SMILES.",
+      "is_file": false,
+      "default": 0.5,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "qed_min",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "qed_max",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "sa_min",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "sa_max",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "logp_min",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "logp_max",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "mw_min",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "mw_max",
+      "type": "number",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "h_donor_min",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "h_donor_max",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "h_acceptor_min",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "h_acceptor_max",
+      "type": "integer",
+      "required": false,
+      "description": null,
+      "is_file": false,
+      "default": "unset",
+      "default_kind": "unset",
+      "default_note": "only used when explicitly provided"
+     },
+     {
+      "name": "wo_lipinski",
+      "type": "boolean",
+      "required": false,
+      "description": "Turn off Lipinski's rule of five.  Enable for macrocycles / peptides that naturally violate it.",
+      "is_file": false,
+      "default": false,
+      "default_kind": "literal",
+      "default_note": null
+     },
+     {
+      "name": "low_mem",
+      "type": "boolean",
+      "required": false,
+      "description": "Upstream's `-l` flag.",
+      "is_file": false,
+      "default": false,
+      "default_kind": "literal",
+      "default_note": null
+     }
+    ],
+    "examples": [
+     {
+      "title": "FC async task mode",
+      "curl": "curl -X POST $URL/api/tasks/scaffold_hop -H 'X-Fc-Invocation-Type: Async' -H 'X-Bioagent-Job-Id: my-hop-001' -F 'input_smiles=CCCCC1=NC(=C(N1CC2=CC=C(C=C2)C3=CC=CC=C3C4=NNN=N4)CO)Cl' -F 'frag_max_n=100'",
+      "python": null,
+      "body": null,
+      "notes": "Returns 202 immediately; FC keeps the instance alive until the search completes.  Use in production behind the FC async-task console toggle."
+     }
+    ]
+   }
+  ],
+  "job_lifecycle": {
+   "poll_endpoint": "/api/jobs/{job_id}",
+   "files_endpoint": "/api/jobs/{job_id}/files",
+   "log_endpoint": "/api/jobs/{job_id}/log",
+   "download_endpoint": "/api/jobs/{job_id}/download",
+   "single_file_endpoint": "/api/jobs/{job_id}/file/{path}",
+   "delete_endpoint": "/api/jobs/{job_id}",
+   "statuses": [
+    "pending",
+    "running",
+    "completed",
+    "failed"
+   ],
+   "failure_kinds": [
+    "subprocess_error",
+    "no_outputs",
+    "timeout",
+    "dataset_invalid",
+    "interrupted"
+   ],
+   "poll_recommendation": "Poll the status endpoint every 5–120 s until status ∈ {'completed', 'failed'}. On failure, JobInfo.error_summary holds a one-line exception summary and error_tail holds the trailing ~4 KB of the subprocess log — usually enough for triage without a separate /log fetch.",
+   "restart_semantics": "Jobs survive process and FC instance restarts via a `job.json` sidecar in each job directory. Jobs that were RUNNING at the moment of restart are downgraded to FAILED with failure_kind='interrupted'."
+  },
+  "nas_layout": {
+   "jobs_base_dir": "/data/chembounce_jobs",
+   "per_job_structure": "<jobs_base_dir>/<job_id>/{input/, output/, logs/run.log, job.json}",
+   "cross_instance_consistency": "When multiple FC instances mount the same NAS at jobs_base_dir, all of them can see each other's jobs via read-through cache on GET. Writes (create/update) only happen on the instance that owns the subprocess.",
+   "cross_service_sharing": "Other bioagent services mounted on the same NAS can read this service's output files directly by path, avoiding HTTP round-trips. Example: another service does `Path('/data/rfantibody_jobs/<id>/output/file.qv').read_bytes()`."
+  },
+  "service_specific": {
+   "model": {
+    "name": "ChemBounce",
+    "method": "classical scaffold hopping (fragmentation + similarity search + drug-likeness filtering)",
+    "task": "ligand-based scaffold hopping (no pocket / protein target required)",
+    "output_format": "TSV (overall_result.txt) + per-fragment TSVs + resource_cost.json",
+    "license_note": "INTERNAL RESEARCH USE ONLY — upstream repo has no LICENSE file. See design doc §10.1."
+   },
+   "tool_outputs": {
+    "scaffold_hop": "output/overall_result.txt — main TSV with columns: Fragment_no, Final structure, Standardized final structure, Tanimoto Similarity, Electron shape Similarity"
+   },
+   "config_tips": {
+    "database": "Start with '250mw' (default — scaffolds with MW ≤ 250, fast). Switch to 'full' only for comprehensive paper-grade search (~4M scaffolds, needs ≥64 GB RAM).",
+    "frag_max_n": "100 is a sensible default.  >1000 stresses runtime exponentially on multi-ring molecules (upstream caveat).",
+    "tanimoto_threshold": "0.5 retains broad diversity.  Raise to 0.6–0.7 for tighter similarity to the original molecule.",
+    "wo_lipinski": "Enable for macrocycles / peptides that naturally violate Lipinski's rule of five (MW > 500, > 5 H-bond donors, etc).",
+    "core_smiles": "Use to lock a substructure (e.g. a known pharmacophore) that must be preserved in the final candidates."
+   },
+   "input_uri_schemes": {
+    "string": "SMILES passed directly as a form field (recommended)"
+   },
+   "task_comparison": {
+    "vs_diffusion_hopping_server": "Both do 'scaffold hopping' but differ fundamentally: ChemBounce is ligand-based (no protein required, classical similarity search); diffusion-hopping-server is pocket-conditional (requires protein PDB + reference ligand, neural diffusion preserves binding pose).  Pick ChemBounce for early hit-to-lead medicinal chemistry, anti-patent redesign, or when no protein structure is available."
+   }
+  },
+  "openapi_url": "/openapi.json"
+ },
+ "openapi": {
+  "openapi": "3.1.0",
+  "info": {
+   "title": "ChemBounce Server",
+   "version": "0.0.5"
+  },
+  "paths": {
+   "/healthz": {
+    "get": {
+     "summary": "Health",
+     "operationId": "health_healthz_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "additionalProperties": {
+           "type": "string"
+          },
+          "type": "object",
+          "title": "Response Health Healthz Get"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/uploads": {
+    "post": {
+     "summary": "Upload File",
+     "description": "Stage a file on shared NAS and return a `file://` URI.\n\nFor inputs too large for the 128 KiB FC async event payload: upload the\nbytes here over sync HTTP, then pass the returned `uri` as a `*_uri`\nfield on the real submit / async-task request. Because the file lands on\nthe shared NAS mount, any instance can resolve it later.",
+     "operationId": "upload_file_api_uploads_post",
+     "requestBody": {
+      "content": {
+       "multipart/form-data": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_upload_file_api_uploads_post"
+        }
+       }
+      },
+      "required": true
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/UploadInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/pre-stop": {
+    "get": {
+     "summary": "Pre Stop",
+     "description": "FC PreStop hook — mark this instance's running jobs as interrupted.",
+     "operationId": "pre_stop_pre_stop_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Response Pre Stop Pre Stop Get"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}": {
+    "get": {
+     "summary": "Get Job",
+     "operationId": "get_job_api_jobs__job_id__get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    },
+    "delete": {
+     "summary": "Delete Job",
+     "operationId": "delete_job_api_jobs__job_id__delete",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "type": "object",
+          "additionalProperties": {
+           "type": "string"
+          },
+          "title": "Response Delete Job Api Jobs  Job Id  Delete"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}/files": {
+    "get": {
+     "summary": "List Job Files",
+     "operationId": "list_job_files_api_jobs__job_id__files_get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "type": "object",
+          "additionalProperties": true,
+          "title": "Response List Job Files Api Jobs  Job Id  Files Get"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}/log": {
+    "get": {
+     "summary": "Get Job Log",
+     "operationId": "get_job_log_api_jobs__job_id__log_get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "type": "object",
+          "additionalProperties": {
+           "type": "string"
+          },
+          "title": "Response Get Job Log Api Jobs  Job Id  Log Get"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}/download": {
+    "get": {
+     "summary": "Download Job",
+     "operationId": "download_job_api_jobs__job_id__download_get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {}
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/jobs/{job_id}/file/{file_path}": {
+    "get": {
+     "summary": "Download Single File",
+     "operationId": "download_single_file_api_jobs__job_id__file__file_path__get",
+     "parameters": [
+      {
+       "name": "job_id",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Job Id"
+       }
+      },
+      {
+       "name": "file_path",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "File Path"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {}
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/manifest": {
+    "get": {
+     "summary": "Agent-friendly protocol description for this service.",
+     "operationId": "get_manifest_api_manifest_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ServiceManifest"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/healthz/detail": {
+    "get": {
+     "summary": "Healthz Detail",
+     "description": "Probe whether the scaffold + fingerprint DB files are reachable on NAS.\n\nReports both 250mw and full as separate flags; service can run with just\none of them (250mw is required by default), full is bonus.",
+     "operationId": "healthz_detail_healthz_detail_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Response Healthz Detail Healthz Detail Get"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/scaffold_hop": {
+    "post": {
+     "summary": "Post Scaffold Hop",
+     "description": "Run ChemBounce scaffold hopping.  Returns JobInfo; poll until completed.",
+     "operationId": "post_scaffold_hop_api_scaffold_hop_post",
+     "requestBody": {
+      "content": {
+       "application/x-www-form-urlencoded": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_post_scaffold_hop_api_scaffold_hop_post"
+        }
+       }
+      },
+      "required": true
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/tasks/scaffold_hop": {
+    "post": {
+     "summary": "Post Scaffold Hop Task",
+     "description": "FC async task mode — blocks until done; HTTP 202 on submit.",
+     "operationId": "post_scaffold_hop_task_api_tasks_scaffold_hop_post",
+     "parameters": [
+      {
+       "name": "X-Bioagent-Job-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Bioagent-Job-Id"
+       }
+      },
+      {
+       "name": "X-Fc-Async-Task-Id",
+       "in": "header",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "X-Fc-Async-Task-Id"
+       }
+      }
+     ],
+     "requestBody": {
+      "required": true,
+      "content": {
+       "application/x-www-form-urlencoded": {
+        "schema": {
+         "$ref": "#/components/schemas/Body_post_scaffold_hop_task_api_tasks_scaffold_hop_post"
+        }
+       }
+      }
+     },
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/JobInfo"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "components": {
+   "schemas": {
+    "Body_post_scaffold_hop_api_scaffold_hop_post": {
+     "properties": {
+      "input_smiles_uri": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Input Smiles Uri"
+      },
+      "input_smiles": {
+       "type": "string",
+       "title": "Input Smiles",
+       "description": "Input SMILES string of the target molecule to scaffold-hop."
+      },
+      "database": {
+       "type": "string",
+       "enum": [
+        "250mw",
+        "full"
+       ],
+       "title": "Database",
+       "description": "Which scaffold fingerprint DB to search:\n- '250mw': scaffolds with MW ≤ 250 (~tens of MB, fast, low recall)\n- 'full' : ~4M scaffolds (~GB, paper-grade, needs ≥64 GB RAM)",
+       "default": "250mw"
+      },
+      "core_smiles": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Core Smiles",
+       "description": "A core substructure SMILES that must be preserved in the final candidate; if not actually contained in `input_smiles`, ChemBounce raises an error.",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "frag_max_n": {
+       "type": "integer",
+       "title": "Frag Max N",
+       "description": "Maximum candidates per fragment.",
+       "default": 100
+      },
+      "overall_max_n": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Overall Max N",
+       "description": "Hard cap on total candidates across all fragments.",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "scaffold_top_n": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Scaffold Top N",
+       "description": "Number of scaffolds to test per fragment.",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "cand_max_n__rplc": {
+       "type": "integer",
+       "title": "Cand Max N  Rplc",
+       "description": "Maximum candidates per replaced scaffold.",
+       "default": 10
+      },
+      "tanimoto_threshold": {
+       "type": "number",
+       "title": "Tanimoto Threshold",
+       "description": "Tanimoto similarity threshold between original and generated SMILES.",
+       "default": 0.5
+      },
+      "qed_min": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Qed Min",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "qed_max": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Qed Max",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "sa_min": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Sa Min",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "sa_max": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Sa Max",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "logp_min": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Logp Min",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "logp_max": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Logp Max",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "mw_min": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Mw Min",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "mw_max": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Mw Max",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "h_donor_min": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "H Donor Min",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "h_donor_max": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "H Donor Max",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "h_acceptor_min": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "H Acceptor Min",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "h_acceptor_max": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "H Acceptor Max",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "wo_lipinski": {
+       "type": "boolean",
+       "title": "Wo Lipinski",
+       "description": "Turn off Lipinski's rule of five.  Enable for macrocycles / peptides that naturally violate it.",
+       "default": false
+      },
+      "low_mem": {
+       "type": "boolean",
+       "title": "Low Mem",
+       "description": "Upstream's `-l` flag.",
+       "default": false
+      }
+     },
+     "type": "object",
+     "required": [
+      "input_smiles"
+     ],
+     "title": "Body_post_scaffold_hop_api_scaffold_hop_post"
+    },
+    "Body_post_scaffold_hop_task_api_tasks_scaffold_hop_post": {
+     "properties": {
+      "input_smiles_uri": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Input Smiles Uri"
+      },
+      "input_smiles": {
+       "type": "string",
+       "title": "Input Smiles",
+       "description": "Input SMILES string of the target molecule to scaffold-hop."
+      },
+      "database": {
+       "type": "string",
+       "enum": [
+        "250mw",
+        "full"
+       ],
+       "title": "Database",
+       "description": "Which scaffold fingerprint DB to search:\n- '250mw': scaffolds with MW ≤ 250 (~tens of MB, fast, low recall)\n- 'full' : ~4M scaffolds (~GB, paper-grade, needs ≥64 GB RAM)",
+       "default": "250mw"
+      },
+      "core_smiles": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Core Smiles",
+       "description": "A core substructure SMILES that must be preserved in the final candidate; if not actually contained in `input_smiles`, ChemBounce raises an error.",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "frag_max_n": {
+       "type": "integer",
+       "title": "Frag Max N",
+       "description": "Maximum candidates per fragment.",
+       "default": 100
+      },
+      "overall_max_n": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Overall Max N",
+       "description": "Hard cap on total candidates across all fragments.",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "scaffold_top_n": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Scaffold Top N",
+       "description": "Number of scaffolds to test per fragment.",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "cand_max_n__rplc": {
+       "type": "integer",
+       "title": "Cand Max N  Rplc",
+       "description": "Maximum candidates per replaced scaffold.",
+       "default": 10
+      },
+      "tanimoto_threshold": {
+       "type": "number",
+       "title": "Tanimoto Threshold",
+       "description": "Tanimoto similarity threshold between original and generated SMILES.",
+       "default": 0.5
+      },
+      "qed_min": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Qed Min",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "qed_max": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Qed Max",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "sa_min": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Sa Min",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "sa_max": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Sa Max",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "logp_min": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Logp Min",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "logp_max": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Logp Max",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "mw_min": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Mw Min",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "mw_max": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Mw Max",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "h_donor_min": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "H Donor Min",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "h_donor_max": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "H Donor Max",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "h_acceptor_min": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "H Acceptor Min",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "h_acceptor_max": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "H Acceptor Max",
+       "bioq_default": {
+        "kind": "unset",
+        "note": "only used when explicitly provided"
+       }
+      },
+      "wo_lipinski": {
+       "type": "boolean",
+       "title": "Wo Lipinski",
+       "description": "Turn off Lipinski's rule of five.  Enable for macrocycles / peptides that naturally violate it.",
+       "default": false
+      },
+      "low_mem": {
+       "type": "boolean",
+       "title": "Low Mem",
+       "description": "Upstream's `-l` flag.",
+       "default": false
+      }
+     },
+     "type": "object",
+     "required": [
+      "input_smiles"
+     ],
+     "title": "Body_post_scaffold_hop_task_api_tasks_scaffold_hop_post"
+    },
+    "Body_upload_file_api_uploads_post": {
+     "properties": {
+      "file": {
+       "type": "string",
+       "contentMediaType": "application/octet-stream",
+       "title": "File"
+      }
+     },
+     "type": "object",
+     "required": [
+      "file"
+     ],
+     "title": "Body_upload_file_api_uploads_post"
+    },
+    "EndpointExample": {
+     "properties": {
+      "title": {
+       "type": "string",
+       "title": "Title",
+       "description": "Short label (e.g., 'chain from previous job')."
+      },
+      "curl": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Curl",
+       "description": "Ready-to-run curl command."
+      },
+      "python": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Python",
+       "description": "Equivalent Python (httpx / requests) snippet."
+      },
+      "body": {
+       "anyOf": [
+        {
+         "additionalProperties": true,
+         "type": "object"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Body",
+       "description": "Structured request body, useful for JSON endpoints. Files are not represented here."
+      },
+      "notes": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Notes",
+       "description": "When an agent should reach for this example over the others."
+      }
+     },
+     "type": "object",
+     "required": [
+      "title"
+     ],
+     "title": "EndpointExample",
+     "description": "A copy-pasteable example for one endpoint."
+    },
+    "EndpointInfo": {
+     "properties": {
+      "method": {
+       "type": "string",
+       "title": "Method",
+       "description": "HTTP method, e.g. 'POST'."
+      },
+      "path": {
+       "type": "string",
+       "title": "Path",
+       "description": "URL path, e.g. '/api/rfdiffusion'."
+      },
+      "summary": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Summary",
+       "description": "One-line purpose (FastAPI route summary or first docstring line)."
+      },
+      "description": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Description",
+       "description": "Longer prose (FastAPI route description or docstring body)."
+      },
+      "operation_id": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Operation Id",
+       "description": "OpenAPI operation id; agents can fetch /openapi.json and look up /paths/{path}/{method} for the full request/response schemas."
+      },
+      "request_content_type": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Request Content Type",
+       "description": "Wire format the body uses: 'application/json' for plain JSON, 'multipart/form-data' when files are involved, etc."
+      },
+      "request_schema_ref": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Request Schema Ref",
+       "description": "JSON pointer into /openapi.json (e.g. '#/components/schemas/Body_run_rfdiffusion_api_rfdiffusion_post'). Resolve there for the full schema; the flat `request_fields` list below covers the common case."
+      },
+      "response_schema_ref": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Response Schema Ref",
+       "description": "Pointer to the 200-response schema (typically '#/components/schemas/JobInfo')."
+      },
+      "request_fields": {
+       "items": {
+        "$ref": "#/components/schemas/FieldInfo"
+       },
+       "type": "array",
+       "title": "Request Fields",
+       "description": "Top-level fields of the request body, flattened for agent consumption."
+      },
+      "examples": {
+       "items": {
+        "$ref": "#/components/schemas/EndpointExample"
+       },
+       "type": "array",
+       "title": "Examples",
+       "description": "Copy-pasteable examples (from `adapter.endpoint_examples()`)."
+      }
+     },
+     "type": "object",
+     "required": [
+      "method",
+      "path"
+     ],
+     "title": "EndpointInfo",
+     "description": "One service-defined HTTP operation, with enough metadata to construct a request."
+    },
+    "FailureKind": {
+     "type": "string",
+     "enum": [
+      "subprocess_error",
+      "no_outputs",
+      "timeout",
+      "dataset_invalid",
+      "interrupted"
+     ],
+     "title": "FailureKind",
+     "description": "Coarse classification of why a job failed.\n\nSet by `finalize_job` based on subprocess return code + output detection,\nor by `reload_from_disk` when a job was RUNNING at the moment of restart.\nLets the client distinguish recoverable from fatal failures without parsing\n`error_summary` strings."
+    },
+    "FieldInfo": {
+     "properties": {
+      "name": {
+       "type": "string",
+       "title": "Name",
+       "description": "Field name as it appears in the request body / form."
+      },
+      "type": {
+       "type": "string",
+       "title": "Type",
+       "description": "Human-friendly type name: 'string', 'integer', 'file' (multipart upload), 'array[string]', 'array[file]', or the name of a referenced pydantic model (in which case look it up in /openapi.json#/components/schemas)."
+      },
+      "required": {
+       "type": "boolean",
+       "title": "Required",
+       "description": "True iff the field must be present in the request."
+      },
+      "description": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Description",
+       "description": "From Field(description=...) / docstring."
+      },
+      "is_file": {
+       "type": "boolean",
+       "title": "Is File",
+       "description": "True iff this is a multipart file upload — a scalar 'file' or an 'array[file]' (rather than a form/json scalar).",
+       "default": false
+      },
+      "default": {
+       "title": "Default",
+       "description": "Effective default when omitted: a literal (default_kind='literal') or a semantics token 'auto'/'unset'."
+      },
+      "default_kind": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Default Kind",
+       "description": "'literal' | 'auto' | 'unset'. 'auto'/'unset' are semantics tokens (not sendable literals); 'literal' means `default` is a real value."
+      },
+      "default_note": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Default Note",
+       "description": "One-line prose for the 'auto'/'unset' omission semantics."
+      }
+     },
+     "type": "object",
+     "required": [
+      "name",
+      "type",
+      "required"
+     ],
+     "title": "FieldInfo",
+     "description": "One request-body field, flattened from the OpenAPI schema."
+    },
+    "HTTPValidationError": {
+     "properties": {
+      "detail": {
+       "items": {
+        "$ref": "#/components/schemas/ValidationError"
+       },
+       "type": "array",
+       "title": "Detail"
+      }
+     },
+     "type": "object",
+     "title": "HTTPValidationError"
+    },
+    "JobInfo": {
+     "properties": {
+      "job_id": {
+       "type": "string",
+       "minLength": 1,
+       "title": "Job Id"
+      },
+      "status": {
+       "$ref": "#/components/schemas/JobStatus"
+      },
+      "service": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Service"
+      },
+      "endpoint": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Endpoint"
+      },
+      "message": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Message"
+      },
+      "progress": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Progress"
+      },
+      "created_at": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date-time"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Created At"
+      },
+      "started_at": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date-time"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Started At"
+      },
+      "completed_at": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date-time"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Completed At"
+      },
+      "duration_seconds": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Duration Seconds"
+      },
+      "input_params": {
+       "anyOf": [
+        {
+         "additionalProperties": true,
+         "type": "object"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Input Params"
+      },
+      "output_count": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Output Count"
+      },
+      "output_total_bytes": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Output Total Bytes"
+      },
+      "error_summary": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Error Summary"
+      },
+      "error_tail": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Error Tail"
+      },
+      "failure_kind": {
+       "anyOf": [
+        {
+         "$ref": "#/components/schemas/FailureKind"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "instance_id": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Instance Id"
+      }
+     },
+     "type": "object",
+     "required": [
+      "job_id",
+      "status"
+     ],
+     "title": "JobInfo",
+     "description": "Public job state — what `GET /api/jobs/{id}` returns."
+    },
+    "JobLifecycle": {
+     "properties": {
+      "poll_endpoint": {
+       "type": "string",
+       "title": "Poll Endpoint",
+       "default": "/api/jobs/{job_id}"
+      },
+      "files_endpoint": {
+       "type": "string",
+       "title": "Files Endpoint",
+       "default": "/api/jobs/{job_id}/files"
+      },
+      "log_endpoint": {
+       "type": "string",
+       "title": "Log Endpoint",
+       "default": "/api/jobs/{job_id}/log"
+      },
+      "download_endpoint": {
+       "type": "string",
+       "title": "Download Endpoint",
+       "default": "/api/jobs/{job_id}/download"
+      },
+      "single_file_endpoint": {
+       "type": "string",
+       "title": "Single File Endpoint",
+       "default": "/api/jobs/{job_id}/file/{path}"
+      },
+      "delete_endpoint": {
+       "type": "string",
+       "title": "Delete Endpoint",
+       "default": "/api/jobs/{job_id}"
+      },
+      "statuses": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array",
+       "title": "Statuses",
+       "description": "All possible values of JobInfo.status."
+      },
+      "failure_kinds": {
+       "items": {
+        "type": "string"
+       },
+       "type": "array",
+       "title": "Failure Kinds",
+       "description": "All possible values of JobInfo.failure_kind (only set on failure)."
+      },
+      "poll_recommendation": {
+       "type": "string",
+       "title": "Poll Recommendation",
+       "default": "Poll the status endpoint every 5–120 s until status ∈ {'completed', 'failed'}. On failure, JobInfo.error_summary holds a one-line exception summary and error_tail holds the trailing ~4 KB of the subprocess log — usually enough for triage without a separate /log fetch."
+      },
+      "restart_semantics": {
+       "type": "string",
+       "title": "Restart Semantics",
+       "default": "Jobs survive process and FC instance restarts via a `job.json` sidecar in each job directory. Jobs that were RUNNING at the moment of restart are downgraded to FAILED with failure_kind='interrupted'."
+      }
+     },
+     "type": "object",
+     "title": "JobLifecycle",
+     "description": "Framework-provided job state machine. Identical across all bioagent services."
+    },
+    "JobStatus": {
+     "type": "string",
+     "enum": [
+      "pending",
+      "running",
+      "completed",
+      "failed"
+     ],
+     "title": "JobStatus",
+     "description": "Lifecycle state of a job. Strings so JSON serialization is human-readable."
+    },
+    "NasLayout": {
+     "properties": {
+      "jobs_base_dir": {
+       "type": "string",
+       "format": "path",
+       "title": "Jobs Base Dir",
+       "description": "Root directory under which per-job dirs are created."
+      },
+      "per_job_structure": {
+       "type": "string",
+       "title": "Per Job Structure",
+       "default": "<jobs_base_dir>/<job_id>/{input/, output/, logs/run.log, job.json}"
+      },
+      "cross_instance_consistency": {
+       "type": "string",
+       "title": "Cross Instance Consistency",
+       "default": "When multiple FC instances mount the same NAS at jobs_base_dir, all of them can see each other's jobs via read-through cache on GET. Writes (create/update) only happen on the instance that owns the subprocess."
+      },
+      "cross_service_sharing": {
+       "type": "string",
+       "title": "Cross Service Sharing",
+       "default": "Other bioagent services mounted on the same NAS can read this service's output files directly by path, avoiding HTTP round-trips. Example: another service does `Path('/data/rfantibody_jobs/<id>/output/file.qv').read_bytes()`."
+      }
+     },
+     "type": "object",
+     "required": [
+      "jobs_base_dir"
+     ],
+     "title": "NasLayout",
+     "description": "Where each job's data lives on disk; shared across multi-instance FC."
+    },
+    "ServiceManifest": {
+     "properties": {
+      "service": {
+       "type": "string",
+       "title": "Service",
+       "description": "Adapter.name; stable identifier across versions."
+      },
+      "title": {
+       "type": "string",
+       "title": "Title",
+       "description": "Human-readable title (FastAPI app title)."
+      },
+      "version": {
+       "type": "string",
+       "title": "Version",
+       "description": "Semantic version of the service image."
+      },
+      "description": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Description",
+       "description": "Free-form prose (FastAPI app description)."
+      },
+      "endpoints": {
+       "items": {
+        "$ref": "#/components/schemas/EndpointInfo"
+       },
+       "type": "array",
+       "title": "Endpoints",
+       "description": "Service-specific POST routes. Framework lifecycle routes are NOT included."
+      },
+      "job_lifecycle": {
+       "$ref": "#/components/schemas/JobLifecycle"
+      },
+      "nas_layout": {
+       "$ref": "#/components/schemas/NasLayout"
+      },
+      "service_specific": {
+       "additionalProperties": true,
+       "type": "object",
+       "title": "Service Specific",
+       "description": "Whatever `adapter.manifest_extras()` returned. Services document their output filename conventions, supported input URI schemes, and any tool-specific hints here."
+      },
+      "openapi_url": {
+       "type": "string",
+       "title": "Openapi Url",
+       "description": "Where to fetch the full JSON Schema for every request/response model.",
+       "default": "/openapi.json"
+      }
+     },
+     "type": "object",
+     "required": [
+      "service",
+      "title",
+      "version",
+      "job_lifecycle",
+      "nas_layout"
+     ],
+     "title": "ServiceManifest",
+     "description": "Agent-facing protocol description for one bioagent service."
+    },
+    "UploadInfo": {
+     "properties": {
+      "filename": {
+       "type": "string",
+       "title": "Filename",
+       "description": "Sanitized basename of the staged file."
+      },
+      "size_bytes": {
+       "type": "integer",
+       "minimum": 0.0,
+       "title": "Size Bytes",
+       "description": "Bytes written to disk."
+      },
+      "path": {
+       "type": "string",
+       "title": "Path",
+       "description": "Absolute path on the shared NAS mount."
+      },
+      "uri": {
+       "type": "string",
+       "title": "Uri",
+       "description": "file:// URI resolvable by any service's *_uri input."
+      }
+     },
+     "type": "object",
+     "required": [
+      "filename",
+      "size_bytes",
+      "path",
+      "uri"
+     ],
+     "title": "UploadInfo",
+     "description": "What `POST /api/uploads` returns after staging a file on shared NAS.\n\n`uri` is a `file://` reference the caller passes as a `*_uri` field on a\nlater submit / async-task request, keeping large bytes out of the 128 KiB\nasync event payload."
+    },
+    "ValidationError": {
+     "properties": {
+      "loc": {
+       "items": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "integer"
+         }
+        ]
+       },
+       "type": "array",
+       "title": "Location"
+      },
+      "msg": {
+       "type": "string",
+       "title": "Message"
+      },
+      "type": {
+       "type": "string",
+       "title": "Error Type"
+      },
+      "input": {
+       "title": "Input"
+      },
+      "ctx": {
+       "type": "object",
+       "title": "Context"
+      }
+     },
+     "type": "object",
+     "required": [
+      "loc",
+      "msg",
+      "type"
+     ],
+     "title": "ValidationError"
+    }
+   }
+  }
+ },
+ "status": "ok",
+ "source": "registry"
+}

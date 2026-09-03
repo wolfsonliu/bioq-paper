@@ -1,0 +1,39 @@
+short_name,stage,modality,upstream_method,citation,citation_status
+alphafold,1 · Structure prediction & representation,P/X,AlphaFold / AlphaFold-Multimer,jumper_highly_2021; abramson_accurate_2024; evans_protein_2021,in_bib
+boltz,1 · Structure prediction & representation,X,Boltz-2,passaro_boltz-2_2025; wohlwend_boltz-1_2024,in_bib
+esmfold2,1 · Structure prediction & representation,P/Ab,ESMFold2,lin_evolutionary-scale_2023,in_bib
+immunebuilder,1 · Structure prediction & representation,Ab,ImmuneBuilder,abanades_immunebuilder_2023,in_bib
+promera,1 · Structure prediction & representation,P/Ab,Promera,jing_promera_nodate,in_bib
+ensemble,1 · Structure prediction & representation,Ab/P,Multi-method ensemble (AlphaFold / ESMFold / Boltz / Promera),,none
+mmseqs2,2 · Sequence search & clustering,P/X,MMseqs2,steinegger_mmseqs2_2017,in_bib
+diamond,2 · Sequence search & clustering,P/X,DIAMOND,buchfink_clustering_2026,in_bib
+rfdiffusion,3 · De novo design & generation,P,RFdiffusion,watson_novo_2023,in_bib
+rfdiffusion2,3 · De novo design & generation,P,RFdiffusion2,ahern_atom-level_2026; krishna_generalized_2024,in_bib
+genie3,3 · De novo design & generation,P,Genie 3,lin_fast_2026,in_bib
+ppiflow,3 · De novo design & generation,P/Ab,PPIFlow,yu_high-affinity_2026,in_bib
+boltzgen,3 · De novo design & generation,P/Ab/Pep,BoltzGen,stark_boltzgen_2025,in_bib
+rfantibody,3 · De novo design & generation,Ab,RFantibody (RFdiffusion + ProteinMPNN + RoseTTAFold-2),bennett_atomically_2026; watson_novo_2023; dauparas_robust_2022; baek_accurate_2021,in_bib
+iggm,3 · De novo design & generation,Ab,IgGM,wang_iggm_2025,in_bib
+odesign,3 · De novo design & generation,P/NA/SM,ODesign,zhang_odesign_2025,in_bib
+proteinmpnn,3 · De novo design & generation,P,ProteinMPNN,dauparas_robust_2022,in_bib
+lasermpnn,3 · De novo design & generation,P/SM,LASErMPNN (+ LigandMPNN),fry_zero-shot_2026; dauparas_robust_2022,in_bib
+flowmol,3 · De novo design & generation,SM,FlowMol3,dunn_flowmol3_2025,in_bib
+semlaflow,3 · De novo design & generation,SM,SemlaFlow,irwin_semlaflow_2025,in_bib
+megalodon,3 · De novo design & generation,SM,Megalodon,reidenbach_applications_2025,in_bib
+reinvent,3 · De novo design & generation,SM,REINVENT,loeffler_reinvent_2024; blaschke_reinvent_2020,in_bib
+pocketxmol,3 · De novo design & generation,SM,PocketXMol,peng_unified_2026,in_bib
+drughive,3 · De novo design & generation,SM,DrugHIVE,weller_structure-based_2024,in_bib
+chembounce,3 · De novo design & generation,SM,ChemBounce,jang_chembounce_2025,in_bib
+diffusion-hopping,3 · De novo design & generation,SM,DiffHopp,torge_diffhopp_2023,in_bib
+turbohopp,3 · De novo design & generation,SM,TurboHopp,yoo_turbohopp_2024,in_bib
+diffdock,4 · Docking & screening,SM,DiffDock,corso_diffdock_2023,in_bib
+diffdock-pp,4 · Docking & screening,P,DiffDock-PP,ketata_diffdock-pp_2023,in_bib
+lightdock,4 · Docking & screening,P,LightDock,jimenez-garcia_lightdock_2018,in_bib
+haddock3,4 · Docking & screening,P/X,HADDOCK3,giulini_haddock3_2025,in_bib
+plip,4 · Docking & screening,SM/P,PLIP,schake_plip_2025,in_bib
+bindflow,5 · Affinity / binding free energy,SM,BindFlow,leon_bindflow_2026,in_bib
+qligfep,5 · Affinity / binding free energy,SM,QligFEP,alencar_araripe_doing_nodate,in_bib
+openbpmd,5 · Affinity / binding free energy,SM,OpenBPMD,lukauskis_open_2022,in_bib
+openadmet,6 · ADMET / PK,SM,OpenADMET,fraser_mapping_2026,in_bib
+dockq,7 · Scoring & post-processing,P,DockQ,basu_dockq_2016; mirabello_dockq_2024,in_bib
+deeprank-ab,7 · Scoring & post-processing,Ab,DeepRank-Ab,xu_deeprank-ab_2025,in_bib

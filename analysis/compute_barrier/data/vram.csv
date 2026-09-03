@@ -1,0 +1,40 @@
+service,gpu_class,fc_vram_gb,min_vram_gb,kind,source,confidence
+alphafold-server,fc.gpu.tesla.1,16,16,inferred,≤ provisioned 16 GB (fc.gpu.tesla.1); AF2 monomer ~12–16 GB; upstream lists an A100,low
+bindflow-server,,,,cpu,,
+boltz-server,fc.gpu.tesla.1,16,16,inferred,≤ provisioned 16 GB; wrapper recommends ada.1 24 GB for ≤1000-residue complexes,low
+boltzgen-server,fc.gpu.tesla.1,16,16,inferred,"≤ provisioned 16 GB; AF2+MPNN pipeline, upstream cites A100",low
+chembounce-server,,,,cpu,,
+deeprank-ab-server,fc.gpu.tesla.1,16,8,inferred,"GNN scoring, lightweight inference ≈ 8 GB; provisioned 16 GB",low
+diamond-server,,,,cpu,,
+diffdock-pp-server,fc.gpu.tesla.1,16,16,inferred,wrapper 'T4 16 GB'; upstream tested RTX A6000 (48 GB),low
+diffdock-server,fc.gpu.ampere.1,24,24,inferred,wrapper 'fc.gpu.ampere.1 (A10 24GB)' (provisioned),low
+diffusion-hopping-server,fc.gpu.tesla.1,16,8,minimum,bioq-services/services/diffusion-hopping-server/README.md:210: | GPU 配置 | `fc.gpu.tesla.1`（T4 8 GB 即可——模型不大，~70 MB ckpt）/ Ada / Blackwell 都可 |,low
+dockq-server,,,,cpu,,
+drughive-server,fc.gpu.tesla.1,16,8,minimum,bioq-services/services/drughive-server/README.md:316: | Instance type | `fc.gpu.tesla.1` (T4 8 GB is enough; Ada / Blackwell also work) |,low
+ensemble-server,fc.gpu.tesla.1,16,0,cpu,wrapper: 'ensemble-server 是 CPU 函数（不跑 GPU 计算）' (deploy gpuConfig appears spurious),high
+esmfold2-server,fc.gpu.blackwell.1,32,32,inferred,≤ provisioned 32 GB (blackwell); ESMC 6B embeddings + diffusion backbone,low
+flowmol-server,fc.gpu.tesla.1,16,8,minimum,bioq-services/services/flowmol-server/README.md:265: | GPU 配置 | `fc.gpu.tesla.1`（T4 8 GB 绰绰有余——6M 参数模型）/ Ada / L20 |,low
+genie3-server,fc.gpu.tesla.1,16,8,minimum,bioq-services/services/genie3-server/README.md:345: | GPU 配置 | `fc.gpu.tesla.1` 起步（8 GB 显存：≤ 512 残基的单体 / 中长 binder） |,low
+haddock3-server,,,,cpu,,
+iggm-server,fc.gpu.tesla.1,16,16,inferred,≤ provisioned 16 GB; antibody diffusion; upstream offers --max_antigen_size 384 to avoid memory issues,low
+immunebuilder-server,fc.gpu.tesla.1,16,8,inferred,"IgFold/NanoNet, '>100x faster than AF2', lightweight; provisioned 16 GB",low
+lasermpnn-server,,,,tested,upstream_docs/LASErMPNN/README.md:189: We used 4x A6000 GPUs to train the LASErMPNN model which takes around 24 hrs for 60k optimizer steps. See `train_lasermpnn.py` for more i...,
+lightdock-server,,,,cpu,,
+megalodon-server,fc.gpu.tesla.1,16,16,inferred,≤ provisioned 16 GB; molecule flow/diffusion (40M params) + 3D structure,low
+mmseqs2-server,fc.gpu.tesla.1,16,4,inferred,CPU-native; GPU search optional (Ampere); provisioned 16 GB,low
+odesign-server,,,,cpu,,
+openadmet-server,fc.gpu.tesla.1,16,16,minimum,bioq-services/services/openadmet-server/README.md:304: | GPU memory | ≥ 16 GB |,low
+openbpmd-server,fc.gpu.tesla.1,16,16,inferred,"≤ provisioned 16 GB; GPU MD, scales with system (wrapper: ~5–10h/10reps on A100)",low
+plip-server,,,,cpu,,
+pocketxmol-server,fc.gpu.tesla.1,16,8,minimum,bioq-services/services/pocketxmol-server/README.md:389: - GPU 实例（T4 8GB 起步；`fc.gpu.tesla.1`）,low
+ppiflow-server,fc.gpu.tesla.1,16,16,minimum,bioq-services/services/ppiflow-server/README.md:268: | GPU 配置 | `fc.gpu.tesla.1` 起步（16 GB 显存：抗体 / VHH 设计长输入会用更多） |,low
+promera-server,fc.gpu.ada.1,48,24,inferred,wrapper 'fc.gpu.ada.1 (24 GB) for typical complexes' (deploy ada.1 48 GB),low
+proteinmpnn-server,fc.gpu.tesla.1,16,4,inferred,"tiny model, CPU-capable; wrapper 'T4 16 GB' overshoots; upstream: reduce batch on OOM",low
+qligfep-server,,,,cpu,,
+reinvent-server,fc.gpu.tesla.1,16,8,minimum,upstream_docs/REINVENT4/README.md:40: of about 8 GiB for both CPU main memory and GPU memory is sufficient.,low
+rfantibody-server,fc.gpu.tesla.1,16,8,minimum,bioq-services/services/rfantibody-server/README.md:285: | GPU 配置 | `fc.gpu.tesla.1` 起步（8 GB 显存） |,low
+rfdiffusion-server,fc.gpu.tesla.1,16,8,minimum,bioq-services/services/rfdiffusion-server/README.md:307: | GPU 配置 | `fc.gpu.tesla.1` 起步（8 GB 显存可跑常规设计；大蛋白上 `fc.gpu.ampere.1`）|,low
+rfdiffusion2-server,fc.gpu.tesla.1,16,16,minimum,bioq-services/services/rfdiffusion2-server/README.md:204: # 2. 创建 conda env（用 vendored 的 env spec）— 至少需要 16 GB GPU 显存,low
+semlaflow-server,fc.gpu.tesla.1,16,16,inferred,≤ provisioned 16 GB; flow-matching model,low
+seqkit-server,,,,cpu,,
+turbohopp-server,,,,cpu,,
